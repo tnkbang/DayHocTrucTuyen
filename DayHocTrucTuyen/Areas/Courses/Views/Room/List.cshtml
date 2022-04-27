@@ -1,0 +1,491 @@
+﻿
+@{
+    ViewBag.Title = "Danh sách lớp học";
+    ViewBag.Main = "Danh sách lớp học";
+    Layout = "~/Views/Shared/_LayoutArea.cshtml";
+    var sess = (UserLogin)Session[SessionLogin.SESSION_LOGIN];
+    NguoiDung user = new NguoiDung();
+    LopHoc lopHoc = new LopHoc();
+    List<LopHoc> roomQuest = lopHoc.searchLopHoc(sess.MaUser, ViewBag.Search);
+}
+@using DayHocTrucTuyen.Models
+@model List<LopHoc>
+
+<section>
+    <div class="page-header">
+        <div class="header-inner">
+            <h2>Classroom</h2>
+            <p>
+                Chào mừng đến với trang web Dạy Học Trực Tuyến. Trang này hiển thị danh sách các lớp học bạn đã tham gia.
+            </p>
+        </div>
+        <figure><img src="~/Content/Img/Resources/baner-forum.png" alt=""></figure>
+    </div>
+</section><!-- sub header -->
+<section>
+    <div class="gap gray-bg">
+        <div class="container-fluid">
+            <div class="row merged20">
+                <div class="col-lg-9">
+                    <div class="forum-warper">
+                        <div class="central-meta">
+                            <div class="title-block">
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <div class="align-left">
+                                            <h5 class="create-post">Tìm kiếm lớp học</h5>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="row merged20">
+                                            <div class="col-lg-12 col-md-12 col-sm-12">
+                                                <form method="post" id="form-search-room">
+                                                    <input id="search-room-name" type="text" placeholder="Nhập tên lớp..." value="@ViewBag.Search">
+                                                    <button type="submit"><i class="fa fa-search"></i></button>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div><!-- Search room-->
+                    </div>
+                    @if (ViewBag.Search != null)
+                    {
+                        <div class="forum-warper">
+                            <div class="central-meta">
+                                <div class="title-block">
+                                    <div class="align-left">
+                                        <h5 class="create-post">Kết quả tìm kiếm với từ khóa "@ViewBag.Search"</h5>
+                                    </div>
+                                </div>
+                                @if (roomQuest.Count == 0)
+                                {
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <div class="text-center">
+                                                <span>Không tìm thấy lớp học nào !</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+                                else
+                                {
+                                    <div class="load-more">
+                                        @foreach (var room in roomQuest)
+                                        {
+                                            <div class="central-meta item">
+                                                <div class="pit-post">
+                                                    <figure>
+                                                        @if (room.Img_Bia == null)
+                                                        {<img width="120" height="90" src="~/Content/Img/roomCover/cover-default.jpg" alt="" />}
+                                                        else
+                                                        {<img width="120" height="90" src="~/Content/Img/roomCover/@room.Img_Bia" alt="" />}
+                                                    </figure>
+                                                    <div class="pit-post-deta">
+                                                        <h4><a href="~/Courses/Room/Detail?Room=@room.Ma_Lop" title="@room.Ma_Lop">@room.Ten_Lop</a></h4>
+                                                        <ul class="post-up-time">
+                                                            @if (room.Mo_Ta == null)
+                                                            {
+                                                                <li>Lớp chưa có giới thiệu !</li>
+                                                            }
+                                                            else
+                                                            {
+                                                                <li>@room.Mo_Ta</li>
+                                                            }
+                                                            <li>
+                                                                <div class="usr-fig">
+                                                                    @if (room.getOwner(room.Ma_Lop).Img_Avt == null)
+                                                                    {<img src="~/Content/Img/userAvt/avt-default.png" alt="">}
+                                                                    else
+                                                                    {<img src="~/Content/Img/userAvt/@room.getOwner(room.Ma_Lop).Img_Avt" alt="">}
+                                                                    <a href="~/Profile/Info?User=@room.Ma_ND" title="">@room.getOwner(room.Ma_Lop).Ho_Lot @room.getOwner(room.Ma_Lop).Ten</a> là giáo viên
+                                                                </div>
+                                                            </li>
+                                                            <li><i class="fa fa-clock-o"></i> @room.Ngay_Tao.ToString("'Ngày' dd 'tháng' MM 'năm' yyyy")</li>
+                                                        </ul>
+                                                        <ul class="pit-opt">
+                                                            <li class="like" title="Yêu thích"><i class="fa fa-heart"></i><em>@room.getSLCamXuc(room.Ma_Lop)</em></li>
+                                                            <li class="class-post" title="Bài đăng"><i class="fa fa-comments"></i><em>@room.getSLPost(room.Ma_Lop)</em></li>
+                                                            <li class="members" title="Thành viên"><i class="fa fa-group"></i><em>@room.getMembers(room.Ma_Lop)</em></li>
+                                                            <li class="bad-report" title="Báo cáo"><i class="fa fa-flag"></i></li>
+                                                            <li class="get-link" title="Sao chép liên kết"><i class="fa fa-link"></i></li>
+                                                        </ul>
+                                                    </div>
+                                                    <div class="right-pst-meta">
+                                                        @foreach (var t in room.getTag(room.Ma_Lop))
+                                                        {
+                                                            <a title="Chủ đề của lớp">@t.Ten_Tag</a>
+                                                        }
+                                                        <br />
+                                                        <div class="users-thumb-list">
+                                                            @{ int demMem = 0;}
+                                                            @if (room.getMembers(room.Ma_Lop) == 0)
+                                                            {<span>Chưa có thành viên nào !</span>}
+                                                            else
+                                                            {
+                                                                foreach (var mem in room.listMembers(room.Ma_Lop))
+                                                                {
+                                                                    demMem++;
+                                                                    if (demMem <= 5)
+                                                                    {
+                                                                        <a href="~/Profile/Info?User=@mem.Ma_ND" title="" data-toggle="tooltip" data-original-title="@mem.Ho_Lot @mem.Ten">
+                                                                            @if (mem.Img_Avt == null)
+                                                                            {<img width="40" height="40" src="~/Content/Img/userAvt/avt-default.png" alt="" />}
+                                                                            else
+                                                                            { <img width="40" height="40" src="~/Content/Img/userAvt/@mem.Img_Avt" alt="" />}
+                                                                        </a>
+                                                                    }
+                                                                }
+                                                                if (demMem <= 5)
+                                                                {<span> là thành viên</span>}
+                                                                else
+                                                                {<span><a title="@demMem người"> và @demMem</a> là thành viên</span>}
+                                                        }
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        }
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                    }
+                    @if (sess.Loai == "GiaoVien")
+                    {
+                        <div class="forum-warper">
+                            <div class="central-meta">
+                                <div class="title-block">
+                                    <div class="align-left">
+                                        <h5 class="create-post">Lớp của bạn</h5>
+                                    </div>
+                                    <div class="align-right">
+                                        <button class="addnewforum btn-outline-success create-room"><i class="fa fa-plus"></i> Thêm lớp học</button>
+                                    </div>
+                                </div>
+                                @if (Model.Count == 0)
+                                {
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <div class="text-center">
+                                                <span>Bạn chưa quản lý lớp học nào !</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+                                else
+                                {
+                                    <div class="load-more">
+                                        @foreach (var room in Model)
+                                        {
+                                            <div class="central-meta item">
+                                                <div class="pit-post">
+                                                    <figure>
+                                                        @if (room.Img_Bia == null)
+                                                        {<img width="120" height="90" src="~/Content/Img/roomCover/cover-default.jpg" alt="" />}
+                                                        else
+                                                        {<img width="120" height="90" src="~/Content/Img/roomCover/@room.Img_Bia" alt="" />}
+                                                    </figure>
+                                                    <div class="pit-post-deta">
+                                                        <h4><a href="~/Courses/Room/Detail?Room=@room.Ma_Lop" title="@room.Ma_Lop">@room.Ten_Lop</a></h4>
+                                                        <ul class="post-up-time">
+                                                            @if (room.Mo_Ta == null)
+                                                            {
+                                                                <li>Lớp chưa có giới thiệu !</li>
+                                                            }
+                                                            else
+                                                            {
+                                                                <li>@room.Mo_Ta</li>
+                                                            }
+                                                            <li>
+                                                                <div class="usr-fig">
+                                                                    @if (room.getOwner(room.Ma_Lop).Img_Avt == null)
+                                                                    {<img src="~/Content/Img/userAvt/avt-default.png" alt="">}
+                                                                    else
+                                                                    {<img src="~/Content/Img/userAvt/@room.getOwner(room.Ma_Lop).Img_Avt" alt="">}
+                                                                    <a href="~/Profile/Info?User=@room.Ma_ND" title="">@room.getOwner(room.Ma_Lop).Ho_Lot @room.getOwner(room.Ma_Lop).Ten</a> là giáo viên
+                                                                </div>
+                                                            </li>
+                                                            <li><i class="fa fa-clock-o"></i> @room.Ngay_Tao.ToString("'Ngày' dd 'tháng' MM 'năm' yyyy")</li>
+                                                        </ul>
+                                                        <ul class="pit-opt">
+                                                            <li class="like" title="Yêu thích"><i class="fa fa-heart"></i><em>@room.getSLCamXuc(room.Ma_Lop)</em></li>
+                                                            <li class="class-post" title="Bài đăng"><i class="fa fa-comments"></i><em>@room.getSLPost(room.Ma_Lop)</em></li>
+                                                            <li class="members" title="Thành viên"><i class="fa fa-group"></i><em>@room.getMembers(room.Ma_Lop)</em></li>
+                                                            <li class="bad-report" title="Báo cáo"><i class="fa fa-flag"></i></li>
+                                                            <li class="get-link" title="Sao chép liên kết"><i class="fa fa-link"></i></li>
+                                                        </ul>
+                                                    </div>
+                                                    <div class="right-pst-meta">
+                                                        @foreach (var t in room.getTag(room.Ma_Lop))
+                                                        {
+                                                            <a title="Chủ đề của lớp">@t.Ten_Tag</a>
+                                                        }
+                                                        <br />
+                                                        <div class="users-thumb-list">
+                                                            @{ int demMem = 0;}
+                                                            @if (room.getMembers(room.Ma_Lop) == 0)
+                                                            {<span>Chưa có thành viên nào !</span>}
+                                                            else
+                                                            {
+                                                                foreach (var mem in room.listMembers(room.Ma_Lop))
+                                                                {
+                                                                    demMem++;
+                                                                    if (demMem <= 5)
+                                                                    {
+                                                                        <a href="~/Profile/Info?User=@mem.Ma_ND" title="" data-toggle="tooltip" data-original-title="@mem.Ho_Lot @mem.Ten">
+                                                                            @if (mem.Img_Avt == null)
+                                                                            {<img width="40" height="40" src="~/Content/Img/userAvt/avt-default.png" alt="" />}
+                                                                            else
+                                                                            { <img width="40" height="40" src="~/Content/Img/userAvt/@mem.Img_Avt" alt="" />}
+                                                                        </a>
+                                                                    }
+                                                                }
+                                                                if (demMem <= 5)
+                                                                {<span> là thành viên</span>}
+                                                                else
+                                                                {<span><a title="@demMem người"> và @demMem</a> là thành viên</span>}
+                                                        }
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        }
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                    }
+                    <div class="forum-warper">
+                        <div class="central-meta">
+                            <div class="title-block">
+                                <div class="align-left">
+                                    <h5 class="create-post">Lớp bạn đã tham gia</h5>
+                                </div>
+                            </div>
+                            @if (user.getListJoin(sess.MaUser).Count == 0)
+                            {
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <div class="text-center">
+                                            <span>Bạn chưa tham gia lớp học nào !</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                            else
+                            {
+                                <div class="load-more-room-join">
+                                    @foreach (var room in user.getListJoin(sess.MaUser))
+                                    {
+                                        <div class="central-meta item">
+                                            <div class="pit-post">
+                                                <figure>
+                                                    @if (room.Img_Bia == null)
+                                                    {<img width="120" height="90" src="~/Content/Img/roomCover/cover-default.jpg" alt="" />}
+                                                    else
+                                                    {<img width="120" height="90" src="~/Content/Img/roomCover/@room.Img_Bia" alt="" />}
+                                                </figure>
+                                                <div class="pit-post-deta">
+                                                    <h4><a href="~/Courses/Room/Detail?Room=@room.Ma_Lop" title="@room.Ma_Lop">@room.Ten_Lop</a></h4>
+                                                    <ul class="post-up-time">
+                                                        @if (room.Mo_Ta == null)
+                                                        {
+                                                            <li>Lớp chưa có giới thiệu !</li>
+                                                        }
+                                                        else
+                                                        {
+                                                            <li>@room.Mo_Ta</li>
+                                                        }
+                                                        <li>
+                                                            <div class="usr-fig">
+                                                                @if (room.getOwner(room.Ma_Lop).Img_Avt == null)
+                                                                {<img src="~/Content/Img/userAvt/avt-default.png" alt="">}
+                                                                else
+                                                                {<img src="~/Content/Img/userAvt/@room.getOwner(room.Ma_Lop).Img_Avt" alt="">}
+                                                                <a href="~/Profile/Info?User=@room.Ma_ND" title="">@room.getOwner(room.Ma_Lop).Ho_Lot @room.getOwner(room.Ma_Lop).Ten</a> là giáo viên
+                                                            </div>
+                                                        </li>
+                                                        <li><i class="fa fa-clock-o"></i> @room.Ngay_Tao.ToString("'Ngày' dd 'tháng' MM 'năm' yyyy")</li>
+                                                    </ul>
+                                                    <ul class="pit-opt">
+                                                        <li class="class-post" title="Bài đăng"><i class="fa fa-comments"></i><em>@room.getSLPost(room.Ma_Lop)</em></li>
+                                                        <li class="members" title="Thành viên"><i class="fa fa-group"></i><em>@room.getMembers(room.Ma_Lop)</em></li>
+                                                        <li class="bad-report" title="Báo cáo"><i class="fa fa-flag"></i></li>
+                                                        <li class="get-link" title="Sao chép liên kết"><i class="fa fa-link"></i></li>
+                                                    </ul>
+                                                </div>
+                                                <div class="right-pst-meta">
+                                                    @foreach (var t in room.getTag(room.Ma_Lop))
+                                                    {
+                                                        <a title="Chủ đề của lớp">@t.Ten_Tag</a>
+                                                    }
+                                                    <br />
+                                                    <div class="users-thumb-list">
+                                                        @{ int demMem = 0;}
+                                                        @if (room.getMembers(room.Ma_Lop) == 0)
+                                                        {<span>Chưa có thành viên nào !</span>}
+                                                        else
+                                                        {
+                                                            foreach (var mem in room.listMembers(room.Ma_Lop))
+                                                            {
+                                                                demMem++;
+                                                                if (demMem <= 5)
+                                                                {
+                                                                    <a href="~/Profile/Info?User=@mem.Ma_ND" title="" data-toggle="tooltip" data-original-title="@mem.Ho_Lot @mem.Ten">
+                                                                        @if (mem.Img_Avt == null)
+                                                                        {<img width="40" height="40" src="~/Content/Img/userAvt/avt-default.png" alt="" />}
+                                                                        else
+                                                                        { <img width="40" height="40" src="~/Content/Img/userAvt/@mem.Img_Avt" alt="" />}
+                                                                    </a>
+                                                                }
+                                                            }
+                                                            if (demMem <= 5)
+                                                            {<span> là thành viên</span>}
+                                                            else
+                                                            {<span><a title="@demMem người"> và @demMem</a> là thành viên</span>}
+                                                    }
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    }
+                                </div>
+                            }
+                        </div>
+                    </div><!-- Room user joined -->
+                </div><!-- Center content -->
+                <div class="col-lg-3">
+                    <aside class="sidebar static">
+                        <div class="widget">
+                            <h4 class="widget-title">Thống kê</h4>
+                            <ul class="forum-static">
+                                @if(sess.Loai == "GiaoVien")
+                                {
+                                    <li>
+                                        <a title="">Quản lý lớp</a>
+                                        <span class="align-right">@user.getOwnRoom(sess.MaUser)</span>
+                                    </li>
+                                }
+                                <li>
+                                    <a title="">Tham gia lớp</a>
+                                    <span class="align-right">@user.getJoinRoom(sess.MaUser)</span>
+                                </li>
+                                <li>
+                                    <a title="">Bài đăng</a>
+                                    <span class="align-right">@user.getPost(sess.MaUser)</span>
+                                </li>
+                                <li>
+                                    <a title="">Bình luận</a>
+                                    <span class="align-right">@user.getComment(sess.MaUser)</span>
+                                </li>
+                                <li>
+                                    <a title="">Cảm xúc</a>
+                                    <span class="align-right">@user.getReact(sess.MaUser)</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="widget">
+                            <h4 class="widget-title">Bài đăng gần đây</h4>
+                            <ul class="recent-topics">
+                                <li>
+                                    <a href="#" title="">Bài tập mới !</a>
+                                    <span>2 hours, 16 minutes ago</span>
+                                    <i><a href="">Lớp học: ABC</a></i>
+                                </li>
+                                <li>
+                                    <a href="#" title="">Bài tập mới !</a>
+                                    <span>3 hours, 2 minutes ago</span>
+                                    <i><a href="">Lớp học: ABCD</a></i>
+                                </li>
+                                <li>
+                                    <a href="#" title="">Bài tập mới !</a>
+                                    <span>4 hours, 16 minutes ago</span>
+                                    <i><a href="">Lớp học: ABCDE</a></i>
+                                </li>
+                            </ul>
+                        </div>
+                    </aside>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<div class="popup-wraper4">
+    <div class="popup creat-group">
+        <span class="popup-closed"><i class="ti-close"></i></span>
+        <div class="popup-meta">
+            <div class="popup-head">
+                <h5>Thêm mới lớp học <i title="Trợ giúp" id="createRoomHelp" class="fa fa-question-circle active" style="cursor: pointer"></i></h5>
+            </div>
+            <div class="dropdowns helps popup-roomhelp">
+                <span>Làm sao để thêm mới lớp học?</span>
+                <ul class="help-drop">
+                    <li><b>Ảnh bìa: </b>Có thể chọn hoặc bỏ trống.</li>
+                    <li><b>Tên lớp: </b>Là bắt buộc điền. Bạn có thể đặt tên theo chủ đề của lớp.</li>
+                    <li><b>Bí danh: </b>Có thể để trống. Chỉ nhận ký tự thường không dấu từ 'a' đến 'z'.</li>
+                    <li><b>Mô tả: </b>Dùng để diễn giải về nội dung, chủ đề của lớp học.</li>
+                    <li><b>Chủ đề: </b>Có thể để trống. Dùng để xác định chủ đề của lớp học để dễ dàng tiếp cận với người chú ý.</li>
+                </ul>
+            </div>
+            <div class="group-adding">
+                <div class="room-group">
+                    <div class="change-photo">
+                        <figure><img id="img-bg-room" src="~/Content/Img/roomCover/cover-default.jpg" alt=""></figure>
+                        <div class="edit-img">
+                            <div class="edit-phto">
+                                <label class="fileContainer">
+                                    <i class="fa fa-camera-retro"></i>
+                                    <span id="lbl-img-room" style="text-transform:none">Chưa có ảnh nào được chọn</span>
+                                    <input id="img-room" type="file" accept=".jpg, .png, .jpeg">
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <form id="form-create-room" method="post" enctype="multipart/form-data">
+                        <div class="input-group mb-2 my-form">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text text-label">Tên lớp</div>
+                            </div>
+                            <input type="text" class="form-control form-create-room" id="inp-room-name" required maxlength="40" placeholder="Nhập tên lớp..." title="Ví dụ: Lập Trình Web">
+                        </div>
+                        <div class="input-group mb-2 my-form">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text text-label">Bí danh</div>
+                            </div>
+                            <input type="text" class="form-control form-create-room" id="inp-room-bd" pattern="[a-z,1-9]{1,20}" maxlength="20" placeholder="Nhập bí danh..." title="Ví dụ: laptrinhweb">
+                        </div>
+                        <div class="input-group mb-2 my-form">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text text-label">Mô tả</div>
+                            </div>
+                            <textarea class="form-control form-create-room" maxlength="300" id="inp-room-mt" placeholder="Nhập mô tả cho lớp...." title="Ví dụ: Lớp dạy lập trình web chuyên sâu."></textarea>
+                        </div>
+                        <select id="room-create-tag" multiple name="native-select" placeholder="Chọn chủ đề cho lớp" data-search="true" data-silent-initial-value-set="true" data-max-values="2">
+                            @foreach (var tag in ViewData["Tag"] as List<Tag>)
+                            {
+                                <option value="@tag.Ma_Tag">@tag.Ten_Tag</option>
+                            }
+                        </select>
+                        <button type="submit" class="main-btn">Thêm mới lớp học</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div><!-- Thêm mới lớp học -->
+<script>
+    //Xử lý lấy tên thẻ vào select box
+    VirtualSelect.init({
+        ele: '#room-create-tag',
+        multiple: true,
+        disableSelectAll: true,
+        searchPlaceholderText: 'Tìm kiếm...',
+        noOptionsText: 'Không có dữ liệu',
+        noSearchResultsText: 'Không có kết quả hợp lệ',
+        showValueAsTags: true,
+        clearButtonText: 'Xóa',
+        optionsCount: 5
+    });
+</script>

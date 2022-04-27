@@ -1,0 +1,387 @@
+﻿
+@{
+    ViewBag.Title = Model.Ten_Phong;
+    ViewBag.Main = "Quản lý phòng thi";
+    Layout = "~/Views/Shared/_LayoutArea.cshtml";
+    var sess = (UserLogin)Session[SessionLogin.SESSION_LOGIN];
+}
+@model DayHocTrucTuyen.PhongThi
+@using DayHocTrucTuyen.Models
+
+<section>
+    <div class="page-header">
+        <div class="header-inner">
+            <h2 class="exam-ma" id="@Model.Ma_Phong">@Model.Ten_Phong</h2>
+            <p>
+                Thời gian làm bài: @Model.Thoi_Luong phút
+            </p>
+        </div>
+        <figure><img src="~/Content/Img/Resources/baner-typography.png" alt=""></figure>
+    </div>
+</section><!-- sub header -->
+<section>
+    <div class="gap2 gray-bg">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="row merged20" id="page-contents">
+                        <div class="col-lg-3">
+                            <aside class="sidebar static left">
+                                <div class="widget">
+                                    <h4 class="widget-title">Thao tác</h4>
+                                    <ul class="naves">
+                                        <li>
+                                            <i class="ti-home"></i>
+                                            <a href="~/Default/Index">Trang chủ</a>
+                                        </li>
+                                        <li>
+                                            <i class="ti-back-left"></i>
+                                            <a href="~/Courses/Room/Detail?Room=@Model.Ma_Lop">Quay lại lớp học</a>
+                                        </li>
+                                        <li>
+                                            <i class="ti-menu-alt"></i>
+                                            <a href="~/Courses/Exam/List?Room=@Model.Ma_Lop">Danh sách câu hỏi</a>
+                                        </li>
+                                        <li>
+                                            <i class="ti-menu-alt"></i>
+                                            <a href="~/Courses/Room/List">Danh sách lớp học</a>
+                                        </li>
+                                        <li>
+                                            <i class="ti-user"></i>
+                                            <a href="~/Profile/Info?User=@sess.MaUser">Trang cá nhân</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="widget stick-widget">
+                                    <h4 class="widget-title">Bảng điều khiển</h4>
+                                    <div id="control-quest" style="margin: 10px">
+                                        @foreach (CauHoiThi quest in Model.getAllCauHoi(Model.Ma_Phong))
+                                        {
+                                            <a href="#quest_@quest.STT" class="btn btn-outline-info">@quest.STT</a>
+                                        }
+                                    </div>
+                                    <div style="margin-bottom: 10px; margin-left: 10px">
+                                        Thời gian còn lại: @Model.Thoi_Luong phút
+                                    </div>
+                                </div>
+                            </aside>
+                        </div><!-- sidebar -->
+                        <div class="col-lg-9" id="main-quest">
+                            <div class="central-meta">
+                                <div class="title-block">
+                                    <div class="align-left">
+                                        <h5 class="create-post">Danh sách câu hỏi</h5>
+                                    </div>
+                                    <div class="align-right">
+                                        <button class="addnewforum btn-outline-info edit-exam" data-toggle="tooltip" title="Chỉnh sửa thông tin bài thi"><i class="fa fa-cogs"></i></button>
+                                        <button class="addnewforum btn-outline-success create-quest" data-toggle="tooltip" title="Thêm câu hỏi mới"><i class="fa fa-plus"></i></button>
+                                    </div>
+                                </div>
+                            </div>
+                            @if (Model.getSLCauHoi(Model.Ma_Phong) == 0)
+                            {
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <div class="text-center">
+                                            <span>Bài thi chưa có câu hỏi nào !</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                            @foreach (CauHoiThi quest in Model.getAllCauHoi(Model.Ma_Phong))
+                            {
+                                <div id="quest_@quest.STT" class="central-meta">
+                                    <div class="create-post tran-bottom">
+                                        Câu hỏi @quest.STT
+                                        <div class="align-right">
+                                            <button class="createoredit btn-outline-info edit-quest" data-toggle="tooltip" title="Chỉnh sửa câu hỏi" onclick="setQuestEdit('@quest.STT', '@Model.Ma_Phong')"><i class="fa fa-pencil"></i></button>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-lg-12 col-md-12 col-sm-12 quest-content quest_@quest.STT">
+                                            @quest.Cau_Hoi
+                                        </div>
+                                        @if (quest.isMultiAns(quest.Loi_Giai))
+                                        {
+                                            string[] dapan = new[] { "" };
+                                            dapan = quest.Dap_An.Split('\\');
+                                            <div class="col-lg-6 col-md-6 col-sm-6">
+                                                <input class="quest_@quest.STT" type="checkbox" name="dap_@quest.STT" id="dap1_@quest.STT" />
+                                                <label class="quest_@quest.STT" for="dap1_@quest.STT">A: @dapan[0]</label>
+                                            </div>
+                                            <div class="col-lg-6 col-md-6 col-sm-6">
+                                                <input class="quest_@quest.STT" type="checkbox" name="dap_@quest.STT" id="dap2_@quest.STT" />
+                                                <label class="quest_@quest.STT" for="dap2_@quest.STT">B: @dapan[1]</label>
+                                            </div>
+                                            <div class="col-lg-6 col-md-6 col-sm-6">
+                                                <input class="quest_@quest.STT" type="checkbox" name="dap_@quest.STT" id="dap3_@quest.STT" />
+                                                <label class="quest_@quest.STT" for="dap3_@quest.STT">C: @dapan[2]</label>
+                                            </div>
+                                            <div class="col-lg-6 col-md-6 col-sm-6">
+                                                <input class="quest_@quest.STT" type="checkbox" name="dap_@quest.STT" id="dap4_@quest.STT" />
+                                                <label class="quest_@quest.STT" for="dap4_@quest.STT">D: @dapan[3]</label>
+                                            </div>
+                                        }
+                                        else
+                                        {
+                                            string[] dapan = new[] { "" };
+                                            dapan = quest.Dap_An.Split('\\');
+                                            <div class="col-lg-6 col-md-6 col-sm-6">
+                                                <input class="quest_@quest.STT" type="radio" name="dap_@quest.STT" id="dap1_@quest.STT" />
+                                                <label class="quest_@quest.STT" for="dap1_@quest.STT">A: @dapan[0]</label>
+                                            </div>
+                                            <div class="col-lg-6 col-md-6 col-sm-6">
+                                                <input class="quest_@quest.STT" type="radio" name="dap_@quest.STT" id="dap2_@quest.STT" />
+                                                <label class="quest_@quest.STT" for="dap2_@quest.STT">B: @dapan[1]</label>
+                                            </div>
+                                            <div class="col-lg-6 col-md-6 col-sm-6">
+                                                <input class="quest_@quest.STT" type="radio" name="dap_@quest.STT" id="dap3_@quest.STT" />
+                                                <label class="quest_@quest.STT" for="dap3_@quest.STT">C: @dapan[2]</label>
+                                            </div>
+                                            <div class="col-lg-6 col-md-6 col-sm-6">
+                                                <input class="quest_@quest.STT" type="radio" name="dap_@quest.STT" id="dap4_@quest.STT" />
+                                                <label class="quest_@quest.STT" for="dap4_@quest.STT">D: @dapan[3]</label>
+                                            </div>
+                                        }
+                                    </div>
+                                    <div class="quest-foot">
+                                        <div class="content quest_@quest.STT">
+                                            Đáp án đúng: @quest.getDapAnDung(quest.Dap_An, quest.Loi_Giai)
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section><!-- content -->
+<div class="popup-editExam">
+    <div class="popup">
+        <span class="popup-closed"><i class="ti-close"></i></span>
+        <div class="popup-meta">
+            <div class="popup-head" style="margin-bottom: 8px">
+                <h5>Chỉnh sửa bài thi</h5>
+            </div>
+            <div class="group-adding">
+                <form id="form-edit-exam" method="post">
+                    <div class="form-row align-items-center">
+                        <div class="col-sm-6">
+                            <div class="input-group mb-2 my-form">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text text-label">Tên</div>
+                                </div>
+                                <input type="text" class="form-control form-edit-exam" id="@Model.Ma_Phong" required maxlength="50" placeholder="Nhập tên bài thi..." title="Ví dụ: Kiểm tra giữa kỳ" value="@Model.Ten_Phong">
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="input-group mb-2 my-form">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text text-label">Hạn giờ</div>
+                                </div>
+                                <input type="number" class="form-control form-edit-exam" style="border-right: none" required max="1000" placeholder="Nhập thời gian thi...." title="Ví dụ: 45" value="@Model.Thoi_Luong">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text text-label-end" style="border-bottom-right-radius: 6px; border-top-right-radius: 6px;">phút</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="input-group mb-2 my-form">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text text-label">Mở</div>
+                                </div>
+                                <input type="datetime-local" class="form-control form-edit-exam" required title="Ví dụ: 01/01/2022 12:00 AM" value="@Model.Ngay_Mo.ToString("yyyy-MM-dd'T'HH:mm")">
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="input-group mb-2 my-form">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text text-label">Đóng</div>
+                                </div>
+                                <input type="datetime-local" class="form-control form-edit-exam" required title="Ví dụ: 01/01/2022 12:00 AM" value="@Model.Ngay_Dong.ToString("yyyy-MM-dd'T'HH:mm")">
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="input-group mb-2 my-form">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text text-label">Lần thử</div>
+                                </div>
+                                <input type="number" class="form-control form-edit-exam" required max="1000" placeholder="Nhập số lần thử lại...." title="Ví dụ: 10" value="@Model.Luot_Thi">
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="input-group mb-2 my-form">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text text-label">Bảo mật</div>
+                                </div>
+                                <input id="exam-pass-inp" type="password" class="form-control form-edit-exam" style="border-right: none" required pattern="[a-z,1-9]{1,50}" maxlength="50" placeholder="Nhập mật khẩu...." title="Ví dụ: acb123" value="@Model.Mat_Khau">
+                                <div class="input-group-prepend">
+                                    <div id="exam-view-pass" class="input-group-text text-label-end" style="border-bottom-right-radius: 6px; border-top-right-radius: 6px; cursor: pointer"><i id="hide" class="fa fa-eye"></i></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="custom-control custom-switch">
+                                @if (Model.Xac_Thuc)
+                                {<input type="checkbox" class="custom-control-input form-edit-exam" id="ckc-xac-thuc" checked>}
+                                else
+                                { <input type="checkbox" class="custom-control-input form-edit-exam" id="ckc-xac-thuc">}
+                                <label class="custom-control-label" for="ckc-xac-thuc">Bắt buộc xác thực</label>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="custom-control custom-switch">
+                                @if (Model.Xem_Lai)
+                                {<input type="checkbox" class="custom-control-input form-edit-exam" id="ckc-xem-lai" checked>}
+                                else
+                                { <input type="checkbox" class="custom-control-input form-edit-exam" id="ckc-xem-lai">}
+                                <label class="custom-control-label" for="ckc-xem-lai">Cho phép xem lại</label>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="submit" class="main-btn">Lưu lại</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div><!--Popup chỉnh sửa bài thi-->
+<div class="popup-createQuest">
+    <div class="popup">
+        <span class="popup-closed"><i class="ti-close"></i></span>
+        <div class="popup-meta">
+            <div class="popup-head" style="margin-bottom: 8px">
+                <h5>Thêm câu hỏi mới</h5>
+            </div>
+            <div class="group-adding">
+                <form id="form-create-quest" method="post">
+                    <div class="form-row align-items-center">
+                        <div class="col-sm-12">
+                            <div class="input-group mb-2 my-form">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text text-label">Câu hỏi</div>
+                                </div>
+                                <textarea class="form-control form-create-quest" required maxlength="500" placeholder="Nhập nội dung câu hỏi...." title="Ví dụ: Bạn tên gì?"></textarea>
+                            </div>
+                        </div>
+                        <div class="col-sm-12">
+                            <div class="input-group mb-2 my-form">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text text-label">Đáp án 1</div>
+                                </div>
+                                <input type="text" class="form-control form-create-quest" style="border-right: none" required maxlength="120" placeholder="Nhập nội dung...." title="Ví dụ: Tôi Tên ABC" />
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text text-label text-label-end" style="border-bottom-right-radius: 6px; border-top-right-radius: 6px"><input class="form-create-quest-yes" type="checkbox" /></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-12">
+                            <div class="input-group mb-2 my-form">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text text-label">Đáp án 2</div>
+                                </div>
+                                <input type="text" class="form-control form-create-quest" style="border-right: none" required maxlength="120" placeholder="Nhập nội dung...." title="Ví dụ: Tôi Tên ABC" />
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text text-label text-label-end" style="border-bottom-right-radius: 6px; border-top-right-radius: 6px"><input class="form-create-quest-yes" type="checkbox" /></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-12">
+                            <div class="input-group mb-2 my-form">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text text-label">Đáp án 3</div>
+                                </div>
+                                <input type="text" class="form-control form-create-quest" style="border-right: none" required maxlength="120" placeholder="Nhập nội dung...." title="Ví dụ: Tôi Tên ABC" />
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text text-label text-label-end" style="border-bottom-right-radius: 6px; border-top-right-radius: 6px"><input class="form-create-quest-yes" type="checkbox" /></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-12">
+                            <div class="input-group mb-2 my-form">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text text-label">Đáp án 4</div>
+                                </div>
+                                <input type="text" class="form-control form-create-quest" style="border-right: none" required maxlength="120" placeholder="Nhập nội dung...." title="Ví dụ: Tôi Tên ABC" />
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text text-label text-label-end" style="border-bottom-right-radius: 6px; border-top-right-radius: 6px"><input class="form-create-quest-yes" type="checkbox" /></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="submit" class="main-btn">Thêm</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div><!--Popup create quest-->
+<div class="popup-editQuest">
+    <div class="popup">
+        <span class="popup-closed"><i class="ti-close"></i></span>
+        <div class="popup-meta">
+            <div class="popup-head" style="margin-bottom: 8px">
+                <h5 id="editQuestTitle">Chỉnh sửa câu hỏi</h5>
+            </div>
+            <div class="group-adding">
+                <form id="form-edit-quest" method="post">
+                    <div class="form-row align-items-center">
+                        <div class="col-sm-12">
+                            <div class="input-group mb-2 my-form">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text text-label">Câu hỏi</div>
+                                </div>
+                                <textarea class="form-control form-edit-quest" required maxlength="500" placeholder="Nhập nội dung câu hỏi...." title="Ví dụ: Bạn tên gì?"></textarea>
+                            </div>
+                        </div>
+                        <div class="col-sm-12">
+                            <div class="input-group mb-2 my-form">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text text-label">Đáp án 1</div>
+                                </div>
+                                <input type="text" class="form-control form-edit-quest" style="border-right: none" required maxlength="120" placeholder="Nhập nội dung...." title="Ví dụ: Tôi Tên ABC" />
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text text-label text-label-end" style="border-bottom-right-radius: 6px; border-top-right-radius: 6px"><input class="form-edit-quest-yes" type="checkbox" /></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-12">
+                            <div class="input-group mb-2 my-form">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text text-label">Đáp án 2</div>
+                                </div>
+                                <input type="text" class="form-control form-edit-quest" style="border-right: none" required maxlength="120" placeholder="Nhập nội dung...." title="Ví dụ: Tôi Tên ABC" />
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text text-label text-label-end" style="border-bottom-right-radius: 6px; border-top-right-radius: 6px"><input class="form-edit-quest-yes" type="checkbox" /></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-12">
+                            <div class="input-group mb-2 my-form">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text text-label">Đáp án 3</div>
+                                </div>
+                                <input type="text" class="form-control form-edit-quest" style="border-right: none" required maxlength="120" placeholder="Nhập nội dung...." title="Ví dụ: Tôi Tên ABC" />
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text text-label text-label-end" style="border-bottom-right-radius: 6px; border-top-right-radius: 6px"><input class="form-edit-quest-yes" type="checkbox" /></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-12">
+                            <div class="input-group mb-2 my-form">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text text-label">Đáp án 4</div>
+                                </div>
+                                <input type="text" class="form-control form-edit-quest" style="border-right: none" required maxlength="120" placeholder="Nhập nội dung...." title="Ví dụ: Tôi Tên ABC" />
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text text-label text-label-end" style="border-bottom-right-radius: 6px; border-top-right-radius: 6px"><input class="form-edit-quest-yes" type="checkbox" /></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="submit" class="main-btn">Lưu</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div><!--Popup update quest-->

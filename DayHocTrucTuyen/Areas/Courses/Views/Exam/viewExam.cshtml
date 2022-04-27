@@ -1,0 +1,190 @@
+﻿
+@{
+    ViewBag.Title = Model.Ten_Phong;
+    ViewBag.Main = "Xem lại bài thi";
+    Layout = "~/Views/Shared/_LayoutArea.cshtml";
+    var sess = (UserLogin)Session[SessionLogin.SESSION_LOGIN];
+}
+@model DayHocTrucTuyen.PhongThi
+@using DayHocTrucTuyen.Models
+
+<section>
+    <div class="page-header">
+        <div class="header-inner">
+            <h2 class="exam-ma" id="@Model.Ma_Phong">@Model.Ten_Phong</h2>
+            <p>
+                Thời gian làm bài: @Model.Thoi_Luong phút
+            </p>
+        </div>
+        <figure><img src="~/Content/Img/Resources/baner-typography.png" alt=""></figure>
+    </div>
+</section><!-- sub header -->
+<section>
+    <div class="gap2 gray-bg">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="row merged20" id="page-contents">
+                        <div class="col-lg-3">
+                            <aside class="sidebar static left">
+                                <div class="widget">
+                                    <h4 class="widget-title">Thao tác</h4>
+                                    <ul class="naves">
+                                        <li>
+                                            <i class="ti-home"></i>
+                                            <a href="~/Default/Index">Trang chủ</a>
+                                        </li>
+                                        <li>
+                                            <i class="ti-back-left"></i>
+                                            <a href="~/Courses/Room/Detail?Room=@Model.Ma_Lop">Quay lại lớp học</a>
+                                        </li>
+                                        <li>
+                                            <i class="ti-back-left"></i>
+                                            <a href="~/Courses/Exam/preExam?id=@Model.Ma_Phong">Quay lại bài thi</a>
+                                        </li>
+                                        <li>
+                                            <i class="ti-menu-alt"></i>
+                                            <a href="~/Courses/Room/List">Danh sách lớp học</a>
+                                        </li>
+                                        <li>
+                                            <i class="ti-user"></i>
+                                            <a href="~/Profile/Info?User=@sess.MaUser">Trang cá nhân</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="widget stick-widget">
+                                    <h4 class="widget-title">Bảng điều khiển</h4>
+                                    <div id="control-quest" style="margin: 10px">
+                                        @foreach (CauHoiThi quest in Model.getAllCauHoi(Model.Ma_Phong))
+                                        {
+                                            if(quest.traLoiDung(quest.STT, quest.Ma_Phong, sess.MaUser, ViewBag.Lan_Thu))
+                                            {
+                                                <a href="#quest_@quest.STT" class="btn btn-success">@quest.STT</a>
+                                            }
+                                            else { <a href="#quest_@quest.STT" class="btn btn-danger">@quest.STT</a>}
+                                        }
+                                    </div>
+                                    @*<div style="margin-bottom: 10px; margin-left: 10px">
+                                        Thời gian còn lại: @Model.Thoi_Luong phút
+                                    </div>*@
+                                </div>
+                            </aside>
+                        </div><!-- sidebar -->
+                        <div class="col-lg-9" id="main-quest">
+                            @if (Model.getSLCauHoi(Model.Ma_Phong) == 0)
+                            {
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <div class="text-center">
+                                            <span>Bài thi chưa có câu hỏi nào !</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                            @foreach (CauHoiThi quest in Model.getAllCauHoi(Model.Ma_Phong))
+                            {
+                                <div id="quest_@quest.STT" class="central-meta">
+                                    <div class="create-post tran-bottom">
+                                        Câu hỏi @quest.STT
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-lg-12 col-md-12 col-sm-12 quest-content quest_@quest.STT">
+                                            @quest.Cau_Hoi
+                                        </div>
+                                        @if (Model.daChonDapAn(quest.STT, Model.Ma_Phong, sess.MaUser, ViewBag.Lan_Thu))
+                                        {
+                                            string[] dapan = new[] { "" };
+                                            string traloi = quest.getDapAnDungAsInt(quest.Dap_An, Model.getDapAnDaChon(quest.STT, Model.Ma_Phong, sess.MaUser, ViewBag.Lan_Thu));
+                                            dapan = quest.Dap_An.Split('\\');
+                                            for (var i = 0; i < dapan.Length; i++)
+                                            {
+                                                string setID = "dap" + (i + 1) + "_" + quest.STT;
+                                                if (traloi.Contains(i.ToString()))
+                                                {
+                                                    if (quest.isMultiAns(quest.Loi_Giai))
+                                                    {
+                                                        if (quest.Loi_Giai.Contains(dapan[i]))
+                                                        {
+                                                            <div class="col-lg-6 col-md-6 col-sm-6">
+                                                                <input disabled checked class="quest_@quest.STT" type="checkbox" name="dap_@quest.STT" id="@setID" onclick="setDapAnThi(this, '@quest.STT', '@Model.Ma_Phong', '@ViewBag.Lan_Thu')" />
+                                                                <label style="color: limegreen" class="lbl_quest_@quest.STT" for="@setID">@quest.getKyHieu(i): @dapan[i]</label>
+                                                            </div>
+                                                        }
+                                                        else
+                                                        {
+                                                            <div class="col-lg-6 col-md-6 col-sm-6">
+                                                                <input disabled checked class="quest_@quest.STT" type="checkbox" name="dap_@quest.STT" id="@setID" onclick="setDapAnThi(this, '@quest.STT', '@Model.Ma_Phong', '@ViewBag.Lan_Thu')" />
+                                                                <label style="color: red" class="lbl_quest_@quest.STT" for="@setID">@quest.getKyHieu(i): @dapan[i]</label>
+                                                            </div>
+                                                        }
+                                                    }
+                                                    else
+                                                    {
+                                                        if (quest.Loi_Giai.Contains(dapan[i]))
+                                                        {
+                                                            <div class="col-lg-6 col-md-6 col-sm-6">
+                                                                <input disabled checked class="quest_@quest.STT" type="radio" name="dap_@quest.STT" id="@setID" onclick="setDapAnThi(this, '@quest.STT', '@Model.Ma_Phong', '@ViewBag.Lan_Thu')" />
+                                                                <label style="color: limegreen" class="lbl_quest_@quest.STT" for="@setID">@quest.getKyHieu(i): @dapan[i]</label>
+                                                            </div>
+                                                        }
+                                                        else 
+                                                        {
+                                                            <div class="col-lg-6 col-md-6 col-sm-6">
+                                                                <input disabled checked class="quest_@quest.STT" type="radio" name="dap_@quest.STT" id="@setID" onclick="setDapAnThi(this, '@quest.STT', '@Model.Ma_Phong', '@ViewBag.Lan_Thu')" />
+                                                                <label style="color: red" class="lbl_quest_@quest.STT" for="@setID">@quest.getKyHieu(i): @dapan[i]</label>
+                                                            </div>
+                                                        }
+                                                    }
+                                                }
+                                                else
+                                                {
+                                                    if (quest.isMultiAns(quest.Loi_Giai))
+                                                    {
+                                                        <div class="col-lg-6 col-md-6 col-sm-6">
+                                                            <input disabled class="quest_@quest.STT" type="checkbox" name="dap_@quest.STT" id="@setID" onclick="setDapAnThi(this, '@quest.STT', '@Model.Ma_Phong', '@ViewBag.Lan_Thu')" />
+                                                            <label class="lbl_quest_@quest.STT" for="@setID">@quest.getKyHieu(i): @dapan[i]</label>
+                                                        </div>
+                                                    }
+                                                    else
+                                                    {
+                                                        <div class="col-lg-6 col-md-6 col-sm-6">
+                                                            <input disabled class="quest_@quest.STT" type="radio" name="dap_@quest.STT" id="@setID" onclick="setDapAnThi(this, '@quest.STT', '@Model.Ma_Phong', '@ViewBag.Lan_Thu')" />
+                                                            <label class="lbl_quest_@quest.STT" for="@setID">@quest.getKyHieu(i): @dapan[i]</label>
+                                                        </div>
+                                                    }
+                                                }
+                                            }
+                                        }
+                                        else
+                                        {
+                                            string[] dapan = new[] { "" };
+                                            dapan = quest.Dap_An.Split('\\');
+                                            for (var i = 0; i < dapan.Length; i++)
+                                            {
+                                                string setID = "dap" + (i + 1) + "_" + quest.STT;
+                                                <div class="col-lg-6 col-md-6 col-sm-6">
+                                                    @if (quest.isMultiAns(quest.Loi_Giai))
+                                                    {
+                                                        <input disabled class="quest_@quest.STT" type="checkbox" name="dap_@quest.STT" id="@setID" onclick="setDapAnThi(this, '@quest.STT', '@Model.Ma_Phong', '@ViewBag.Lan_Thu')" />
+                                                    }
+                                                    else
+                                                    { <input disabled class="quest_@quest.STT" type="radio" name="dap_@quest.STT" id="@setID" onclick="setDapAnThi(this, '@quest.STT', '@Model.Ma_Phong', '@ViewBag.Lan_Thu')" />}
+                                                    <label class="lbl_quest_@quest.STT" for="@setID">@quest.getKyHieu(i): @dapan[i]</label>
+                                                </div>
+                                            }
+                                        }
+                                    </div>
+                                    <div class="quest-foot">
+                                        <div class="content quest_@quest.STT">
+                                            Đáp án đúng: @quest.getDapAnDung(quest.Dap_An, quest.Loi_Giai)
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section><!-- content -->

@@ -1,0 +1,59 @@
+﻿
+@{
+    ViewBag.Title = "Khóa Học - Dạy Học Trực Tuyến";
+    ViewBag.KhoaHoc = "active";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@model List<LopHoc>
+
+<div class="breadcrumbs">
+    <div class="container">
+        <h2>Khóa Học Phổ Biến</h2>
+        <p>Tại đây, chúng tôi cung cấp danh sách các khóa học mới nhất và phù hợp nhất với bạn. Tuy nhiên, để việc đề xuất được chính nhu cầu của bạn thì bạn nên đăng nhập vào hệ thống. Dữ liệu đề xuất được dựa trên các khóa học bạn đã gia nhập trước đây.</p>
+    </div>
+</div>
+<section id="courses" class="courses">
+    <div class="container" data-aos="fade-up">
+        <div class="row">
+            @foreach (var room in Model)
+            {
+                <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-md-0" style="padding-bottom: 20px" data-aos="zoom-in" data-aos-delay="100">
+                    <div class="course-item">
+                        @if (room.Img_Bia == null)
+                        {<img src="~/Content/Img/roomCover/cover-default.jpg" class="img-fluid" alt="" />}
+                        else
+                        { <img src="~/Content/Img/roomCover/@room.Img_Bia" class="img-fluid" alt="" />}
+                        <div class="course-content">
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                @foreach (var t in room.getTag(room.Ma_Lop))
+                                {
+                                    <h4>@t.Ten_Tag</h4>
+                                }
+                            </div>
+                            <h3><a href="~/Courses/Room/Detail?Room=@room.Ma_Lop">@room.Ten_Lop</a></h3>
+                            @if (room.Mo_Ta == null)
+                            {<p>Lớp chưa có thông tin mô tả !</p>}
+                            else
+                            { <p>@room.Mo_Ta</p>}
+                            <div class="trainer d-flex justify-content-between align-items-center">
+                                <div class="trainer-profile d-flex align-items-center">
+                                    @if (room.getOwner(room.Ma_Lop).Img_Avt == null)
+                                    {<img width="40" height="40" src="~/Content/Img/userAvt/avt-default.png" class="img-fluid" alt="" />}
+                                    else
+                                    { <img width="40" height="40" src="~/Content/Img/userAvt/@room.getOwner(room.Ma_Lop).Img_Avt" class="img-fluid" alt="" />}
+                                    <a href="~/Profile/Info?User=@room.getOwner(room.Ma_Lop).Ma_ND" data-toggle="tooltip" title="@room.getOwner(room.Ma_Lop).Ho_Lot @room.getOwner(room.Ma_Lop).Ten">@room.getOwner(room.Ma_Lop).Ten</a>
+                                </div>
+                                <div class="trainer-rank d-flex align-items-center">
+                                    <i class="bx bx-user"></i> &nbsp;@room.getMembers(room.Ma_Lop)
+                                    &nbsp;&nbsp;
+                                    <i class="bx bx-heart"></i>&nbsp;@room.getSLCamXuc(room.Ma_Lop)
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</section>
+

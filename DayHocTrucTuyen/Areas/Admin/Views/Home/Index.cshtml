@@ -1,0 +1,189 @@
+﻿
+@{
+    ViewBag.Title = "Trang chủ Admin";
+    ViewBag.Main = "Trang chủ Admin";
+    Layout = "~/Views/Shared/_LayoutArea.cshtml";
+    var sess = (UserLogin)Session[DayHocTrucTuyen.Models.SessionLogin.SESSION_LOGIN];
+}
+@using DayHocTrucTuyen.Models
+
+<section>
+    <div class="gap2 gray-bg">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="row merged20" id="page-contents">
+                        <div class="user-profile">
+                            <figure>
+                                <img src="~/Template/img/resources/profile-image.jpg" alt="">
+                                <ul class="profile-controls">
+                                    <li><a href="#" title="Thích trang" data-toggle="tooltip"><i class="fa fa-heart"></i></a></li>
+                                    <li><a class="send-mesg" href="#" title="Gửi tin nhắn" data-toggle="tooltip"><i class="fa fa-comment"></i></a></li>
+                                </ul>
+                            </figure>
+                            <div class="profile-section">
+                                <div class="row">
+                                    <div class="col-lg-3 col-md-3">
+                                        <div class="profile-author">
+                                            <div class="profile-author-thumb">
+                                                <img alt="author" src="~/Template/img/resources/author.jpg">
+                                            </div>
+                                            <div class="author-content">
+                                                <div class="h4 author-name">@sess.HoLot @sess.Ten</div>
+                                                <div class="user_job">Quản trị viên</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div><!-- user profile banner  -->
+                        <div class="col-lg-3">
+                            <aside class="sidebar static left">
+                                <div class="widget">
+                                    <h4 class="widget-title">Thao tác nhanh</h4>
+                                    <ul class="naves">
+                                        <li>
+                                            <i class="ti-home"></i>
+                                            <a href="/Default/Index" title="">Trang chủ</a>
+                                        </li>
+                                        <li>
+                                            <i class="ti-layout-list-thumb"></i>
+                                            <a href="" title="">Danh sách lớp học</a>
+                                        </li>
+                                        <li>
+                                            <i class="ti-comment-alt"></i>
+                                            <a href="" title="">Tin nhắn</a>
+                                        </li>
+                                        <li>
+                                            <i class="ti-bell"></i>
+                                            <a href="" title="">Thông báo</a>
+                                        </li>
+                                    </ul>
+                                </div><!-- Thao tác nhanh -->
+                                <div class="widget">
+                                    <h4 class="widget-title">Xem thêm</h4>
+                                    <ul class="naves">
+                                        <li>
+                                            <i class="fa fa-bar-chart-o"></i>
+                                            <a href="" title="">Biểu đồ</a>
+                                        </li>
+                                        <li>
+                                            <i class="ti-help"></i>
+                                            <a href="" title="">Trợ giúp</a>
+                                        </li>
+                                        <li>
+                                            <i class="ti-power-off"></i>
+                                            <a href="/Default/Login" title="">Đăng xuất</a>
+                                        </li>
+                                    </ul>
+                                </div><!-- Xem thêm -->
+                            </aside>
+                        </div><!-- sidebar -->
+                        <div class="col-lg-6">
+                            <div class="central-meta">
+                                <span class="create-post">Thông tin chi tiết</span>
+                                <ul class="short-profile">
+                                    <li>
+                                        <span>UID</span>
+                                        <p>@sess.MaUser</p>
+                                    </li>
+                                    <li>
+                                        <span>Giới tính</span>
+                                        <p>Nam</p>
+                                    </li>
+                                    <li>
+                                        <span>Tuổi</span>
+                                        <p>22</p>
+                                    </li>
+                                    <li>
+                                        <span>Gia nhập</span>
+                                        <p>18/01/2022</p>
+                                    </li>
+                                    <li>
+                                        <span>Mô tả</span>
+                                        <p>Xin chào !</p>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div><!-- centerl meta -->
+                        <div class="col-lg-3">
+                            <aside class="sidebar static right">
+                                <div class="widget">
+                                    <h4 class="widget-title">Thống kê</h4>
+                                    <div class="your-page">
+                                        <div class="page-likes">
+                                            <ul class="nav nav-tabs likes-btn">
+                                                <li class="nav-item"><a class="active" href="#link1" data-toggle="tab" data-ripple="">Yêu thích</a></li>
+                                                <li class="nav-item"><a class="" href="#link2" data-toggle="tab" data-ripple="">Ghé thăm</a></li>
+                                            </ul>
+                                            <!-- Tab panes -->
+                                            <div class="tab-content">
+                                                <div class="tab-pane active fade show " id="link1">
+                                                    <span><i class="ti-heart"></i>100</span>
+                                                    <a style="text-decoration:none" title="Lượt thích mới">7 lượt thích trong tuần này</a>
+                                                    <div class="users-thumb-list">
+                                                        <a href="#" title="Anderw" data-toggle="tooltip">
+                                                            <img src="~/Template/img/resources/userlist-1.jpg" alt="">
+                                                        </a>
+                                                        <a href="#" title="frank" data-toggle="tooltip">
+                                                            <img src="~/Template/img/resources/userlist-2.jpg" alt="">
+                                                        </a>
+                                                        <a href="#" title="Sara" data-toggle="tooltip">
+                                                            <img src="~/Template/img/resources/userlist-3.jpg" alt="">
+                                                        </a>
+                                                        <a href="#" title="Amy" data-toggle="tooltip">
+                                                            <img src="~/Template/img/resources/userlist-4.jpg" alt="">
+                                                        </a>
+                                                        <a href="#" title="Ema" data-toggle="tooltip">
+                                                            <img src="~/Template/img/resources/userlist-5.jpg" alt="">
+                                                        </a>
+                                                        <a href="#" title="Sophie" data-toggle="tooltip">
+                                                            <img src="~/Template/img/resources/userlist-6.jpg" alt="">
+                                                        </a>
+                                                        <a href="#" title="Maria" data-toggle="tooltip">
+                                                            <img src="~/Template/img/resources/userlist-7.jpg" alt="">
+                                                        </a>
+                                                        <a href="#" title="93 người khác" data-toggle="tooltip">
+                                                            <img src="~/Template/img/resources/userlist-1.jpg" alt="">
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                                <div class="tab-pane fade" id="link2">
+                                                    <span><i class="fa fa-eye"></i>200</span>
+                                                    <a style="text-decoration:none" title="Lượt xem mới">7 lượt ghé thăm trong tuần này</a>
+                                                    <div class="users-thumb-list">
+                                                        <a href="#" title="Anderw" data-toggle="tooltip">
+                                                            <img src="~/Template/img/resources/userlist-1.jpg" alt="">
+                                                        </a>
+                                                        <a href="#" title="frank" data-toggle="tooltip">
+                                                            <img src="~/Template/img/resources/userlist-2.jpg" alt="">
+                                                        </a>
+                                                        <a href="#" title="Sara" data-toggle="tooltip">
+                                                            <img src="~/Template/img/resources/userlist-3.jpg" alt="">
+                                                        </a>
+                                                        <a href="#" title="Amy" data-toggle="tooltip">
+                                                            <img src="~/Template/img/resources/userlist-4.jpg" alt="">
+                                                        </a>
+                                                        <a href="#" title="Ema" data-toggle="tooltip">
+                                                            <img src="~/Template/img/resources/userlist-5.jpg" alt="">
+                                                        </a>
+                                                        <a href="#" title="Sophie" data-toggle="tooltip">
+                                                            <img src="~/Template/img/resources/userlist-6.jpg" alt="">
+                                                        </a>
+                                                        <a href="#" title="Maria" data-toggle="tooltip">
+                                                            <img src="~/Template/img/resources/userlist-7.jpg" alt="">
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div><!-- page like widget -->
+                            </aside>
+                        </div><!-- sidebar -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section><!-- content -->

@@ -1,0 +1,36 @@
+﻿
+@{
+    Layout = "~/Views/Shared/_LayoutAccount.cshtml";
+    ViewBag.Title = "Dạy học trực tuyến";
+    ViewBag.NoiDung = "Dạy Học Trực Tuyến là trang web giúp các bạn có thể tham gia học tập và trao đổi với nhau mọi lúc mọi nơi !!!";
+}
+
+<div class="col-lg-5">
+    <div class="we-login-register">
+        <div class="form-title">
+            <i class="fa fa-key"></i>Đăng ký
+            <span>Đăng ký ngay chỉ với vài thao tác đơn giản</span>
+        </div>
+        <form id="formCreate" class="we-form" method="post">
+            <input type="text" id="holotCreate" maxlength="20" placeholder=" ">
+            <label class="label-input" id="lblholotCreate">Họ lót</label>
+            <input type="text" id="tenCreate" maxlength="7" placeholder=" " autofocus required>
+            <label class="label-input" id="lbltenCreate">Tên</label>
+            <input type="email" id="emailCreate" maxlength="50" placeholder=" " required>
+            <label class="label-input" id="lblemailCreate">Email</label>
+            <input type="password" id="passCreate" maxlength="25" placeholder=" " required>
+            <label class="label-input" id="lblpassCreate">Mật khẩu</label>
+            <input type="password" id="nhaplaiCreate" maxlength="25" placeholder=" " onfocusout="passValidate('passCreate', 'nhaplaiCreate', 'ktnhaplaiCreate')">
+            <label class="label-input" id="lblnhaplaiCreate">Nhập lại mật khẩu</label>
+            <div class="col-12">
+                <label id="ktnhaplaiCreate" class="label-message text-danger" style="display: none; top: 222px">Kiểm tra nhập lại mật khẩu !</label>
+            </div>
+            <label></label>
+            <div class="col-12 alert alert-danger" style="display: none" id="erroCreate">
+                Lỗi đăng ký !
+            </div>
+            <button type="submit" class="login-register" id="submitCreate" data-ripple="">Đăng ký</button>
+        </form>
+        <span><a class="we-account underline" href="/Default/Login" title="">Đã có tài khoản? Đăng nhập ngay!</a></span>
+    </div>
+</div>

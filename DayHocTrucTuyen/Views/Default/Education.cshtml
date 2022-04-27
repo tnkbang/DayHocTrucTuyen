@@ -1,0 +1,21 @@
+﻿
+@{
+    Layout = "~/Views/Shared/_LayoutAccount.cshtml";
+    ViewBag.Title = "Dạy học trực tuyến";
+    ViewBag.NoiDung = "Để tối ưu trong việc triển khai và cung cấp các nội dung phù hợp với nhu cầu sử dụng bạn nên cho biết mình là ai.";
+    var sess = (UserLogin)Session[DayHocTrucTuyen.Models.SessionLogin.SESSION_LOGIN];
+}
+@using DayHocTrucTuyen.Models
+
+<div class="col-lg-4 offset-lg-1">
+    <div class="we-login-register">
+        <div class="form-title">
+            Bạn là ai <i class="fa fa-question"></i>
+            <span>Bạn không thể thay đổi sau khi hoàn thành. Nên cân nhắc kỹ trước khi chọn.</span>
+        </div>
+        <form class="we-form">
+            <input type="button" class="login-register" maxlength="20" value="Tôi là giáo viên" onclick="choseRole('@sess.MaUser','03')">
+            <input type="button" class="login-register" maxlength="20" value="Tôi là học sinh" onclick="choseRole('@sess.MaUser','04')">
+        </form>
+    </div>
+</div>

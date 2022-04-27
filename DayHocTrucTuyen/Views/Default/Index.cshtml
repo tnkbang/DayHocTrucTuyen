@@ -1,0 +1,231 @@
+﻿@{
+    ViewBag.Title = "Dạy Học Trực Tuyến";
+    ViewBag.Index = "active";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!-- ======= Hero Section ======= -->
+<section id="hero" class="d-flex justify-content-center align-items-center">
+    <div class="container position-relative" data-aos="zoom-in" data-aos-delay="100">
+        <h1>Học hôm nay,<br>Dẫn đầu ngày mai</h1>
+        <h2>Chúng tôi có những giảng viên đầy chuyên môn và tâm huyết với nghề nhà giáo.</h2>
+        <a href="~/Default/Login" class="btn-get-started">Bắt đầu ngay</a>
+    </div>
+</section><!-- End Hero -->
+<main id="main">
+    <!-- ======= About Section ======= -->
+    <section id="about" class="about">
+        <div class="container" data-aos="fade-up">
+            <div class="row">
+                <div class="col-lg-6 order-1 order-lg-2" data-aos="fade-left" data-aos-delay="100">
+                    <img src="~/Template/img/about.jpg" class="img-fluid" alt="">
+                </div>
+                <div class="col-lg-6 pt-4 pt-lg-0 order-2 order-lg-1 content">
+                    <h3>Niềm hạnh phúc lớn lao nhất của chúng tôi chính là mang đến hạnh phúc cho bạn.</h3>
+                    <p class="fst-italic">
+                        Hãy mang những muộn phiền của bạn đến đây, chúng tôi sẽ biến nó thành niềm vui cho bạn. Không gì hạnh phúc và vui sướng hơn là được học tập và làm việc trong một môi trường năng động và tràn đầy sức sống.
+                    </p>
+                    <ul>
+                        <li><i class="bi bi-check-circle"></i> Môi trường thân thiện, tràn đầy năng lượng tích cực.</li>
+                        <li><i class="bi bi-check-circle"></i> Đội ngũ tư vấn chuyên nghiệp, tận tình giúp đỡ khi bạn gặp khó khăn.</li>
+                        <li><i class="bi bi-check-circle"></i> Kết nối, giao lưu với bạn bè trên mọi miền đất nước.</li>
+                    </ul>
+                    <p>
+                        Hãy đến với chúng tôi, nơi đây luôn có những thứ bạn cần và luôn có những người quan tâm bạn mọi lúc mọi nơi !
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section><!-- End About Section -->
+    <!-- ======= Counts Section ======= -->
+    <section id="counts" class="counts section-bg">
+        <div class="container">
+            <div class="row counters">
+                <div class="col-lg-3 col-6 text-center">
+                    <span data-purecounter-start="0" data-purecounter-end="@ViewBag.Courses" data-purecounter-duration="1" class="purecounter"></span>
+                    <p>Khóa học</p>
+                </div>
+                <div class="col-lg-3 col-6 text-center">
+                    <span data-purecounter-start="0" data-purecounter-end="@ViewBag.TV" data-purecounter-duration="1" class="purecounter"></span>
+                    <p>Thành viên</p>
+                </div>
+                <div class="col-lg-3 col-6 text-center">
+                    <span data-purecounter-start="0" data-purecounter-end="@ViewBag.GV" data-purecounter-duration="1" class="purecounter"></span>
+                    <p>Giáo viên</p>
+                </div>
+                <div class="col-lg-3 col-6 text-center">
+                    <span data-purecounter-start="0" data-purecounter-end="@ViewBag.HS" data-purecounter-duration="1" class="purecounter"></span>
+                    <p>Học sinh</p>
+                </div>
+            </div>
+        </div>
+    </section><!-- End Counts Section -->
+    <!-- ======= Why Us Section ======= -->
+    <section id="why-us" class="why-us">
+        <div class="container" data-aos="fade-up">
+            <div class="row">
+                <div class="col-lg-4 d-flex align-items-stretch">
+                    <div class="content">
+                        <h3>Lý do chọn Dạy Học Trực Tuyến?</h3>
+                        <p>
+                            Môi trường tươi trẻ, thân thiện. Sử dụng công nghệ và kỹ thuật tiên tiến trong quá trình giảng dạy. Có đội ngũ giáo viên có trình độ chuyên môn cao.
+                            Có chế độ chăm sóc khách hàng chất lượng cao, luôn đặt trải nghiệm và cảm xúc của khách hàng lên hàng đầu.
+                        </p>
+                        <div class="text-center">
+                            <a href="~/Default/Register" class="more-btn">Đăng ký ngay <i class="bx bx-chevron-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-8 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="100">
+                    <div class="icon-boxes d-flex flex-column justify-content-center">
+                        <div class="row">
+                            <div class="col-xl-4 d-flex align-items-stretch">
+                                <div class="icon-box mt-4 mt-xl-0">
+                                    <i class="bx bx-book-heart"></i>
+                                    <h4>Môi trường học tập</h4>
+                                    <p>Tươi trẻ, năng động với đội ngũ giáo viên có trình độ chuyên môn cao.</p>
+                                </div>
+                            </div>
+                            <div class="col-xl-4 d-flex align-items-stretch">
+                                <div class="icon-box mt-4 mt-xl-0">
+                                    <i class="bx bx-shield-alt-2"></i>
+                                    <h4>Phòng thi</h4>
+                                    <p>Chuyên nghiệp, hỗ trợ toàn diện với chế độ bảo mật cao.</p>
+                                </div>
+                            </div>
+                            <div class="col-xl-4 d-flex align-items-stretch">
+                                <div class="icon-box mt-4 mt-xl-0">
+                                    <i class="bx bx-donate-heart"></i>
+                                    <h4>Nhân viên</h4>
+                                    <p>Thân thiện, luôn luôn lắng nghe ý kiến khách hàng và sẵn sàng thay đổi.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div><!-- End .content-->
+                </div>
+            </div>
+        </div>
+    </section><!-- End Why Us Section -->
+    <!-- ======= Features Section ======= -->
+    <section id="features" class="features">
+        <div class="container" data-aos="fade-up">
+            <div class="row" data-aos="zoom-in" data-aos-delay="100">
+                <div class="col-lg-3 col-md-4">
+                    <div class="icon-box">
+                        <i class="ri-file-code-fill" style="color: #ffbb2c;"></i>
+                        <h3><a href="">Thiết kế web</a></h3>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 mt-4 mt-md-0">
+                    <div class="icon-box">
+                        <i class="ri-file-code-line" style="color: #5578ff;"></i>
+                        <h3><a href="">Lập trình .Net</a></h3>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 mt-4 mt-md-0">
+                    <div class="icon-box">
+                        <i class="ri-database-2-fill" style="color: #e80368;"></i>
+                        <h3><a href="">Cơ sở dữ liệu</a></h3>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 mt-4 mt-lg-0">
+                    <div class="icon-box">
+                        <i class="ri-dashboard-fill" style="color: #e361ff;"></i>
+                        <h3><a href="">Quản trị hệ thống</a></h3>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 mt-4">
+                    <div class="icon-box">
+                        <i class="ri-line-chart-fill" style="color: #47aeff;"></i>
+                        <h3><a href="">Lý thuyết đồ thị</a></h3>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 mt-4">
+                    <div class="icon-box">
+                        <i class="ri-html5-fill" style="color: #ffa76e;"></i>
+                        <h3><a href="">HTML</a></h3>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 mt-4">
+                    <div class="icon-box">
+                        <i class="ri-css3-fill" style="color: #11dbcf;"></i>
+                        <h3><a href="">CSS</a></h3>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 mt-4">
+                    <div class="icon-box">
+                        <i class="ri-align-justify" style="color: #4233ff;"></i>
+                        <h3><a href="">Java Script</a></h3>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 mt-4">
+                    <div class="icon-box">
+                        <i class="ri-mail-lock-line" style="color: #b2904f;"></i>
+                        <h3><a href="">Bảo mật</a></h3>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 mt-4">
+                    <div class="icon-box">
+                        <i class="ri-psychotherapy-fill" style="color: #b20969;"></i>
+                        <h3><a href="">Trí tuệ nhân tạo</a></h3>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 mt-4">
+                    <div class="icon-box">
+                        <i class="ri-music-2-fill" style="color: #ff5828;"></i>
+                        <h3><a href="">Âm nhạc</a></h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section><!-- End Features Section -->
+    <!-- ======= Popular Courses Section ======= -->
+    <section id="popular-courses" class="courses">
+        <div class="container" data-aos="fade-up">
+            <div class="section-title">
+                <h2>Khóa học</h2>
+                <p>Các khóa học phổ biến</p>
+            </div>
+            <div class="row">
+                @foreach (var room in ViewData["Room"] as List<LopHoc>)
+                {
+                    <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-md-0" style="padding-bottom: 20px" data-aos="zoom-in" data-aos-delay="100">
+                        <div class="course-item">
+                            @if (room.Img_Bia == null)
+                            {<img src="~/Content/Img/roomCover/cover-default.jpg" class="img-fluid" alt="" />}
+                            else
+                            { <img src="~/Content/Img/roomCover/@room.Img_Bia" class="img-fluid" alt="" />}
+                            <div class="course-content">
+                                <div class="d-flex justify-content-between align-items-center mb-3">
+                                    @foreach (var t in room.getTag(room.Ma_Lop))
+                                    {
+                                        <h4>@t.Ten_Tag</h4>
+                                    }
+                                </div>
+                                <h3><a href="~/Courses/Room/Detail?Room=@room.Ma_Lop">@room.Ten_Lop</a></h3>
+                                @if (room.Mo_Ta == null)
+                                {<p>Lớp chưa có thông tin mô tả !</p>}
+                                else
+                                { <p>@room.Mo_Ta</p>}
+                                <div class="trainer d-flex justify-content-between align-items-center">
+                                    <div class="trainer-profile d-flex align-items-center">
+                                        @if (room.getOwner(room.Ma_Lop).Img_Avt == null)
+                                        {<img width="40" height="40" src="~/Content/Img/userAvt/avt-default.png" class="img-fluid" alt="" />}
+                                        else
+                                        { <img width="40" height="40" src="~/Content/Img/userAvt/@room.getOwner(room.Ma_Lop).Img_Avt" class="img-fluid" alt="" />}
+                                        <a href="~/Profile/Info?User=@room.getOwner(room.Ma_Lop).Ma_ND" data-toggle="tooltip" title="@room.getOwner(room.Ma_Lop).Ho_Lot @room.getOwner(room.Ma_Lop).Ten">@room.getOwner(room.Ma_Lop).Ten</a>
+                                    </div>
+                                    <div class="trainer-rank d-flex align-items-center">
+                                        <i class="bx bx-user"></i> &nbsp;@room.getMembers(room.Ma_Lop)
+                                        &nbsp;&nbsp;
+                                        <i class="bx bx-heart"></i>&nbsp;@room.getSLCamXuc(room.Ma_Lop)
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </section><!-- End Popular Courses Section -->
+</main><!-- End #main -->

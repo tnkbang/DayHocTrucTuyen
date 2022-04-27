@@ -1,0 +1,238 @@
+﻿
+@{
+    ViewBag.Title = Model.Ten_Lop;
+    ViewBag.Main = "Chỉnh sửa lớp học";
+    Layout = "~/Views/Shared/_LayoutArea.cshtml";
+    var sess = (UserLogin)Session[SessionLogin.SESSION_LOGIN];
+    var roomImg = "";
+    if (Model.Img_Bia == null) { roomImg = "cover-default.jpg"; }
+    else { roomImg = Model.Img_Bia; }
+}
+@model DayHocTrucTuyen.LopHoc
+@using DayHocTrucTuyen.Models
+
+<section id="head-room-detail" style="background-image: url(/Content/Img/roomCover/@roomImg);">
+    <div class="gap2">
+        <div class="container-fluid">
+            <div class="row room-title">
+                <div class="col-lg-6 col-md-8">
+                    <div class="employer-info">
+                        <h2 id="viewroom-Name" title="@Model.Ma_Lop"><b>@Model.Ten_Lop</b></h2>
+                        <i>@Model.getMembers(Model.Ma_Lop) thành viên</i>
+                        <h4><a href="~/Profile/Info?User=@Model.getOwner(Model.Ma_Lop).Ma_ND">@Model.getOwner(Model.Ma_Lop).Ho_Lot @Model.getOwner(Model.Ma_Lop).Ten</a> là giáo viên</h4>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-4">
+                    <div class="salary-area">
+                        @foreach (var t in Model.getTag(Model.Ma_Lop))
+                        {
+                            <span>@t.Ten_Tag</span>
+                        }
+                        <br />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section>
+    <div class="gap2 gray-bg">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="row merged20" id="page-contents">
+                        <div class="col-lg-3">
+                            <aside class="sidebar static left">
+                                <div class="widget">
+                                    <h4 class="widget-title">Quan trọng</h4>
+                                    <ul class="twiter-feed fav-community">
+                                        @if (Model.getAllPhongThi(Model.Ma_Lop).Count() == 0)
+                                        {
+                                            <li class="text-center">Không có gì cả !</li>
+                                        }
+                                        @foreach (PhongThi pt in Model.getAllPhongThi(Model.Ma_Lop))
+                                        {
+                                            <li>
+                                                <i class="fa fa-link"></i> @pt.Ten_Phong
+                                                <p class="text-right"><a href="~/Courses/Exam/preExam?id=@pt.Ma_Phong">Đi đến liên kết</a></p>
+                                            </li>
+                                        }
+                                    </ul>
+                                </div><!-- Page Community-->
+                                <div class="widget stick-widget">
+                                    <h4 class="widget-title">Liên kết</h4>
+                                    <ul class="naves">
+                                        <li>
+                                            <i class="ti-home"></i>
+                                            <a href="~/Default/Index" title="">Trang chủ</a>
+                                        </li>
+                                        <li>
+                                            <i class="ti-user"></i>
+                                            <a href="~/Profile/Info?User=@sess.MaUser" title="">Trang cá nhân</a>
+                                        </li>
+                                        <li>
+                                            <i class="ti-bell"></i>
+                                            <a href="/User/Notification/Detail" title="">Thông báo</a>
+                                        </li>
+                                        <li>
+                                            <i class="ti-comments-smiley"></i>
+                                            <a href="" title="">Tin nhắn</a>
+                                        </li>
+                                        <li>
+                                            <i class="ti-view-list-alt"></i>
+                                            <a href="~/Courses/Room/List" title="">Danh sách lớp</a>
+                                        </li>
+                                    </ul>
+                                </div><!-- Shortcuts -->
+                            </aside>
+                        </div><!-- sidebar -->
+                        <div class="col-lg-6">
+                            <div class="central-meta">
+                                <div id="edit-profile">
+                                    <div class="setting-meta">
+                                        <figure>
+                                            @if (Model.Img_Bia == null)
+                                            {<img id="img-bg-room" src="~/Content/Img/roomCover/cover-default.jpg" alt="" />}
+                                            else
+                                            { <img id="img-bg-room" src="~/Content/Img/roomCover/@Model.Img_Bia" alt="" />}
+                                        </figure>
+                                        <div class="edit-img">
+                                            <div class="edit-phto">
+                                                <label class="fileContainer">
+                                                    <i class="fa fa-camera-retro"></i>
+                                                    <span id="lbl-img-room" style="text-transform:none">Chưa có ảnh nào được chọn</span>
+                                                    <input id="img-room" type="file" accept=".jpg, .png, .jpeg">
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="stg-form-area">
+                                        <form method="post" class="c-form" id="form-edit-room" enctype="multipart/form-data">
+                                            <div>
+                                                <label>Tên lớp</label>
+                                                <input class="form-edit-room" type="text" required maxlength="40" placeholder="Lập trình web" value="@Model.Ten_Lop" />
+                                            </div>
+                                            <div>
+                                                <label>Bí danh</label>
+                                                <input class="form-edit-room" type="text" pattern="[a-z]{1,20}" maxlength="20" placeholder="laptrinhweb" value="@Model.Bi_Danh" />
+                                            </div>
+                                            <div>
+                                                <label>Mật khẩu</label>
+                                                <input class="form-edit-room passInput" type="password" placeholder="abc123" value="@Model.Mat_Khau" />
+                                                <div class="custom-control custom-switch">
+                                                    <input type="checkbox" class="custom-control-input viewPass" id="viewPass">
+                                                    <label class="custom-control-label" style="text-transform: none" for="viewPass">Hiển thị mật khẩu</label>
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <label>Mô Tả</label>
+                                                <textarea class="form-edit-room" rows="3" maxlength="300" placeholder="Mô tả lớp học">@Model.Mo_Ta</textarea>
+                                            </div>
+                                            <div>
+                                                <label>Thẻ</label>
+                                                <select id="room-edit-tag" multiple name="native-select" placeholder="Chọn chủ đề cho lớp" data-search="true" data-silent-initial-value-set="true" data-max-values="3">
+                                                    @foreach (var tag in ViewData["Tag"] as List<Tag>)
+                                                    {
+                                                        if(Model.isTag(Model.Ma_Lop, tag.Ma_Tag)) { <option selected value="@tag.Ma_Tag">@tag.Ten_Tag</option>}
+                                                        else { <option value="@tag.Ma_Tag">@tag.Ten_Tag</option>}
+                                                    }
+                                                </select>
+                                            </div>
+                                            <div>
+                                                <button class="main-btn cancel" type="button" data-ripple="" onclick="editRoomCanel('@Model.Ma_Lop')">Hủy</button>
+                                                <button class="main-btn" type="submit" data-ripple="">Lưu lại</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div><!-- edit profile -->
+                            </div>
+                        </div><!-- centerl meta -->
+                        <div class="col-lg-3">
+                            <aside class="sidebar static right">
+                                <div class="widget">
+                                    <h4 class="widget-title">Thành viên</h4>
+                                    <ul class="twiter-feed invitepage">
+                                        <li>
+                                            <figure>
+                                                @if (Model.getOwner(Model.Ma_Lop).Img_Avt == null)
+                                                {<img width="40" height="40" src="~/Content/Img/userAvt/avt-default.png" data-toggle="tooltip" title="@Model.getOwner(Model.Ma_Lop).Ho_Lot @Model.getOwner(Model.Ma_Lop).Ten" />}
+                                                else
+                                                { <img width="40" height="40" src="~/Content/Img/userAvt/@Model.getOwner(Model.Ma_Lop).Img_Avt" data-toggle="tooltip" title="@Model.getOwner(Model.Ma_Lop).Ho_Lot @Model.getOwner(Model.Ma_Lop).Ten" />}
+                                                <a href="~/Profile/Info?User=@Model.getOwner(Model.Ma_Lop).Ma_ND" title="Xem trang của @Model.getOwner(Model.Ma_Lop).Ten">@Model.getOwner(Model.Ma_Lop).Ten</a>
+                                            </figure>
+                                            <a class="invited" title="Giáo viên"><i class="fa fa-key"></i></a>
+                                        </li>
+                                        @foreach (var mem in Model.listMembers(Model.Ma_Lop))
+                                        {
+                                            <li>
+                                                <figure>
+                                                    @if (mem.Img_Avt == null)
+                                                    {<img width="40" height="40" src="~/Content/Img/userAvt/avt-default.png" data-toggle="tooltip" title="@mem.Ho_Lot @mem.Ten" />}
+                                                    else
+                                                    { <img width="40" height="40" src="~/Content/Img/userAvt/@mem.Img_Avt" data-toggle="tooltip" title="@mem.Ho_Lot @mem.Ten" />}
+                                                    <a href="~/Profile/Info?User=@mem.Ma_ND" title="Xem trang của @mem.Ten">@mem.Ten</a>
+                                                </figure>
+                                                <a class="invited" title="Thành viên"><i class="fa fa-user"></i></a>
+                                            </li>
+                                        }
+                                    </ul>
+                                </div><!-- page invitation widget -->
+                                <div class="widget stick-widget">
+                                    <h4 class="widget-title">Thao tác</h4>
+                                    <ul class="naves">
+                                        @if (Model.isOwner(sess.MaUser, Model.Ma_Lop))
+                                        {
+                                            <li>
+                                                <i class="fa fa-cog"></i>
+                                                <a onclick="editRoom('@Model.Ma_Lop')">Đổi thông tin lớp</a>
+                                            </li>
+                                            <li>
+                                                <i class="fa fa-cogs"></i>
+                                                <a href="~/Courses/Exam/List?Room=@Model.Ma_Lop">Quản lý bài thi</a>
+                                            </li>
+                                            <li>
+                                                <i class="fa fa-bar-chart-o"></i>
+                                                <a>Thống kê</a>
+                                            </li>
+                                        }
+                                        else
+                                        {
+                                            <li>
+                                                <i class="fa fa-flag"></i>
+                                                <a>Báo cáo vi phạm</a>
+                                            </li>
+                                        }
+                                        <li>
+                                            <i class="ti-sharethis-alt"></i>
+                                            <a>Chia sẻ lớp học</a>
+                                        </li>
+                                        <li>
+                                            <i class="ti-power-off"></i>
+                                            <a onclick="dangxuat()">Đăng xuất</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </aside>
+                        </div><!-- sidebar -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section><!-- content -->
+<script>
+    //Xử lý lấy tên thẻ vào select box
+    VirtualSelect.init({
+        ele: '#room-edit-tag',
+        multiple: true,
+        disableSelectAll: true,
+        searchPlaceholderText: 'Tìm kiếm...',
+        noOptionsText: 'Không có dữ liệu',
+        noSearchResultsText: 'Không có kết quả hợp lệ',
+        showValueAsTags: true,
+        clearButtonText: 'Xóa',
+        optionsCount: 5
+    });
+</script>
+

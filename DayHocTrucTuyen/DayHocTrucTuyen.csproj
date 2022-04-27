@@ -1,0 +1,2050 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{F20EC0E4-13CD-4CF6-B07B-366C237522B5}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>DayHocTrucTuyen</RootNamespace>
+    <AssemblyName>DayHocTrucTuyen</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>true</UseIISExpress>
+    <Use64BitIISExpress />
+    <IISExpressSSLPort>44354</IISExpressSSLPort>
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http">
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest">
+    </Reference>
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.7\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Optimization">
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.7\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="WebGrease">
+      <Private>True</Private>
+      <HintPath>..\packages\WebGrease.1.6.0\lib\WebGrease.dll</HintPath>
+    </Reference>
+    <Reference Include="Antlr3.Runtime">
+      <Private>True</Private>
+      <HintPath>..\packages\Antlr.3.5.0.2\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform">
+      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\BaseController.cs" />
+    <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
+    <Compile Include="Areas\Courses\Controllers\BaseController.cs" />
+    <Compile Include="Areas\Courses\Controllers\ExamController.cs" />
+    <Compile Include="Areas\Courses\Controllers\RoomController.cs" />
+    <Compile Include="Areas\Courses\Controllers\PostController.cs" />
+    <Compile Include="Areas\Courses\CoursesAreaRegistration.cs" />
+    <Compile Include="Areas\User\Controllers\BaseController.cs" />
+    <Compile Include="Areas\User\Controllers\GiaoVienController.cs" />
+    <Compile Include="Areas\User\Controllers\HocSinhController.cs" />
+    <Compile Include="Areas\User\Controllers\MessController.cs" />
+    <Compile Include="Areas\User\Controllers\NotificationController.cs" />
+    <Compile Include="Areas\User\UserAreaRegistration.cs" />
+    <Compile Include="BaiDang.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BaoCao.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BiCamThi.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BinhLuan.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CamXuc.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CauHoiBaoMat.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CauHoiThi.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CauTraLoi.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\DefaultController.cs" />
+    <Compile Include="Controllers\ErrorController.cs" />
+    <Compile Include="Controllers\ProfileController.cs" />
+    <Compile Include="DanhGiaLop.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Ghim.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="HocSinhThuocLop.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="LoaiND.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="LopHoc.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AllowCrossSiteAttribute.cs" />
+    <Compile Include="Models\Protect.cs" />
+    <Compile Include="Models\SessionLogin.cs" />
+    <Compile Include="Models\UserLogin.cs" />
+    <Compile Include="NguoiDung.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PhieuDanhGia.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PhongThi.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Tag.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ThichTrang.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ThoiGianLamBai.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ThongBao.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TinNhan.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="XemTrang.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\Img\Resources\baner-typography.png" />
+    <Content Include="Content\Img\Resources\featured-top-baner.jpg" />
+    <Content Include="Content\Img\Resources\notification-default.png" />
+    <Content Include="Content\Img\Resources\photo-02.jpg" />
+    <Content Include="Model.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Model.edmx</DependentUpon>
+      <LastGenOutput>Model.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Model.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Model.edmx</DependentUpon>
+      <LastGenOutput>Model.cs</LastGenOutput>
+    </Content>
+    <Content Include="Template\css\erro.css" />
+    <Content Include="Content\Img\Resources\baner-forum.png" />
+    <Content Include="Content\Img\Resources\Logo.gif" />
+    <Content Include="Content\Img\Resources\theme-bg.jpg" />
+    <Content Include="Content\Img\roomCover\cover-default.jpg" />
+    <Content Include="Content\Img\userAvt\avt-default.png" />
+    <Content Include="Content\Img\userBG\bg-default.jpg" />
+    <Content Include="Template\css\calendar.css" />
+    <Content Include="Template\css\chosen-sprite%402x.png" />
+    <Content Include="Template\css\chosen-sprite.png" />
+    <Content Include="Template\css\color-pink.css" />
+    <Content Include="Template\css\color.css" />
+    <Content Include="Template\css\emoji\+1.png" />
+    <Content Include="Template\css\emoji\-1.png" />
+    <Content Include="Template\css\emoji\100.png" />
+    <Content Include="Template\css\emoji\1234.png" />
+    <Content Include="Template\css\emoji\8ball.png" />
+    <Content Include="Template\css\emoji\a.png" />
+    <Content Include="Template\css\emoji\ab.png" />
+    <Content Include="Template\css\emoji\abc.png" />
+    <Content Include="Template\css\emoji\abcd.png" />
+    <Content Include="Template\css\emoji\accept.png" />
+    <Content Include="Template\css\emoji\aerial_tramway.png" />
+    <Content Include="Template\css\emoji\airplane.png" />
+    <Content Include="Template\css\emoji\alarm_clock.png" />
+    <Content Include="Template\css\emoji\alien.png" />
+    <Content Include="Template\css\emoji\ambulance.png" />
+    <Content Include="Template\css\emoji\anchor.png" />
+    <Content Include="Template\css\emoji\angel.png" />
+    <Content Include="Template\css\emoji\anger.png" />
+    <Content Include="Template\css\emoji\angry.png" />
+    <Content Include="Template\css\emoji\anguished.png" />
+    <Content Include="Template\css\emoji\ant.png" />
+    <Content Include="Template\css\emoji\apple.png" />
+    <Content Include="Template\css\emoji\aquarius.png" />
+    <Content Include="Template\css\emoji\aries.png" />
+    <Content Include="Template\css\emoji\arrows_clockwise.png" />
+    <Content Include="Template\css\emoji\arrows_counterclockwise.png" />
+    <Content Include="Template\css\emoji\arrow_backward.png" />
+    <Content Include="Template\css\emoji\arrow_double_down.png" />
+    <Content Include="Template\css\emoji\arrow_double_up.png" />
+    <Content Include="Template\css\emoji\arrow_down.png" />
+    <Content Include="Template\css\emoji\arrow_down_small.png" />
+    <Content Include="Template\css\emoji\arrow_forward.png" />
+    <Content Include="Template\css\emoji\arrow_heading_down.png" />
+    <Content Include="Template\css\emoji\arrow_heading_up.png" />
+    <Content Include="Template\css\emoji\arrow_left.png" />
+    <Content Include="Template\css\emoji\arrow_lower_left.png" />
+    <Content Include="Template\css\emoji\arrow_lower_right.png" />
+    <Content Include="Template\css\emoji\arrow_right.png" />
+    <Content Include="Template\css\emoji\arrow_right_hook.png" />
+    <Content Include="Template\css\emoji\arrow_up.png" />
+    <Content Include="Template\css\emoji\arrow_upper_left.png" />
+    <Content Include="Template\css\emoji\arrow_upper_right.png" />
+    <Content Include="Template\css\emoji\arrow_up_down.png" />
+    <Content Include="Template\css\emoji\arrow_up_small.png" />
+    <Content Include="Template\css\emoji\art.png" />
+    <Content Include="Template\css\emoji\articulated_lorry.png" />
+    <Content Include="Template\css\emoji\astonished.png" />
+    <Content Include="Template\css\emoji\atm.png" />
+    <Content Include="Template\css\emoji\b.png" />
+    <Content Include="Template\css\emoji\baby.png" />
+    <Content Include="Template\css\emoji\baby_bottle.png" />
+    <Content Include="Template\css\emoji\baby_chick.png" />
+    <Content Include="Template\css\emoji\baby_symbol.png" />
+    <Content Include="Template\css\emoji\back.png" />
+    <Content Include="Template\css\emoji\baggage_claim.png" />
+    <Content Include="Template\css\emoji\balloon.png" />
+    <Content Include="Template\css\emoji\ballot_box_with_check.png" />
+    <Content Include="Template\css\emoji\bamboo.png" />
+    <Content Include="Template\css\emoji\banana.png" />
+    <Content Include="Template\css\emoji\bangbang.png" />
+    <Content Include="Template\css\emoji\bank.png" />
+    <Content Include="Template\css\emoji\barber.png" />
+    <Content Include="Template\css\emoji\bar_chart.png" />
+    <Content Include="Template\css\emoji\baseball.png" />
+    <Content Include="Template\css\emoji\basketball.png" />
+    <Content Include="Template\css\emoji\bath.png" />
+    <Content Include="Template\css\emoji\bathtub.png" />
+    <Content Include="Template\css\emoji\battery.png" />
+    <Content Include="Template\css\emoji\bear.png" />
+    <Content Include="Template\css\emoji\bee.png" />
+    <Content Include="Template\css\emoji\beer.png" />
+    <Content Include="Template\css\emoji\beers.png" />
+    <Content Include="Template\css\emoji\beetle.png" />
+    <Content Include="Template\css\emoji\beginner.png" />
+    <Content Include="Template\css\emoji\bell.png" />
+    <Content Include="Template\css\emoji\bento.png" />
+    <Content Include="Template\css\emoji\bicyclist.png" />
+    <Content Include="Template\css\emoji\bike.png" />
+    <Content Include="Template\css\emoji\bikini.png" />
+    <Content Include="Template\css\emoji\bird.png" />
+    <Content Include="Template\css\emoji\birthday.png" />
+    <Content Include="Template\css\emoji\black_circle.png" />
+    <Content Include="Template\css\emoji\black_joker.png" />
+    <Content Include="Template\css\emoji\black_medium_small_square.png" />
+    <Content Include="Template\css\emoji\black_medium_square.png" />
+    <Content Include="Template\css\emoji\black_nib.png" />
+    <Content Include="Template\css\emoji\black_small_square.png" />
+    <Content Include="Template\css\emoji\black_square.png" />
+    <Content Include="Template\css\emoji\black_square_button.png" />
+    <Content Include="Template\css\emoji\blossom.png" />
+    <Content Include="Template\css\emoji\blowfish.png" />
+    <Content Include="Template\css\emoji\blue_book.png" />
+    <Content Include="Template\css\emoji\blue_car.png" />
+    <Content Include="Template\css\emoji\blue_heart.png" />
+    <Content Include="Template\css\emoji\blush.png" />
+    <Content Include="Template\css\emoji\boar.png" />
+    <Content Include="Template\css\emoji\boat.png" />
+    <Content Include="Template\css\emoji\bomb.png" />
+    <Content Include="Template\css\emoji\book.png" />
+    <Content Include="Template\css\emoji\bookmark.png" />
+    <Content Include="Template\css\emoji\bookmark_tabs.png" />
+    <Content Include="Template\css\emoji\books.png" />
+    <Content Include="Template\css\emoji\boom.png" />
+    <Content Include="Template\css\emoji\boot.png" />
+    <Content Include="Template\css\emoji\bouquet.png" />
+    <Content Include="Template\css\emoji\bow.png" />
+    <Content Include="Template\css\emoji\bowling.png" />
+    <Content Include="Template\css\emoji\bowtie.png" />
+    <Content Include="Template\css\emoji\boy.png" />
+    <Content Include="Template\css\emoji\bread.png" />
+    <Content Include="Template\css\emoji\bride_with_veil.png" />
+    <Content Include="Template\css\emoji\bridge_at_night.png" />
+    <Content Include="Template\css\emoji\briefcase.png" />
+    <Content Include="Template\css\emoji\broken_heart.png" />
+    <Content Include="Template\css\emoji\bug.png" />
+    <Content Include="Template\css\emoji\bulb.png" />
+    <Content Include="Template\css\emoji\bullettrain_front.png" />
+    <Content Include="Template\css\emoji\bullettrain_side.png" />
+    <Content Include="Template\css\emoji\bus.png" />
+    <Content Include="Template\css\emoji\busstop.png" />
+    <Content Include="Template\css\emoji\busts_in_silhouette.png" />
+    <Content Include="Template\css\emoji\bust_in_silhouette.png" />
+    <Content Include="Template\css\emoji\cactus.png" />
+    <Content Include="Template\css\emoji\cake.png" />
+    <Content Include="Template\css\emoji\calendar.png" />
+    <Content Include="Template\css\emoji\calling.png" />
+    <Content Include="Template\css\emoji\camel.png" />
+    <Content Include="Template\css\emoji\camera.png" />
+    <Content Include="Template\css\emoji\cancer.png" />
+    <Content Include="Template\css\emoji\candy.png" />
+    <Content Include="Template\css\emoji\capital_abcd.png" />
+    <Content Include="Template\css\emoji\capricorn.png" />
+    <Content Include="Template\css\emoji\car.png" />
+    <Content Include="Template\css\emoji\card_index.png" />
+    <Content Include="Template\css\emoji\carousel_horse.png" />
+    <Content Include="Template\css\emoji\cat.png" />
+    <Content Include="Template\css\emoji\cat2.png" />
+    <Content Include="Template\css\emoji\cd.png" />
+    <Content Include="Template\css\emoji\chart.png" />
+    <Content Include="Template\css\emoji\chart_with_downwards_trend.png" />
+    <Content Include="Template\css\emoji\chart_with_upwards_trend.png" />
+    <Content Include="Template\css\emoji\checkered_flag.png" />
+    <Content Include="Template\css\emoji\cherries.png" />
+    <Content Include="Template\css\emoji\cherry_blossom.png" />
+    <Content Include="Template\css\emoji\chestnut.png" />
+    <Content Include="Template\css\emoji\chicken.png" />
+    <Content Include="Template\css\emoji\children_crossing.png" />
+    <Content Include="Template\css\emoji\chocolate_bar.png" />
+    <Content Include="Template\css\emoji\christmas_tree.png" />
+    <Content Include="Template\css\emoji\church.png" />
+    <Content Include="Template\css\emoji\cinema.png" />
+    <Content Include="Template\css\emoji\circus_tent.png" />
+    <Content Include="Template\css\emoji\city_sunrise.png" />
+    <Content Include="Template\css\emoji\city_sunset.png" />
+    <Content Include="Template\css\emoji\cl.png" />
+    <Content Include="Template\css\emoji\clap.png" />
+    <Content Include="Template\css\emoji\clapper.png" />
+    <Content Include="Template\css\emoji\clipboard.png" />
+    <Content Include="Template\css\emoji\clock1.png" />
+    <Content Include="Template\css\emoji\clock10.png" />
+    <Content Include="Template\css\emoji\clock1030.png" />
+    <Content Include="Template\css\emoji\clock11.png" />
+    <Content Include="Template\css\emoji\clock1130.png" />
+    <Content Include="Template\css\emoji\clock12.png" />
+    <Content Include="Template\css\emoji\clock1230.png" />
+    <Content Include="Template\css\emoji\clock130.png" />
+    <Content Include="Template\css\emoji\clock2.png" />
+    <Content Include="Template\css\emoji\clock230.png" />
+    <Content Include="Template\css\emoji\clock3.png" />
+    <Content Include="Template\css\emoji\clock330.png" />
+    <Content Include="Template\css\emoji\clock4.png" />
+    <Content Include="Template\css\emoji\clock430.png" />
+    <Content Include="Template\css\emoji\clock5.png" />
+    <Content Include="Template\css\emoji\clock530.png" />
+    <Content Include="Template\css\emoji\clock6.png" />
+    <Content Include="Template\css\emoji\clock630.png" />
+    <Content Include="Template\css\emoji\clock7.png" />
+    <Content Include="Template\css\emoji\clock730.png" />
+    <Content Include="Template\css\emoji\clock8.png" />
+    <Content Include="Template\css\emoji\clock830.png" />
+    <Content Include="Template\css\emoji\clock9.png" />
+    <Content Include="Template\css\emoji\clock930.png" />
+    <Content Include="Template\css\emoji\closed_book.png" />
+    <Content Include="Template\css\emoji\closed_lock_with_key.png" />
+    <Content Include="Template\css\emoji\closed_umbrella.png" />
+    <Content Include="Template\css\emoji\cloud.png" />
+    <Content Include="Template\css\emoji\clubs.png" />
+    <Content Include="Template\css\emoji\cn.png" />
+    <Content Include="Template\css\emoji\cocktail.png" />
+    <Content Include="Template\css\emoji\coffee.png" />
+    <Content Include="Template\css\emoji\cold_sweat.png" />
+    <Content Include="Template\css\emoji\collision.png" />
+    <Content Include="Template\css\emoji\computer.png" />
+    <Content Include="Template\css\emoji\confetti_ball.png" />
+    <Content Include="Template\css\emoji\confounded.png" />
+    <Content Include="Template\css\emoji\confused.png" />
+    <Content Include="Template\css\emoji\congratulations.png" />
+    <Content Include="Template\css\emoji\construction.png" />
+    <Content Include="Template\css\emoji\construction_worker.png" />
+    <Content Include="Template\css\emoji\convenience_store.png" />
+    <Content Include="Template\css\emoji\cookie.png" />
+    <Content Include="Template\css\emoji\cool.png" />
+    <Content Include="Template\css\emoji\cop.png" />
+    <Content Include="Template\css\emoji\copyright.png" />
+    <Content Include="Template\css\emoji\corn.png" />
+    <Content Include="Template\css\emoji\couple.png" />
+    <Content Include="Template\css\emoji\couplekiss.png" />
+    <Content Include="Template\css\emoji\couple_with_heart.png" />
+    <Content Include="Template\css\emoji\cow.png" />
+    <Content Include="Template\css\emoji\cow2.png" />
+    <Content Include="Template\css\emoji\credit_card.png" />
+    <Content Include="Template\css\emoji\crocodile.png" />
+    <Content Include="Template\css\emoji\crossed_flags.png" />
+    <Content Include="Template\css\emoji\crown.png" />
+    <Content Include="Template\css\emoji\cry.png" />
+    <Content Include="Template\css\emoji\crying_cat_face.png" />
+    <Content Include="Template\css\emoji\crystal_ball.png" />
+    <Content Include="Template\css\emoji\cupid.png" />
+    <Content Include="Template\css\emoji\curly_loop.png" />
+    <Content Include="Template\css\emoji\currency_exchange.png" />
+    <Content Include="Template\css\emoji\curry.png" />
+    <Content Include="Template\css\emoji\custard.png" />
+    <Content Include="Template\css\emoji\customs.png" />
+    <Content Include="Template\css\emoji\cyclone.png" />
+    <Content Include="Template\css\emoji\dancer.png" />
+    <Content Include="Template\css\emoji\dancers.png" />
+    <Content Include="Template\css\emoji\dango.png" />
+    <Content Include="Template\css\emoji\dart.png" />
+    <Content Include="Template\css\emoji\dash.png" />
+    <Content Include="Template\css\emoji\date.png" />
+    <Content Include="Template\css\emoji\de.png" />
+    <Content Include="Template\css\emoji\deciduous_tree.png" />
+    <Content Include="Template\css\emoji\department_store.png" />
+    <Content Include="Template\css\emoji\diamonds.png" />
+    <Content Include="Template\css\emoji\diamond_shape_with_a_dot_inside.png" />
+    <Content Include="Template\css\emoji\disappointed.png" />
+    <Content Include="Template\css\emoji\disappointed_relieved.png" />
+    <Content Include="Template\css\emoji\dizzy.png" />
+    <Content Include="Template\css\emoji\dizzy_face.png" />
+    <Content Include="Template\css\emoji\dog.png" />
+    <Content Include="Template\css\emoji\dog2.png" />
+    <Content Include="Template\css\emoji\dollar.png" />
+    <Content Include="Template\css\emoji\dolls.png" />
+    <Content Include="Template\css\emoji\dolphin.png" />
+    <Content Include="Template\css\emoji\donut.png" />
+    <Content Include="Template\css\emoji\door.png" />
+    <Content Include="Template\css\emoji\doughnut.png" />
+    <Content Include="Template\css\emoji\do_not_litter.png" />
+    <Content Include="Template\css\emoji\dragon.png" />
+    <Content Include="Template\css\emoji\dragon_face.png" />
+    <Content Include="Template\css\emoji\dress.png" />
+    <Content Include="Template\css\emoji\dromedary_camel.png" />
+    <Content Include="Template\css\emoji\droplet.png" />
+    <Content Include="Template\css\emoji\dvd.png" />
+    <Content Include="Template\css\emoji\e-mail.png" />
+    <Content Include="Template\css\emoji\ear.png" />
+    <Content Include="Template\css\emoji\earth_africa.png" />
+    <Content Include="Template\css\emoji\earth_americas.png" />
+    <Content Include="Template\css\emoji\earth_asia.png" />
+    <Content Include="Template\css\emoji\ear_of_rice.png" />
+    <Content Include="Template\css\emoji\egg.png" />
+    <Content Include="Template\css\emoji\eggplant.png" />
+    <Content Include="Template\css\emoji\eight.png" />
+    <Content Include="Template\css\emoji\eight_pointed_black_star.png" />
+    <Content Include="Template\css\emoji\eight_spoked_asterisk.png" />
+    <Content Include="Template\css\emoji\electric_plug.png" />
+    <Content Include="Template\css\emoji\elephant.png" />
+    <Content Include="Template\css\emoji\email.png" />
+    <Content Include="Template\css\emoji\end.png" />
+    <Content Include="Template\css\emoji\envelope.png" />
+    <Content Include="Template\css\emoji\es.png" />
+    <Content Include="Template\css\emoji\euro.png" />
+    <Content Include="Template\css\emoji\european_castle.png" />
+    <Content Include="Template\css\emoji\european_post_office.png" />
+    <Content Include="Template\css\emoji\evergreen_tree.png" />
+    <Content Include="Template\css\emoji\exclamation.png" />
+    <Content Include="Template\css\emoji\expressionless.png" />
+    <Content Include="Template\css\emoji\eyeglasses.png" />
+    <Content Include="Template\css\emoji\eyes.png" />
+    <Content Include="Template\css\emoji\facepunch.png" />
+    <Content Include="Template\css\emoji\factory.png" />
+    <Content Include="Template\css\emoji\fallen_leaf.png" />
+    <Content Include="Template\css\emoji\family.png" />
+    <Content Include="Template\css\emoji\fast_forward.png" />
+    <Content Include="Template\css\emoji\fax.png" />
+    <Content Include="Template\css\emoji\fearful.png" />
+    <Content Include="Template\css\emoji\feelsgood.png" />
+    <Content Include="Template\css\emoji\feet.png" />
+    <Content Include="Template\css\emoji\ferris_wheel.png" />
+    <Content Include="Template\css\emoji\file_folder.png" />
+    <Content Include="Template\css\emoji\finnadie.png" />
+    <Content Include="Template\css\emoji\fire.png" />
+    <Content Include="Template\css\emoji\fireworks.png" />
+    <Content Include="Template\css\emoji\fire_engine.png" />
+    <Content Include="Template\css\emoji\first_quarter_moon.png" />
+    <Content Include="Template\css\emoji\first_quarter_moon_with_face.png" />
+    <Content Include="Template\css\emoji\fish.png" />
+    <Content Include="Template\css\emoji\fishing_pole_and_fish.png" />
+    <Content Include="Template\css\emoji\fish_cake.png" />
+    <Content Include="Template\css\emoji\fist.png" />
+    <Content Include="Template\css\emoji\five.png" />
+    <Content Include="Template\css\emoji\flags.png" />
+    <Content Include="Template\css\emoji\flashlight.png" />
+    <Content Include="Template\css\emoji\floppy_disk.png" />
+    <Content Include="Template\css\emoji\flower_playing_cards.png" />
+    <Content Include="Template\css\emoji\flushed.png" />
+    <Content Include="Template\css\emoji\foggy.png" />
+    <Content Include="Template\css\emoji\football.png" />
+    <Content Include="Template\css\emoji\fork_and_knife.png" />
+    <Content Include="Template\css\emoji\fountain.png" />
+    <Content Include="Template\css\emoji\four.png" />
+    <Content Include="Template\css\emoji\four_leaf_clover.png" />
+    <Content Include="Template\css\emoji\fr.png" />
+    <Content Include="Template\css\emoji\free.png" />
+    <Content Include="Template\css\emoji\fried_shrimp.png" />
+    <Content Include="Template\css\emoji\fries.png" />
+    <Content Include="Template\css\emoji\frog.png" />
+    <Content Include="Template\css\emoji\frowning.png" />
+    <Content Include="Template\css\emoji\fu.png" />
+    <Content Include="Template\css\emoji\fuelpump.png" />
+    <Content Include="Template\css\emoji\full_moon.png" />
+    <Content Include="Template\css\emoji\full_moon_with_face.png" />
+    <Content Include="Template\css\emoji\game_die.png" />
+    <Content Include="Template\css\emoji\gb.png" />
+    <Content Include="Template\css\emoji\gem.png" />
+    <Content Include="Template\css\emoji\gemini.png" />
+    <Content Include="Template\css\emoji\ghost.png" />
+    <Content Include="Template\css\emoji\gift.png" />
+    <Content Include="Template\css\emoji\gift_heart.png" />
+    <Content Include="Template\css\emoji\girl.png" />
+    <Content Include="Template\css\emoji\globe_with_meridians.png" />
+    <Content Include="Template\css\emoji\goat.png" />
+    <Content Include="Template\css\emoji\goberserk.png" />
+    <Content Include="Template\css\emoji\godmode.png" />
+    <Content Include="Template\css\emoji\golf.png" />
+    <Content Include="Template\css\emoji\grapes.png" />
+    <Content Include="Template\css\emoji\green_apple.png" />
+    <Content Include="Template\css\emoji\green_book.png" />
+    <Content Include="Template\css\emoji\green_heart.png" />
+    <Content Include="Template\css\emoji\grey_exclamation.png" />
+    <Content Include="Template\css\emoji\grey_question.png" />
+    <Content Include="Template\css\emoji\grimacing.png" />
+    <Content Include="Template\css\emoji\grin.png" />
+    <Content Include="Template\css\emoji\grinning.png" />
+    <Content Include="Template\css\emoji\guardsman.png" />
+    <Content Include="Template\css\emoji\guitar.png" />
+    <Content Include="Template\css\emoji\gun.png" />
+    <Content Include="Template\css\emoji\haircut.png" />
+    <Content Include="Template\css\emoji\hamburger.png" />
+    <Content Include="Template\css\emoji\hammer.png" />
+    <Content Include="Template\css\emoji\hamster.png" />
+    <Content Include="Template\css\emoji\hand.png" />
+    <Content Include="Template\css\emoji\handbag.png" />
+    <Content Include="Template\css\emoji\hankey.png" />
+    <Content Include="Template\css\emoji\hash.png" />
+    <Content Include="Template\css\emoji\hatched_chick.png" />
+    <Content Include="Template\css\emoji\hatching_chick.png" />
+    <Content Include="Template\css\emoji\headphones.png" />
+    <Content Include="Template\css\emoji\heart.png" />
+    <Content Include="Template\css\emoji\heartbeat.png" />
+    <Content Include="Template\css\emoji\heartpulse.png" />
+    <Content Include="Template\css\emoji\hearts.png" />
+    <Content Include="Template\css\emoji\heart_decoration.png" />
+    <Content Include="Template\css\emoji\heart_eyes.png" />
+    <Content Include="Template\css\emoji\heart_eyes_cat.png" />
+    <Content Include="Template\css\emoji\hear_no_evil.png" />
+    <Content Include="Template\css\emoji\heavy_check_mark.png" />
+    <Content Include="Template\css\emoji\heavy_division_sign.png" />
+    <Content Include="Template\css\emoji\heavy_dollar_sign.png" />
+    <Content Include="Template\css\emoji\heavy_exclamation_mark.png" />
+    <Content Include="Template\css\emoji\heavy_minus_sign.png" />
+    <Content Include="Template\css\emoji\heavy_multiplication_x.png" />
+    <Content Include="Template\css\emoji\heavy_plus_sign.png" />
+    <Content Include="Template\css\emoji\helicopter.png" />
+    <Content Include="Template\css\emoji\herb.png" />
+    <Content Include="Template\css\emoji\hibiscus.png" />
+    <Content Include="Template\css\emoji\high_brightness.png" />
+    <Content Include="Template\css\emoji\high_heel.png" />
+    <Content Include="Template\css\emoji\hocho.png" />
+    <Content Include="Template\css\emoji\honeybee.png" />
+    <Content Include="Template\css\emoji\honey_pot.png" />
+    <Content Include="Template\css\emoji\horse.png" />
+    <Content Include="Template\css\emoji\horse_racing.png" />
+    <Content Include="Template\css\emoji\hospital.png" />
+    <Content Include="Template\css\emoji\hotel.png" />
+    <Content Include="Template\css\emoji\hotsprings.png" />
+    <Content Include="Template\css\emoji\hourglass.png" />
+    <Content Include="Template\css\emoji\hourglass_flowing_sand.png" />
+    <Content Include="Template\css\emoji\house.png" />
+    <Content Include="Template\css\emoji\house_with_garden.png" />
+    <Content Include="Template\css\emoji\hurtrealbad.png" />
+    <Content Include="Template\css\emoji\hushed.png" />
+    <Content Include="Template\css\emoji\icecream.png" />
+    <Content Include="Template\css\emoji\ice_cream.png" />
+    <Content Include="Template\css\emoji\id.png" />
+    <Content Include="Template\css\emoji\ideograph_advantage.png" />
+    <Content Include="Template\css\emoji\imp.png" />
+    <Content Include="Template\css\emoji\inbox_tray.png" />
+    <Content Include="Template\css\emoji\incoming_envelope.png" />
+    <Content Include="Template\css\emoji\information_desk_person.png" />
+    <Content Include="Template\css\emoji\information_source.png" />
+    <Content Include="Template\css\emoji\innocent.png" />
+    <Content Include="Template\css\emoji\interrobang.png" />
+    <Content Include="Template\css\emoji\iphone.png" />
+    <Content Include="Template\css\emoji\it.png" />
+    <Content Include="Template\css\emoji\izakaya_lantern.png" />
+    <Content Include="Template\css\emoji\jack_o_lantern.png" />
+    <Content Include="Template\css\emoji\japan.png" />
+    <Content Include="Template\css\emoji\japanese_castle.png" />
+    <Content Include="Template\css\emoji\japanese_goblin.png" />
+    <Content Include="Template\css\emoji\japanese_ogre.png" />
+    <Content Include="Template\css\emoji\jeans.png" />
+    <Content Include="Template\css\emoji\joy.png" />
+    <Content Include="Template\css\emoji\joy_cat.png" />
+    <Content Include="Template\css\emoji\jp.png" />
+    <Content Include="Template\css\emoji\key.png" />
+    <Content Include="Template\css\emoji\keycap_ten.png" />
+    <Content Include="Template\css\emoji\kimono.png" />
+    <Content Include="Template\css\emoji\kiss.png" />
+    <Content Include="Template\css\emoji\kissing.png" />
+    <Content Include="Template\css\emoji\kissing_cat.png" />
+    <Content Include="Template\css\emoji\kissing_closed_eyes.png" />
+    <Content Include="Template\css\emoji\kissing_face.png" />
+    <Content Include="Template\css\emoji\kissing_heart.png" />
+    <Content Include="Template\css\emoji\kissing_smiling_eyes.png" />
+    <Content Include="Template\css\emoji\koala.png" />
+    <Content Include="Template\css\emoji\koko.png" />
+    <Content Include="Template\css\emoji\kr.png" />
+    <Content Include="Template\css\emoji\large_blue_circle.png" />
+    <Content Include="Template\css\emoji\large_blue_diamond.png" />
+    <Content Include="Template\css\emoji\large_orange_diamond.png" />
+    <Content Include="Template\css\emoji\last_quarter_moon.png" />
+    <Content Include="Template\css\emoji\last_quarter_moon_with_face.png" />
+    <Content Include="Template\css\emoji\laughing.png" />
+    <Content Include="Template\css\emoji\leaves.png" />
+    <Content Include="Template\css\emoji\ledger.png" />
+    <Content Include="Template\css\emoji\leftwards_arrow_with_hook.png" />
+    <Content Include="Template\css\emoji\left_luggage.png" />
+    <Content Include="Template\css\emoji\left_right_arrow.png" />
+    <Content Include="Template\css\emoji\lemon.png" />
+    <Content Include="Template\css\emoji\leo.png" />
+    <Content Include="Template\css\emoji\leopard.png" />
+    <Content Include="Template\css\emoji\libra.png" />
+    <Content Include="Template\css\emoji\light_rail.png" />
+    <Content Include="Template\css\emoji\link.png" />
+    <Content Include="Template\css\emoji\lips.png" />
+    <Content Include="Template\css\emoji\lipstick.png" />
+    <Content Include="Template\css\emoji\lock.png" />
+    <Content Include="Template\css\emoji\lock_with_ink_pen.png" />
+    <Content Include="Template\css\emoji\lollipop.png" />
+    <Content Include="Template\css\emoji\loop.png" />
+    <Content Include="Template\css\emoji\loudspeaker.png" />
+    <Content Include="Template\css\emoji\love_hotel.png" />
+    <Content Include="Template\css\emoji\love_letter.png" />
+    <Content Include="Template\css\emoji\low_brightness.png" />
+    <Content Include="Template\css\emoji\m.png" />
+    <Content Include="Template\css\emoji\mag.png" />
+    <Content Include="Template\css\emoji\mag_right.png" />
+    <Content Include="Template\css\emoji\mahjong.png" />
+    <Content Include="Template\css\emoji\mailbox.png" />
+    <Content Include="Template\css\emoji\mailbox_closed.png" />
+    <Content Include="Template\css\emoji\mailbox_with_mail.png" />
+    <Content Include="Template\css\emoji\mailbox_with_no_mail.png" />
+    <Content Include="Template\css\emoji\man.png" />
+    <Content Include="Template\css\emoji\mans_shoe.png" />
+    <Content Include="Template\css\emoji\man_with_gua_pi_mao.png" />
+    <Content Include="Template\css\emoji\man_with_turban.png" />
+    <Content Include="Template\css\emoji\maple_leaf.png" />
+    <Content Include="Template\css\emoji\mask.png" />
+    <Content Include="Template\css\emoji\massage.png" />
+    <Content Include="Template\css\emoji\meat_on_bone.png" />
+    <Content Include="Template\css\emoji\mega.png" />
+    <Content Include="Template\css\emoji\melon.png" />
+    <Content Include="Template\css\emoji\memo.png" />
+    <Content Include="Template\css\emoji\mens.png" />
+    <Content Include="Template\css\emoji\metal.png" />
+    <Content Include="Template\css\emoji\metro.png" />
+    <Content Include="Template\css\emoji\microphone.png" />
+    <Content Include="Template\css\emoji\microscope.png" />
+    <Content Include="Template\css\emoji\milky_way.png" />
+    <Content Include="Template\css\emoji\minibus.png" />
+    <Content Include="Template\css\emoji\minidisc.png" />
+    <Content Include="Template\css\emoji\mobile_phone_off.png" />
+    <Content Include="Template\css\emoji\moneybag.png" />
+    <Content Include="Template\css\emoji\money_with_wings.png" />
+    <Content Include="Template\css\emoji\monkey.png" />
+    <Content Include="Template\css\emoji\monkey_face.png" />
+    <Content Include="Template\css\emoji\monorail.png" />
+    <Content Include="Template\css\emoji\moon.png" />
+    <Content Include="Template\css\emoji\mortar_board.png" />
+    <Content Include="Template\css\emoji\mountain_bicyclist.png" />
+    <Content Include="Template\css\emoji\mountain_cableway.png" />
+    <Content Include="Template\css\emoji\mountain_railway.png" />
+    <Content Include="Template\css\emoji\mount_fuji.png" />
+    <Content Include="Template\css\emoji\mouse.png" />
+    <Content Include="Template\css\emoji\mouse2.png" />
+    <Content Include="Template\css\emoji\movie_camera.png" />
+    <Content Include="Template\css\emoji\moyai.png" />
+    <Content Include="Template\css\emoji\muscle.png" />
+    <Content Include="Template\css\emoji\mushroom.png" />
+    <Content Include="Template\css\emoji\musical_keyboard.png" />
+    <Content Include="Template\css\emoji\musical_note.png" />
+    <Content Include="Template\css\emoji\musical_score.png" />
+    <Content Include="Template\css\emoji\mute.png" />
+    <Content Include="Template\css\emoji\nail_care.png" />
+    <Content Include="Template\css\emoji\name_badge.png" />
+    <Content Include="Template\css\emoji\neckbeard.png" />
+    <Content Include="Template\css\emoji\necktie.png" />
+    <Content Include="Template\css\emoji\negative_squared_cross_mark.png" />
+    <Content Include="Template\css\emoji\neutral_face.png" />
+    <Content Include="Template\css\emoji\new.png" />
+    <Content Include="Template\css\emoji\newspaper.png" />
+    <Content Include="Template\css\emoji\new_moon.png" />
+    <Content Include="Template\css\emoji\new_moon_with_face.png" />
+    <Content Include="Template\css\emoji\ng.png" />
+    <Content Include="Template\css\emoji\nine.png" />
+    <Content Include="Template\css\emoji\non-potable_water.png" />
+    <Content Include="Template\css\emoji\nose.png" />
+    <Content Include="Template\css\emoji\notebook.png" />
+    <Content Include="Template\css\emoji\notebook_with_decorative_cover.png" />
+    <Content Include="Template\css\emoji\notes.png" />
+    <Content Include="Template\css\emoji\no_bell.png" />
+    <Content Include="Template\css\emoji\no_bicycles.png" />
+    <Content Include="Template\css\emoji\no_entry.png" />
+    <Content Include="Template\css\emoji\no_entry_sign.png" />
+    <Content Include="Template\css\emoji\no_good.png" />
+    <Content Include="Template\css\emoji\no_mobile_phones.png" />
+    <Content Include="Template\css\emoji\no_mouth.png" />
+    <Content Include="Template\css\emoji\no_pedestrians.png" />
+    <Content Include="Template\css\emoji\no_smoking.png" />
+    <Content Include="Template\css\emoji\nut_and_bolt.png" />
+    <Content Include="Template\css\emoji\o.png" />
+    <Content Include="Template\css\emoji\o2.png" />
+    <Content Include="Template\css\emoji\ocean.png" />
+    <Content Include="Template\css\emoji\octocat.png" />
+    <Content Include="Template\css\emoji\octopus.png" />
+    <Content Include="Template\css\emoji\oden.png" />
+    <Content Include="Template\css\emoji\office.png" />
+    <Content Include="Template\css\emoji\ok.png" />
+    <Content Include="Template\css\emoji\ok_hand.png" />
+    <Content Include="Template\css\emoji\ok_woman.png" />
+    <Content Include="Template\css\emoji\older_man.png" />
+    <Content Include="Template\css\emoji\older_woman.png" />
+    <Content Include="Template\css\emoji\on.png" />
+    <Content Include="Template\css\emoji\oncoming_automobile.png" />
+    <Content Include="Template\css\emoji\oncoming_bus.png" />
+    <Content Include="Template\css\emoji\oncoming_police_car.png" />
+    <Content Include="Template\css\emoji\oncoming_taxi.png" />
+    <Content Include="Template\css\emoji\one.png" />
+    <Content Include="Template\css\emoji\open_file_folder.png" />
+    <Content Include="Template\css\emoji\open_hands.png" />
+    <Content Include="Template\css\emoji\open_mouth.png" />
+    <Content Include="Template\css\emoji\ophiuchus.png" />
+    <Content Include="Template\css\emoji\orange_book.png" />
+    <Content Include="Template\css\emoji\outbox_tray.png" />
+    <Content Include="Template\css\emoji\ox.png" />
+    <Content Include="Template\css\emoji\package.png" />
+    <Content Include="Template\css\emoji\pager.png" />
+    <Content Include="Template\css\emoji\page_facing_up.png" />
+    <Content Include="Template\css\emoji\page_with_curl.png" />
+    <Content Include="Template\css\emoji\palm_tree.png" />
+    <Content Include="Template\css\emoji\panda_face.png" />
+    <Content Include="Template\css\emoji\paperclip.png" />
+    <Content Include="Template\css\emoji\parking.png" />
+    <Content Include="Template\css\emoji\partly_sunny.png" />
+    <Content Include="Template\css\emoji\part_alternation_mark.png" />
+    <Content Include="Template\css\emoji\passport_control.png" />
+    <Content Include="Template\css\emoji\paw_prints.png" />
+    <Content Include="Template\css\emoji\peach.png" />
+    <Content Include="Template\css\emoji\pear.png" />
+    <Content Include="Template\css\emoji\pencil.png" />
+    <Content Include="Template\css\emoji\pencil2.png" />
+    <Content Include="Template\css\emoji\penguin.png" />
+    <Content Include="Template\css\emoji\pensive.png" />
+    <Content Include="Template\css\emoji\performing_arts.png" />
+    <Content Include="Template\css\emoji\persevere.png" />
+    <Content Include="Template\css\emoji\person_frowning.png" />
+    <Content Include="Template\css\emoji\person_with_blond_hair.png" />
+    <Content Include="Template\css\emoji\person_with_pouting_face.png" />
+    <Content Include="Template\css\emoji\phone.png" />
+    <Content Include="Template\css\emoji\pig.png" />
+    <Content Include="Template\css\emoji\pig2.png" />
+    <Content Include="Template\css\emoji\pig_nose.png" />
+    <Content Include="Template\css\emoji\pill.png" />
+    <Content Include="Template\css\emoji\pineapple.png" />
+    <Content Include="Template\css\emoji\pisces.png" />
+    <Content Include="Template\css\emoji\pizza.png" />
+    <Content Include="Template\css\emoji\plus1.png" />
+    <Content Include="Template\css\emoji\point_down.png" />
+    <Content Include="Template\css\emoji\point_left.png" />
+    <Content Include="Template\css\emoji\point_right.png" />
+    <Content Include="Template\css\emoji\point_up.png" />
+    <Content Include="Template\css\emoji\point_up_2.png" />
+    <Content Include="Template\css\emoji\police_car.png" />
+    <Content Include="Template\css\emoji\poodle.png" />
+    <Content Include="Template\css\emoji\poop.png" />
+    <Content Include="Template\css\emoji\postal_horn.png" />
+    <Content Include="Template\css\emoji\postbox.png" />
+    <Content Include="Template\css\emoji\post_office.png" />
+    <Content Include="Template\css\emoji\potable_water.png" />
+    <Content Include="Template\css\emoji\pouch.png" />
+    <Content Include="Template\css\emoji\poultry_leg.png" />
+    <Content Include="Template\css\emoji\pound.png" />
+    <Content Include="Template\css\emoji\pouting_cat.png" />
+    <Content Include="Template\css\emoji\pray.png" />
+    <Content Include="Template\css\emoji\princess.png" />
+    <Content Include="Template\css\emoji\punch.png" />
+    <Content Include="Template\css\emoji\purple_heart.png" />
+    <Content Include="Template\css\emoji\purse.png" />
+    <Content Include="Template\css\emoji\pushpin.png" />
+    <Content Include="Template\css\emoji\put_litter_in_its_place.png" />
+    <Content Include="Template\css\emoji\question.png" />
+    <Content Include="Template\css\emoji\rabbit.png" />
+    <Content Include="Template\css\emoji\rabbit2.png" />
+    <Content Include="Template\css\emoji\racehorse.png" />
+    <Content Include="Template\css\emoji\radio.png" />
+    <Content Include="Template\css\emoji\radio_button.png" />
+    <Content Include="Template\css\emoji\rage.png" />
+    <Content Include="Template\css\emoji\rage1.png" />
+    <Content Include="Template\css\emoji\rage2.png" />
+    <Content Include="Template\css\emoji\rage3.png" />
+    <Content Include="Template\css\emoji\rage4.png" />
+    <Content Include="Template\css\emoji\railway_car.png" />
+    <Content Include="Template\css\emoji\rainbow.png" />
+    <Content Include="Template\css\emoji\raised_hand.png" />
+    <Content Include="Template\css\emoji\raised_hands.png" />
+    <Content Include="Template\css\emoji\raising_hand.png" />
+    <Content Include="Template\css\emoji\ram.png" />
+    <Content Include="Template\css\emoji\ramen.png" />
+    <Content Include="Template\css\emoji\rat.png" />
+    <Content Include="Template\css\emoji\recycle.png" />
+    <Content Include="Template\css\emoji\red_car.png" />
+    <Content Include="Template\css\emoji\red_circle.png" />
+    <Content Include="Template\css\emoji\registered.png" />
+    <Content Include="Template\css\emoji\relaxed.png" />
+    <Content Include="Template\css\emoji\relieved.png" />
+    <Content Include="Template\css\emoji\repeat.png" />
+    <Content Include="Template\css\emoji\repeat_one.png" />
+    <Content Include="Template\css\emoji\restroom.png" />
+    <Content Include="Template\css\emoji\revolving_hearts.png" />
+    <Content Include="Template\css\emoji\rewind.png" />
+    <Content Include="Template\css\emoji\ribbon.png" />
+    <Content Include="Template\css\emoji\rice.png" />
+    <Content Include="Template\css\emoji\rice_ball.png" />
+    <Content Include="Template\css\emoji\rice_cracker.png" />
+    <Content Include="Template\css\emoji\rice_scene.png" />
+    <Content Include="Template\css\emoji\ring.png" />
+    <Content Include="Template\css\emoji\rocket.png" />
+    <Content Include="Template\css\emoji\roller_coaster.png" />
+    <Content Include="Template\css\emoji\rooster.png" />
+    <Content Include="Template\css\emoji\rose.png" />
+    <Content Include="Template\css\emoji\rotating_light.png" />
+    <Content Include="Template\css\emoji\round_pushpin.png" />
+    <Content Include="Template\css\emoji\rowboat.png" />
+    <Content Include="Template\css\emoji\ru.png" />
+    <Content Include="Template\css\emoji\rugby_football.png" />
+    <Content Include="Template\css\emoji\runner.png" />
+    <Content Include="Template\css\emoji\running.png" />
+    <Content Include="Template\css\emoji\running_shirt_with_sash.png" />
+    <Content Include="Template\css\emoji\sa.png" />
+    <Content Include="Template\css\emoji\sagittarius.png" />
+    <Content Include="Template\css\emoji\sailboat.png" />
+    <Content Include="Template\css\emoji\sake.png" />
+    <Content Include="Template\css\emoji\sandal.png" />
+    <Content Include="Template\css\emoji\santa.png" />
+    <Content Include="Template\css\emoji\satellite.png" />
+    <Content Include="Template\css\emoji\satisfied.png" />
+    <Content Include="Template\css\emoji\saxophone.png" />
+    <Content Include="Template\css\emoji\school.png" />
+    <Content Include="Template\css\emoji\school_satchel.png" />
+    <Content Include="Template\css\emoji\scissors.png" />
+    <Content Include="Template\css\emoji\scorpius.png" />
+    <Content Include="Template\css\emoji\scream.png" />
+    <Content Include="Template\css\emoji\scream_cat.png" />
+    <Content Include="Template\css\emoji\scroll.png" />
+    <Content Include="Template\css\emoji\seat.png" />
+    <Content Include="Template\css\emoji\secret.png" />
+    <Content Include="Template\css\emoji\seedling.png" />
+    <Content Include="Template\css\emoji\see_no_evil.png" />
+    <Content Include="Template\css\emoji\seven.png" />
+    <Content Include="Template\css\emoji\shaved_ice.png" />
+    <Content Include="Template\css\emoji\sheep.png" />
+    <Content Include="Template\css\emoji\shell.png" />
+    <Content Include="Template\css\emoji\ship.png" />
+    <Content Include="Template\css\emoji\shipit.png" />
+    <Content Include="Template\css\emoji\shirt.png" />
+    <Content Include="Template\css\emoji\shit.png" />
+    <Content Include="Template\css\emoji\shoe.png" />
+    <Content Include="Template\css\emoji\shower.png" />
+    <Content Include="Template\css\emoji\signal_strength.png" />
+    <Content Include="Template\css\emoji\six.png" />
+    <Content Include="Template\css\emoji\six_pointed_star.png" />
+    <Content Include="Template\css\emoji\ski.png" />
+    <Content Include="Template\css\emoji\skull.png" />
+    <Content Include="Template\css\emoji\sleeping.png" />
+    <Content Include="Template\css\emoji\sleepy.png" />
+    <Content Include="Template\css\emoji\slot_machine.png" />
+    <Content Include="Template\css\emoji\small_blue_diamond.png" />
+    <Content Include="Template\css\emoji\small_orange_diamond.png" />
+    <Content Include="Template\css\emoji\small_red_triangle.png" />
+    <Content Include="Template\css\emoji\small_red_triangle_down.png" />
+    <Content Include="Template\css\emoji\smile.png" />
+    <Content Include="Template\css\emoji\smiley.png" />
+    <Content Include="Template\css\emoji\smiley_cat.png" />
+    <Content Include="Template\css\emoji\smile_cat.png" />
+    <Content Include="Template\css\emoji\smiling_imp.png" />
+    <Content Include="Template\css\emoji\smirk.png" />
+    <Content Include="Template\css\emoji\smirk_cat.png" />
+    <Content Include="Template\css\emoji\smoking.png" />
+    <Content Include="Template\css\emoji\snail.png" />
+    <Content Include="Template\css\emoji\snake.png" />
+    <Content Include="Template\css\emoji\snowboarder.png" />
+    <Content Include="Template\css\emoji\snowflake.png" />
+    <Content Include="Template\css\emoji\snowman.png" />
+    <Content Include="Template\css\emoji\sob.png" />
+    <Content Include="Template\css\emoji\soccer.png" />
+    <Content Include="Template\css\emoji\soon.png" />
+    <Content Include="Template\css\emoji\sos.png" />
+    <Content Include="Template\css\emoji\sound.png" />
+    <Content Include="Template\css\emoji\space_invader.png" />
+    <Content Include="Template\css\emoji\spades.png" />
+    <Content Include="Template\css\emoji\spaghetti.png" />
+    <Content Include="Template\css\emoji\sparkle.png" />
+    <Content Include="Template\css\emoji\sparkler.png" />
+    <Content Include="Template\css\emoji\sparkles.png" />
+    <Content Include="Template\css\emoji\sparkling_heart.png" />
+    <Content Include="Template\css\emoji\speaker.png" />
+    <Content Include="Template\css\emoji\speak_no_evil.png" />
+    <Content Include="Template\css\emoji\speech_balloon.png" />
+    <Content Include="Template\css\emoji\speedboat.png" />
+    <Content Include="Template\css\emoji\squirrel.png" />
+    <Content Include="Template\css\emoji\star.png" />
+    <Content Include="Template\css\emoji\star2.png" />
+    <Content Include="Template\css\emoji\stars.png" />
+    <Content Include="Template\css\emoji\station.png" />
+    <Content Include="Template\css\emoji\statue_of_liberty.png" />
+    <Content Include="Template\css\emoji\steam_locomotive.png" />
+    <Content Include="Template\css\emoji\stew.png" />
+    <Content Include="Template\css\emoji\straight_ruler.png" />
+    <Content Include="Template\css\emoji\strawberry.png" />
+    <Content Include="Template\css\emoji\stuck_out_tongue.png" />
+    <Content Include="Template\css\emoji\stuck_out_tongue_closed_eyes.png" />
+    <Content Include="Template\css\emoji\stuck_out_tongue_winking_eye.png" />
+    <Content Include="Template\css\emoji\sunflower.png" />
+    <Content Include="Template\css\emoji\sunglasses.png" />
+    <Content Include="Template\css\emoji\sunny.png" />
+    <Content Include="Template\css\emoji\sunrise.png" />
+    <Content Include="Template\css\emoji\sunrise_over_mountains.png" />
+    <Content Include="Template\css\emoji\sun_with_face.png" />
+    <Content Include="Template\css\emoji\surfer.png" />
+    <Content Include="Template\css\emoji\sushi.png" />
+    <Content Include="Template\css\emoji\suspect.png" />
+    <Content Include="Template\css\emoji\suspension_railway.png" />
+    <Content Include="Template\css\emoji\sweat.png" />
+    <Content Include="Template\css\emoji\sweat_drops.png" />
+    <Content Include="Template\css\emoji\sweat_smile.png" />
+    <Content Include="Template\css\emoji\sweet_potato.png" />
+    <Content Include="Template\css\emoji\swimmer.png" />
+    <Content Include="Template\css\emoji\symbols.png" />
+    <Content Include="Template\css\emoji\syringe.png" />
+    <Content Include="Template\css\emoji\tada.png" />
+    <Content Include="Template\css\emoji\tanabata_tree.png" />
+    <Content Include="Template\css\emoji\tangerine.png" />
+    <Content Include="Template\css\emoji\taurus.png" />
+    <Content Include="Template\css\emoji\taxi.png" />
+    <Content Include="Template\css\emoji\tea.png" />
+    <Content Include="Template\css\emoji\telephone.png" />
+    <Content Include="Template\css\emoji\telephone_receiver.png" />
+    <Content Include="Template\css\emoji\telescope.png" />
+    <Content Include="Template\css\emoji\tennis.png" />
+    <Content Include="Template\css\emoji\tent.png" />
+    <Content Include="Template\css\emoji\thought_balloon.png" />
+    <Content Include="Template\css\emoji\three.png" />
+    <Content Include="Template\css\emoji\thumbsdown.png" />
+    <Content Include="Template\css\emoji\thumbsup.png" />
+    <Content Include="Template\css\emoji\ticket.png" />
+    <Content Include="Template\css\emoji\tiger.png" />
+    <Content Include="Template\css\emoji\tiger2.png" />
+    <Content Include="Template\css\emoji\tired_face.png" />
+    <Content Include="Template\css\emoji\tm.png" />
+    <Content Include="Template\css\emoji\toilet.png" />
+    <Content Include="Template\css\emoji\tokyo_tower.png" />
+    <Content Include="Template\css\emoji\tomato.png" />
+    <Content Include="Template\css\emoji\tongue.png" />
+    <Content Include="Template\css\emoji\top.png" />
+    <Content Include="Template\css\emoji\tophat.png" />
+    <Content Include="Template\css\emoji\tractor.png" />
+    <Content Include="Template\css\emoji\traffic_light.png" />
+    <Content Include="Template\css\emoji\train.png" />
+    <Content Include="Template\css\emoji\train2.png" />
+    <Content Include="Template\css\emoji\tram.png" />
+    <Content Include="Template\css\emoji\triangular_flag_on_post.png" />
+    <Content Include="Template\css\emoji\triangular_ruler.png" />
+    <Content Include="Template\css\emoji\trident.png" />
+    <Content Include="Template\css\emoji\triumph.png" />
+    <Content Include="Template\css\emoji\trolleybus.png" />
+    <Content Include="Template\css\emoji\trollface.png" />
+    <Content Include="Template\css\emoji\trophy.png" />
+    <Content Include="Template\css\emoji\tropical_drink.png" />
+    <Content Include="Template\css\emoji\tropical_fish.png" />
+    <Content Include="Template\css\emoji\truck.png" />
+    <Content Include="Template\css\emoji\trumpet.png" />
+    <Content Include="Template\css\emoji\tshirt.png" />
+    <Content Include="Template\css\emoji\tulip.png" />
+    <Content Include="Template\css\emoji\turtle.png" />
+    <Content Include="Template\css\emoji\tv.png" />
+    <Content Include="Template\css\emoji\twisted_rightwards_arrows.png" />
+    <Content Include="Template\css\emoji\two.png" />
+    <Content Include="Template\css\emoji\two_hearts.png" />
+    <Content Include="Template\css\emoji\two_men_holding_hands.png" />
+    <Content Include="Template\css\emoji\two_women_holding_hands.png" />
+    <Content Include="Template\css\emoji\u5272.png" />
+    <Content Include="Template\css\emoji\u5408.png" />
+    <Content Include="Template\css\emoji\u55b6.png" />
+    <Content Include="Template\css\emoji\u6307.png" />
+    <Content Include="Template\css\emoji\u6708.png" />
+    <Content Include="Template\css\emoji\u6709.png" />
+    <Content Include="Template\css\emoji\u6e80.png" />
+    <Content Include="Template\css\emoji\u7121.png" />
+    <Content Include="Template\css\emoji\u7533.png" />
+    <Content Include="Template\css\emoji\u7981.png" />
+    <Content Include="Template\css\emoji\u7a7a.png" />
+    <Content Include="Template\css\emoji\uk.png" />
+    <Content Include="Template\css\emoji\umbrella.png" />
+    <Content Include="Template\css\emoji\unamused.png" />
+    <Content Include="Template\css\emoji\underage.png" />
+    <Content Include="Template\css\emoji\unlock.png" />
+    <Content Include="Template\css\emoji\up.png" />
+    <Content Include="Template\css\emoji\us.png" />
+    <Content Include="Template\css\emoji\v.png" />
+    <Content Include="Template\css\emoji\vertical_traffic_light.png" />
+    <Content Include="Template\css\emoji\vhs.png" />
+    <Content Include="Template\css\emoji\vibration_mode.png" />
+    <Content Include="Template\css\emoji\video_camera.png" />
+    <Content Include="Template\css\emoji\video_game.png" />
+    <Content Include="Template\css\emoji\violin.png" />
+    <Content Include="Template\css\emoji\virgo.png" />
+    <Content Include="Template\css\emoji\volcano.png" />
+    <Content Include="Template\css\emoji\vs.png" />
+    <Content Include="Template\css\emoji\walking.png" />
+    <Content Include="Template\css\emoji\waning_crescent_moon.png" />
+    <Content Include="Template\css\emoji\waning_gibbous_moon.png" />
+    <Content Include="Template\css\emoji\warning.png" />
+    <Content Include="Template\css\emoji\watch.png" />
+    <Content Include="Template\css\emoji\watermelon.png" />
+    <Content Include="Template\css\emoji\water_buffalo.png" />
+    <Content Include="Template\css\emoji\wave.png" />
+    <Content Include="Template\css\emoji\wavy_dash.png" />
+    <Content Include="Template\css\emoji\waxing_crescent_moon.png" />
+    <Content Include="Template\css\emoji\waxing_gibbous_moon.png" />
+    <Content Include="Template\css\emoji\wc.png" />
+    <Content Include="Template\css\emoji\weary.png" />
+    <Content Include="Template\css\emoji\wedding.png" />
+    <Content Include="Template\css\emoji\whale.png" />
+    <Content Include="Template\css\emoji\whale2.png" />
+    <Content Include="Template\css\emoji\wheelchair.png" />
+    <Content Include="Template\css\emoji\white_check_mark.png" />
+    <Content Include="Template\css\emoji\white_circle.png" />
+    <Content Include="Template\css\emoji\white_flower.png" />
+    <Content Include="Template\css\emoji\white_large_square.png" />
+    <Content Include="Template\css\emoji\white_medium_small_square.png" />
+    <Content Include="Template\css\emoji\white_medium_square.png" />
+    <Content Include="Template\css\emoji\white_small_square.png" />
+    <Content Include="Template\css\emoji\white_square_button.png" />
+    <Content Include="Template\css\emoji\wind_chime.png" />
+    <Content Include="Template\css\emoji\wine_glass.png" />
+    <Content Include="Template\css\emoji\wink.png" />
+    <Content Include="Template\css\emoji\wolf.png" />
+    <Content Include="Template\css\emoji\woman.png" />
+    <Content Include="Template\css\emoji\womans_clothes.png" />
+    <Content Include="Template\css\emoji\womans_hat.png" />
+    <Content Include="Template\css\emoji\womens.png" />
+    <Content Include="Template\css\emoji\worried.png" />
+    <Content Include="Template\css\emoji\wrench.png" />
+    <Content Include="Template\css\emoji\x.png" />
+    <Content Include="Template\css\emoji\yellow_heart.png" />
+    <Content Include="Template\css\emoji\yen.png" />
+    <Content Include="Template\css\emoji\yum.png" />
+    <Content Include="Template\css\emoji\zap.png" />
+    <Content Include="Template\css\emoji\zero.png" />
+    <Content Include="Template\css\emoji\zzz.png" />
+    <Content Include="Template\css\eventCalendar.css" />
+    <Content Include="Template\css\fonts.css" />
+    <Content Include="Template\css\jquery.cookieBar.min.css" />
+    <Content Include="Template\css\main.min.css" />
+    <Content Include="Template\css\nprogress.css" />
+    <Content Include="Template\css\owl.video.play.html" />
+    <Content Include="Template\css\page-tour.css" />
+    <Content Include="Template\css\responsive.css" />
+    <Content Include="Template\css\strip-skins\strip\close.png" />
+    <Content Include="Template\css\strip-skins\strip\close.svg" />
+    <Content Include="Template\css\strip-skins\strip\error.png" />
+    <Content Include="Template\css\strip-skins\strip\error.svg" />
+    <Content Include="Template\css\strip-skins\strip\next-faded.png" />
+    <Content Include="Template\css\strip-skins\strip\next-small-faded.png" />
+    <Content Include="Template\css\strip-skins\strip\next-small.png" />
+    <Content Include="Template\css\strip-skins\strip\next-small.svg" />
+    <Content Include="Template\css\strip-skins\strip\next.png" />
+    <Content Include="Template\css\strip-skins\strip\next.svg" />
+    <Content Include="Template\css\strip-skins\strip\previous-faded.png" />
+    <Content Include="Template\css\strip-skins\strip\previous-small-faded.png" />
+    <Content Include="Template\css\strip-skins\strip\previous-small.png" />
+    <Content Include="Template\css\strip-skins\strip\previous-small.svg" />
+    <Content Include="Template\css\strip-skins\strip\previous.png" />
+    <Content Include="Template\css\strip-skins\strip\previous.svg" />
+    <Content Include="Template\css\style.css" />
+    <Content Include="Template\css\style_area.css" />
+    <Content Include="Template\css\toast-notification.css" />
+    <Content Include="Template\css\toastr.css" />
+    <Content Include="Template\css\tooplate-style.css" />
+    <Content Include="Template\css\video-player.css" />
+    <Content Include="Template\css\weather-icon.css" />
+    <Content Include="Template\css\weather-icons.min.css" />
+    <Content Include="Template\css\virtual-select.min.css" />
+    <Content Include="Template\js\customDateTime.js" />
+    <Content Include="Template\js\error.js" />
+    <Content Include="Template\js\background.cycle.js" />
+    <Content Include="Template\js\getAPI.js" />
+    <Content Include="Template\js\pdf.js" />
+    <Content Include="Template\js\toastr.js" />
+    <Content Include="Template\js\virtual-select.min.js" />
+    <Content Include="Template\fonts\fa-brands-400.html" />
+    <Content Include="Template\fonts\fa-brands-400d41d.html" />
+    <Content Include="Template\fonts\fa-brands-401.html" />
+    <Content Include="Template\fonts\fa-brands-402.html" />
+    <Content Include="Template\fonts\fa-brands-403.html" />
+    <Content Include="Template\fonts\fa-brands-404.html" />
+    <Content Include="Template\fonts\fa-regular-400.html" />
+    <Content Include="Template\fonts\fa-regular-400d41d.html" />
+    <Content Include="Template\fonts\fa-regular-401.html" />
+    <Content Include="Template\fonts\fa-regular-402.html" />
+    <Content Include="Template\fonts\fa-regular-403.html" />
+    <Content Include="Template\fonts\fa-regular-404.html" />
+    <Content Include="Template\fonts\fa-solid-900.html" />
+    <Content Include="Template\fonts\fa-solid-900d41d.html" />
+    <Content Include="Template\fonts\fa-solid-901.html" />
+    <Content Include="Template\fonts\fa-solid-902.html" />
+    <Content Include="Template\fonts\fa-solid-903.html" />
+    <Content Include="Template\fonts\fa-solid-904.html" />
+    <Content Include="Template\fonts\fontawesome-webfont3e6e.svg" />
+    <Content Include="Template\fonts\themify9f24.svg" />
+    <Content Include="Template\fonts\weathericons-regular-webfont.svg" />
+    <Content Include="Template\img\about.jpg" />
+    <Content Include="Template\img\ad-baner.jpg" />
+    <Content Include="Template\img\android.png" />
+    <Content Include="Template\img\apple.png" />
+    <Content Include="Template\img\audio-wave.png" />
+    <Content Include="Template\img\birthday.png" />
+    <Content Include="Template\img\book-icon.png" />
+    <Content Include="Template\img\clock.png" />
+    <Content Include="Template\img\course-1.jpg" />
+    <Content Include="Template\img\course-2.jpg" />
+    <Content Include="Template\img\course-3.jpg" />
+    <Content Include="Template\img\course-details-tab-1.png" />
+    <Content Include="Template\img\course-details-tab-2.png" />
+    <Content Include="Template\img\course-details-tab-3.png" />
+    <Content Include="Template\img\course-details-tab-4.png" />
+    <Content Include="Template\img\course-details-tab-5.png" />
+    <Content Include="Template\img\course-details.jpg" />
+    <Content Include="Template\img\credit-cards.png" />
+    <Content Include="Template\img\dot-pattern.html" />
+    <Content Include="Template\img\envelop.png" />
+    <Content Include="Template\img\events-1.jpg" />
+    <Content Include="Template\img\events-2.jpg" />
+    <Content Include="Template\img\fav.png" />
+    <Content Include="Template\img\female.png" />
+    <Content Include="Template\img\fontawesome.png" />
+    <Content Include="Template\img\heart-bomb.png" />
+    <Content Include="Template\img\icon-21.png" />
+    <Content Include="Template\img\icon-4.png" />
+    <Content Include="Template\img\icon-5.png" />
+    <Content Include="Template\img\icon-6.png" />
+    <Content Include="Template\img\job-icon.png" />
+    <Content Include="Template\img\Logo.gif" />
+    <Content Include="Template\img\male.png" />
+    <Content Include="Template\img\play-list-icon.png" />
+    <Content Include="Template\img\resources\ad-widget.gif" />
+    <Content Include="Template\img\resources\add-banner.jpg" />
+    <Content Include="Template\img\resources\admin.jpg" />
+    <Content Include="Template\img\resources\admin2.jpg" />
+    <Content Include="Template\img\resources\album1.jpg" />
+    <Content Include="Template\img\resources\album2.jpg" />
+    <Content Include="Template\img\resources\album4.jpg" />
+    <Content Include="Template\img\resources\album5.jpg" />
+    <Content Include="Template\img\resources\album6.jpg" />
+    <Content Include="Template\img\resources\animated-bg2.png" />
+    <Content Include="Template\img\resources\audio-singe-avatar.jpg" />
+    <Content Include="Template\img\resources\audio-user1.jpg" />
+    <Content Include="Template\img\resources\audio-user2.jpg" />
+    <Content Include="Template\img\resources\audio-user3.jpg" />
+    <Content Include="Template\img\resources\audio-user4.jpg" />
+    <Content Include="Template\img\resources\audio-user5.jpg" />
+    <Content Include="Template\img\resources\audio-user6.jpg" />
+    <Content Include="Template\img\resources\author.jpg" />
+    <Content Include="Template\img\resources\author2.jpg" />
+    <Content Include="Template\img\resources\baner-badges.png" />
+    <Content Include="Template\img\resources\baner-forum.png" />
+    <Content Include="Template\img\resources\baner-statics.png" />
+    <Content Include="Template\img\resources\baner-typography.png" />
+    <Content Include="Template\img\resources\baner-widgetbg.jpg" />
+    <Content Include="Template\img\resources\baner-widgetbg2.jpg" />
+    <Content Include="Template\img\resources\Barcode.jpg" />
+    <Content Include="Template\img\resources\blog-detail.jpg" />
+    <Content Include="Template\img\resources\blog.jpg" />
+    <Content Include="Template\img\resources\blog2.jpg" />
+    <Content Include="Template\img\resources\blog3.jpg" />
+    <Content Include="Template\img\resources\blogpost-1.jpg" />
+    <Content Include="Template\img\resources\blogpost-2.jpg" />
+    <Content Include="Template\img\resources\blogpost-3.jpg" />
+    <Content Include="Template\img\resources\blogpost-4.jpg" />
+    <Content Include="Template\img\resources\blur-image.jpg" />
+    <Content Include="Template\img\resources\blur-image2.jpg" />
+    <Content Include="Template\img\resources\blur-image3.jpg" />
+    <Content Include="Template\img\resources\blur-image4.jpg" />
+    <Content Include="Template\img\resources\blur-image5.jpg" />
+    <Content Include="Template\img\resources\cart-2.jpg" />
+    <Content Include="Template\img\resources\cart-3.jpg" />
+    <Content Include="Template\img\resources\cart-4.jpg" />
+    <Content Include="Template\img\resources\ceo1.jpg" />
+    <Content Include="Template\img\resources\ceo2.jpg" />
+    <Content Include="Template\img\resources\ceo3.jpg" />
+    <Content Include="Template\img\resources\ceo4.jpg" />
+    <Content Include="Template\img\resources\ceo5.jpg" />
+    <Content Include="Template\img\resources\ceo6.jpg" />
+    <Content Include="Template\img\resources\ceo7.jpg" />
+    <Content Include="Template\img\resources\ceo8.jpg" />
+    <Content Include="Template\img\resources\chanel-avatar.jpg" />
+    <Content Include="Template\img\resources\channel.jpg" />
+    <Content Include="Template\img\resources\chatlist1.jpg" />
+    <Content Include="Template\img\resources\chatlist2.jpg" />
+    <Content Include="Template\img\resources\chatuser1.jpg" />
+    <Content Include="Template\img\resources\chatuser2.jpg" />
+    <Content Include="Template\img\resources\chatuser3.jpg" />
+    <Content Include="Template\img\resources\chatuser4.jpg" />
+    <Content Include="Template\img\resources\chatuser5.jpg" />
+    <Content Include="Template\img\resources\chatuser6.jpg" />
+    <Content Include="Template\img\resources\chatuser8.jpg" />
+    <Content Include="Template\img\resources\classic-bunch1.jpg" />
+    <Content Include="Template\img\resources\classic-bunch10.jpg" />
+    <Content Include="Template\img\resources\classic-bunch2.jpg" />
+    <Content Include="Template\img\resources\classic-bunch3.jpg" />
+    <Content Include="Template\img\resources\classic-bunch4.jpg" />
+    <Content Include="Template\img\resources\classic-bunch5.jpg" />
+    <Content Include="Template\img\resources\classic-bunch6.jpg" />
+    <Content Include="Template\img\resources\classic-bunch7.jpg" />
+    <Content Include="Template\img\resources\classic-bunch8.jpg" />
+    <Content Include="Template\img\resources\classic-bunch9.jpg" />
+    <Content Include="Template\img\resources\classic-new1.jpg" />
+    <Content Include="Template\img\resources\classic-new2.jpg" />
+    <Content Include="Template\img\resources\classic-new3.jpg" />
+    <Content Include="Template\img\resources\classic-new4.jpg" />
+    <Content Include="Template\img\resources\classic-new5.jpg" />
+    <Content Include="Template\img\resources\classic-new6.jpg" />
+    <Content Include="Template\img\resources\classic-new7.jpg" />
+    <Content Include="Template\img\resources\classic-new8.jpg" />
+    <Content Include="Template\img\resources\classic-new9.jpg" />
+    <Content Include="Template\img\resources\classic1.jpg" />
+    <Content Include="Template\img\resources\classic10.jpg" />
+    <Content Include="Template\img\resources\classic2.jpg" />
+    <Content Include="Template\img\resources\classic3.jpg" />
+    <Content Include="Template\img\resources\classic4.jpg" />
+    <Content Include="Template\img\resources\classic5.jpg" />
+    <Content Include="Template\img\resources\classic6.jpg" />
+    <Content Include="Template\img\resources\classic7.jpg" />
+    <Content Include="Template\img\resources\classic8.jpg" />
+    <Content Include="Template\img\resources\classic9.jpg" />
+    <Content Include="Template\img\resources\classified-bg.jpg" />
+    <Content Include="Template\img\resources\classified-dp.jpg" />
+    <Content Include="Template\img\resources\classified1.jpg" />
+    <Content Include="Template\img\resources\classified2.jpg" />
+    <Content Include="Template\img\resources\classified3.jpg" />
+    <Content Include="Template\img\resources\classified4.jpg" />
+    <Content Include="Template\img\resources\classified5.jpg" />
+    <Content Include="Template\img\resources\classified6.jpg" />
+    <Content Include="Template\img\resources\comet-1.jpg" />
+    <Content Include="Template\img\resources\comet-2.jpg" />
+    <Content Include="Template\img\resources\comet-3.jpg" />
+    <Content Include="Template\img\resources\comet-4.jpg" />
+    <Content Include="Template\img\resources\coming-soon-bg.jpg" />
+    <Content Include="Template\img\resources\company1.png" />
+    <Content Include="Template\img\resources\company2.png" />
+    <Content Include="Template\img\resources\company3.png" />
+    <Content Include="Template\img\resources\company4.png" />
+    <Content Include="Template\img\resources\company5.png" />
+    <Content Include="Template\img\resources\company6.png" />
+    <Content Include="Template\img\resources\company7.png" />
+    <Content Include="Template\img\resources\company8.png" />
+    <Content Include="Template\img\resources\couple1.jpg" />
+    <Content Include="Template\img\resources\couple2.jpg" />
+    <Content Include="Template\img\resources\couple3.jpg" />
+    <Content Include="Template\img\resources\date-user1.jpg" />
+    <Content Include="Template\img\resources\date-user10.jpg" />
+    <Content Include="Template\img\resources\date-user11.jpg" />
+    <Content Include="Template\img\resources\date-user12.jpg" />
+    <Content Include="Template\img\resources\date-user13.jpg" />
+    <Content Include="Template\img\resources\date-user14.jpg" />
+    <Content Include="Template\img\resources\date-user15.jpg" />
+    <Content Include="Template\img\resources\date-user16.jpg" />
+    <Content Include="Template\img\resources\date-user2.jpg" />
+    <Content Include="Template\img\resources\date-user3.jpg" />
+    <Content Include="Template\img\resources\date-user4.jpg" />
+    <Content Include="Template\img\resources\date-user5.jpg" />
+    <Content Include="Template\img\resources\date-user6.jpg" />
+    <Content Include="Template\img\resources\date-user7.jpg" />
+    <Content Include="Template\img\resources\date-user8.jpg" />
+    <Content Include="Template\img\resources\date-user9.jpg" />
+    <Content Include="Template\img\resources\date-userlist1.jpg" />
+    <Content Include="Template\img\resources\date-userlist2.jpg" />
+    <Content Include="Template\img\resources\date-userlist3.jpg" />
+    <Content Include="Template\img\resources\date-userlist4.jpg" />
+    <Content Include="Template\img\resources\date-userlist5.jpg" />
+    <Content Include="Template\img\resources\date-userlist6.jpg" />
+    <Content Include="Template\img\resources\date-userlist7.jpg" />
+    <Content Include="Template\img\resources\date-userlist8.jpg" />
+    <Content Include="Template\img\resources\date-userlist9.jpg" />
+    <Content Include="Template\img\resources\deal-popup-bg.jpg" />
+    <Content Include="Template\img\resources\detail-gold1.jpg" />
+    <Content Include="Template\img\resources\detail-gold2.jpg" />
+    <Content Include="Template\img\resources\detail-gold3.jpg" />
+    <Content Include="Template\img\resources\dig-product1.jpg" />
+    <Content Include="Template\img\resources\dig-product2.jpg" />
+    <Content Include="Template\img\resources\dig-product3.jpg" />
+    <Content Include="Template\img\resources\dig-product4.jpg" />
+    <Content Include="Template\img\resources\dig-product5.jpg" />
+    <Content Include="Template\img\resources\dig-product6.jpg" />
+    <Content Include="Template\img\resources\dob-cake.gif" />
+    <Content Include="Template\img\resources\dob2.png" />
+    <Content Include="Template\img\resources\donation-bg.jpg" />
+    <Content Include="Template\img\resources\donation-thumb.jpg" />
+    <Content Include="Template\img\resources\employer.jpg" />
+    <Content Include="Template\img\resources\error500.gif" />
+    <Content Include="Template\img\resources\event-detail1.jpg" />
+    <Content Include="Template\img\resources\event1.jpg" />
+    <Content Include="Template\img\resources\event2.jpg" />
+    <Content Include="Template\img\resources\event3.jpg" />
+    <Content Include="Template\img\resources\event4.jpg" />
+    <Content Include="Template\img\resources\event5.jpg" />
+    <Content Include="Template\img\resources\facebook-office.jpg" />
+    <Content Include="Template\img\resources\fav-banner.jpg" />
+    <Content Include="Template\img\resources\fav-dp.jpg" />
+    <Content Include="Template\img\resources\feature-chanel.jpg" />
+    <Content Include="Template\img\resources\feature-video.jpg" />
+    <Content Include="Template\img\resources\featured-top-baner.jpg" />
+    <Content Include="Template\img\resources\folio-detail1.jpg" />
+    <Content Include="Template\img\resources\folio-detail2.jpg" />
+    <Content Include="Template\img\resources\folio-detail3.jpg" />
+    <Content Include="Template\img\resources\folio-detail4.jpg" />
+    <Content Include="Template\img\resources\folio-detail5.jpg" />
+    <Content Include="Template\img\resources\folio-detail6.jpg" />
+    <Content Include="Template\img\resources\folio-detail7.jpg" />
+    <Content Include="Template\img\resources\folio-detail8.jpg" />
+    <Content Include="Template\img\resources\forum-author1.png" />
+    <Content Include="Template\img\resources\forum-author2.png" />
+    <Content Include="Template\img\resources\forum-author3.png" />
+    <Content Include="Template\img\resources\forum-author4.png" />
+    <Content Include="Template\img\resources\friend-avatar.jpg" />
+    <Content Include="Template\img\resources\friend-avatar10.jpg" />
+    <Content Include="Template\img\resources\friend-avatar11.jpg" />
+    <Content Include="Template\img\resources\friend-avatar12.jpg" />
+    <Content Include="Template\img\resources\friend-avatar13.jpg" />
+    <Content Include="Template\img\resources\friend-avatar14.jpg" />
+    <Content Include="Template\img\resources\friend-avatar15.jpg" />
+    <Content Include="Template\img\resources\friend-avatar16.jpg" />
+    <Content Include="Template\img\resources\friend-avatar2.jpg" />
+    <Content Include="Template\img\resources\friend-avatar3.jpg" />
+    <Content Include="Template\img\resources\friend-avatar4.jpg" />
+    <Content Include="Template\img\resources\friend-avatar5.jpg" />
+    <Content Include="Template\img\resources\friend-avatar6.jpg" />
+    <Content Include="Template\img\resources\friend-avatar7.jpg" />
+    <Content Include="Template\img\resources\friend-avatar8.jpg" />
+    <Content Include="Template\img\resources\friend-avatar9.jpg" />
+    <Content Include="Template\img\resources\frnd-cover1.jpg" />
+    <Content Include="Template\img\resources\frnd-cover2.jpg" />
+    <Content Include="Template\img\resources\frnd-cover3.jpg" />
+    <Content Include="Template\img\resources\frnd-cover4.jpg" />
+    <Content Include="Template\img\resources\frnd-cover5.jpg" />
+    <Content Include="Template\img\resources\frnd-cover6.jpg" />
+    <Content Include="Template\img\resources\frnd-cover7.jpg" />
+    <Content Include="Template\img\resources\frnd-cover8.jpg" />
+    <Content Include="Template\img\resources\frnd-figure1.jpg" />
+    <Content Include="Template\img\resources\frnd-figure10.jpg" />
+    <Content Include="Template\img\resources\frnd-figure11.jpg" />
+    <Content Include="Template\img\resources\frnd-figure12.jpg" />
+    <Content Include="Template\img\resources\frnd-figure13.jpg" />
+    <Content Include="Template\img\resources\frnd-figure14.jpg" />
+    <Content Include="Template\img\resources\frnd-figure15.jpg" />
+    <Content Include="Template\img\resources\frnd-figure16.jpg" />
+    <Content Include="Template\img\resources\frnd-figure2.jpg" />
+    <Content Include="Template\img\resources\frnd-figure3.jpg" />
+    <Content Include="Template\img\resources\frnd-figure4.jpg" />
+    <Content Include="Template\img\resources\frnd-figure5.jpg" />
+    <Content Include="Template\img\resources\frnd-figure6.jpg" />
+    <Content Include="Template\img\resources\frnd-figure7.jpg" />
+    <Content Include="Template\img\resources\frnd-figure8.jpg" />
+    <Content Include="Template\img\resources\frnd-figure9.jpg" />
+    <Content Include="Template\img\resources\group1.jpg" />
+    <Content Include="Template\img\resources\group10.jpg" />
+    <Content Include="Template\img\resources\group11.jpg" />
+    <Content Include="Template\img\resources\group12.jpg" />
+    <Content Include="Template\img\resources\group13.jpg" />
+    <Content Include="Template\img\resources\group14.jpg" />
+    <Content Include="Template\img\resources\group15.jpg" />
+    <Content Include="Template\img\resources\group16.jpg" />
+    <Content Include="Template\img\resources\group17.jpg" />
+    <Content Include="Template\img\resources\group2.jpg" />
+    <Content Include="Template\img\resources\group3.jpg" />
+    <Content Include="Template\img\resources\group4.jpg" />
+    <Content Include="Template\img\resources\group5.jpg" />
+    <Content Include="Template\img\resources\group6.jpg" />
+    <Content Include="Template\img\resources\group7.jpg" />
+    <Content Include="Template\img\resources\group8.jpg" />
+    <Content Include="Template\img\resources\group9.jpg" />
+    <Content Include="Template\img\resources\help-chat.png" />
+    <Content Include="Template\img\resources\help-contact.png" />
+    <Content Include="Template\img\resources\help-shot.jpg" />
+    <Content Include="Template\img\resources\hobo.jpg" />
+    <Content Include="Template\img\resources\jackgroup1.jpg" />
+    <Content Include="Template\img\resources\jackgroup2.jpg" />
+    <Content Include="Template\img\resources\jackgroup3.jpg" />
+    <Content Include="Template\img\resources\jackpage1.jpg" />
+    <Content Include="Template\img\resources\jackpage2.jpg" />
+    <Content Include="Template\img\resources\jackpage3.jpg" />
+    <Content Include="Template\img\resources\last-vid1.jpg" />
+    <Content Include="Template\img\resources\last-vid2.jpg" />
+    <Content Include="Template\img\resources\music-banner.jpg" />
+    <Content Include="Template\img\resources\nearly1.jpg" />
+    <Content Include="Template\img\resources\nearly2.jpg" />
+    <Content Include="Template\img\resources\nearly3.jpg" />
+    <Content Include="Template\img\resources\nearly4.jpg" />
+    <Content Include="Template\img\resources\nearly6.jpg" />
+    <Content Include="Template\img\resources\page1.jpg" />
+    <Content Include="Template\img\resources\photo-1001.jpg" />
+    <Content Include="Template\img\resources\photo-101.jpg" />
+    <Content Include="Template\img\resources\photo-1011.jpg" />
+    <Content Include="Template\img\resources\photo-1012.jpg" />
+    <Content Include="Template\img\resources\photo-1013.jpg" />
+    <Content Include="Template\img\resources\photo-1014.jpg" />
+    <Content Include="Template\img\resources\photo-1015.jpg" />
+    <Content Include="Template\img\resources\photo-22.jpg" />
+    <Content Include="Template\img\resources\photo-33.jpg" />
+    <Content Include="Template\img\resources\photo-44.jpg" />
+    <Content Include="Template\img\resources\photo-55.jpg" />
+    <Content Include="Template\img\resources\photo-66.jpg" />
+    <Content Include="Template\img\resources\photo-77.jpg" />
+    <Content Include="Template\img\resources\photo-88.jpg" />
+    <Content Include="Template\img\resources\photo-99.jpg" />
+    <Content Include="Template\img\resources\photo1.jpg" />
+    <Content Include="Template\img\resources\photo10.jpg" />
+    <Content Include="Template\img\resources\photo11.jpg" />
+    <Content Include="Template\img\resources\photo12.jpg" />
+    <Content Include="Template\img\resources\photo13.jpg" />
+    <Content Include="Template\img\resources\photo14.jpg" />
+    <Content Include="Template\img\resources\photo15.jpg" />
+    <Content Include="Template\img\resources\photo2.jpg" />
+    <Content Include="Template\img\resources\photo3.jpg" />
+    <Content Include="Template\img\resources\photo4.jpg" />
+    <Content Include="Template\img\resources\photo5.jpg" />
+    <Content Include="Template\img\resources\photo6.jpg" />
+    <Content Include="Template\img\resources\photo7.jpg" />
+    <Content Include="Template\img\resources\photo8.jpg" />
+    <Content Include="Template\img\resources\photo9.jpg" />
+    <Content Include="Template\img\resources\pitpoint-feature.jpg" />
+    <Content Include="Template\img\resources\pitrest1.jpg" />
+    <Content Include="Template\img\resources\pitrest10.jpg" />
+    <Content Include="Template\img\resources\pitrest11.jpg" />
+    <Content Include="Template\img\resources\pitrest12.jpg" />
+    <Content Include="Template\img\resources\pitrest13.jpg" />
+    <Content Include="Template\img\resources\pitrest14.jpg" />
+    <Content Include="Template\img\resources\pitrest15.jpg" />
+    <Content Include="Template\img\resources\pitrest16.jpg" />
+    <Content Include="Template\img\resources\pitrest17.jpg" />
+    <Content Include="Template\img\resources\pitrest18.jpg" />
+    <Content Include="Template\img\resources\pitrest19.jpg" />
+    <Content Include="Template\img\resources\pitrest2.jpg" />
+    <Content Include="Template\img\resources\pitrest20.jpg" />
+    <Content Include="Template\img\resources\pitrest21.jpg" />
+    <Content Include="Template\img\resources\pitrest22.jpg" />
+    <Content Include="Template\img\resources\pitrest23.jpg" />
+    <Content Include="Template\img\resources\pitrest24.jpg" />
+    <Content Include="Template\img\resources\pitrest25.jpg" />
+    <Content Include="Template\img\resources\pitrest26.jpg" />
+    <Content Include="Template\img\resources\pitrest27.jpg" />
+    <Content Include="Template\img\resources\pitrest28.jpg" />
+    <Content Include="Template\img\resources\pitrest29.jpg" />
+    <Content Include="Template\img\resources\pitrest3.jpg" />
+    <Content Include="Template\img\resources\pitrest30.jpg" />
+    <Content Include="Template\img\resources\pitrest4.jpg" />
+    <Content Include="Template\img\resources\pitrest5.jpg" />
+    <Content Include="Template\img\resources\pitrest6.jpg" />
+    <Content Include="Template\img\resources\pitrest7.jpg" />
+    <Content Include="Template\img\resources\pitrest8.jpg" />
+    <Content Include="Template\img\resources\pitrest9.jpg" />
+    <Content Include="Template\img\resources\playlist1.jpg" />
+    <Content Include="Template\img\resources\playlist2.jpg" />
+    <Content Include="Template\img\resources\playlist3.jpg" />
+    <Content Include="Template\img\resources\playlist4.jpg" />
+    <Content Include="Template\img\resources\playlist5.jpg" />
+    <Content Include="Template\img\resources\playlist6.jpg" />
+    <Content Include="Template\img\resources\post-createbg.jpg" />
+    <Content Include="Template\img\resources\postby1.jpg" />
+    <Content Include="Template\img\resources\postby2.jpg" />
+    <Content Include="Template\img\resources\postby3.jpg" />
+    <Content Include="Template\img\resources\product1.jpg" />
+    <Content Include="Template\img\resources\product2.jpg" />
+    <Content Include="Template\img\resources\product3.jpg" />
+    <Content Include="Template\img\resources\product4.jpg" />
+    <Content Include="Template\img\resources\profile-image.jpg" />
+    <Content Include="Template\img\resources\profile-image2.jpg" />
+    <Content Include="Template\img\resources\promo1.jpg" />
+    <Content Include="Template\img\resources\promo2.jpg" />
+    <Content Include="Template\img\resources\promo3.jpg" />
+    <Content Include="Template\img\resources\promo4.jpg" />
+    <Content Include="Template\img\resources\promo5.jpg" />
+    <Content Include="Template\img\resources\recent-1.jpg" />
+    <Content Include="Template\img\resources\recent-11.html" />
+    <Content Include="Template\img\resources\recent-2.jpg" />
+    <Content Include="Template\img\resources\recent-22.html" />
+    <Content Include="Template\img\resources\recent-3.jpg" />
+    <Content Include="Template\img\resources\recent-33.html" />
+    <Content Include="Template\img\resources\recent-4.jpg" />
+    <Content Include="Template\img\resources\recent-44.html" />
+    <Content Include="Template\img\resources\recent-5.jpg" />
+    <Content Include="Template\img\resources\recent-55.html" />
+    <Content Include="Template\img\resources\recent-6.jpg" />
+    <Content Include="Template\img\resources\recent-66.html" />
+    <Content Include="Template\img\resources\recent-7.jpg" />
+    <Content Include="Template\img\resources\recent-77.html" />
+    <Content Include="Template\img\resources\recent-8.jpg" />
+    <Content Include="Template\img\resources\recent-88.html" />
+    <Content Include="Template\img\resources\recent-9.jpg" />
+    <Content Include="Template\img\resources\recent-99.html" />
+    <Content Include="Template\img\resources\recent1.jpg" />
+    <Content Include="Template\img\resources\recent2.jpg" />
+    <Content Include="Template\img\resources\recent3.jpg" />
+    <Content Include="Template\img\resources\recent4.jpg" />
+    <Content Include="Template\img\resources\recent5.jpg" />
+    <Content Include="Template\img\resources\recent6.jpg" />
+    <Content Include="Template\img\resources\recentlink-1.jpg" />
+    <Content Include="Template\img\resources\recentlink-2.jpg" />
+    <Content Include="Template\img\resources\recentlink-3.jpg" />
+    <Content Include="Template\img\resources\red-post1.jpg" />
+    <Content Include="Template\img\resources\red-post2.jpg" />
+    <Content Include="Template\img\resources\red-post3.jpg" />
+    <Content Include="Template\img\resources\red-post4.jpg" />
+    <Content Include="Template\img\resources\red-post5.jpg" />
+    <Content Include="Template\img\resources\red-post6.jpg" />
+    <Content Include="Template\img\resources\red-post7.jpg" />
+    <Content Include="Template\img\resources\related-tube1.jpg" />
+    <Content Include="Template\img\resources\related-tube10.jpg" />
+    <Content Include="Template\img\resources\related-tube2.jpg" />
+    <Content Include="Template\img\resources\related-tube3.jpg" />
+    <Content Include="Template\img\resources\related-tube4.jpg" />
+    <Content Include="Template\img\resources\related-tube5.jpg" />
+    <Content Include="Template\img\resources\related-tube6.jpg" />
+    <Content Include="Template\img\resources\related-tube7.jpg" />
+    <Content Include="Template\img\resources\related-tube8.jpg" />
+    <Content Include="Template\img\resources\related-tube9.jpg" />
+    <Content Include="Template\img\resources\screenshot-messenger.jpg" />
+    <Content Include="Template\img\resources\search-1.jpg" />
+    <Content Include="Template\img\resources\search-2.jpg" />
+    <Content Include="Template\img\resources\search-3.jpg" />
+    <Content Include="Template\img\resources\searching1.jpg" />
+    <Content Include="Template\img\resources\searching2.jpg" />
+    <Content Include="Template\img\resources\searching3.jpg" />
+    <Content Include="Template\img\resources\searching4.jpg" />
+    <Content Include="Template\img\resources\share-post.jpg" />
+    <Content Include="Template\img\resources\shop-dp.jpg" />
+    <Content Include="Template\img\resources\shop-topbg.jpg" />
+    <Content Include="Template\img\resources\side-friend1.jpg" />
+    <Content Include="Template\img\resources\side-friend10.jpg" />
+    <Content Include="Template\img\resources\side-friend2.jpg" />
+    <Content Include="Template\img\resources\side-friend3.jpg" />
+    <Content Include="Template\img\resources\side-friend4.jpg" />
+    <Content Include="Template\img\resources\side-friend5.jpg" />
+    <Content Include="Template\img\resources\side-friend6.jpg" />
+    <Content Include="Template\img\resources\side-friend7.jpg" />
+    <Content Include="Template\img\resources\side-friend8.jpg" />
+    <Content Include="Template\img\resources\side-friend9.jpg" />
+    <Content Include="Template\img\resources\sidebar-info.jpg" />
+    <Content Include="Template\img\resources\singer1.jpg" />
+    <Content Include="Template\img\resources\single-comment1.jpg" />
+    <Content Include="Template\img\resources\slick1.jpg" />
+    <Content Include="Template\img\resources\slick2.jpg" />
+    <Content Include="Template\img\resources\slick3.jpg" />
+    <Content Include="Template\img\resources\slick4.jpg" />
+    <Content Include="Template\img\resources\slick5.jpg" />
+    <Content Include="Template\img\resources\slick6.jpg" />
+    <Content Include="Template\img\resources\slick7.jpg" />
+    <Content Include="Template\img\resources\slick8.jpg" />
+    <Content Include="Template\img\resources\slick9.jpg" />
+    <Content Include="Template\img\resources\song-chanl1.jpg" />
+    <Content Include="Template\img\resources\song-chanl2.jpg" />
+    <Content Include="Template\img\resources\song-chanl3.jpg" />
+    <Content Include="Template\img\resources\song-chanl4.jpg" />
+    <Content Include="Template\img\resources\song-chanl5.jpg" />
+    <Content Include="Template\img\resources\song-chanl6.jpg" />
+    <Content Include="Template\img\resources\sound-user1.jpg" />
+    <Content Include="Template\img\resources\soundnik.jpg" />
+    <Content Include="Template\img\resources\soundnik2.jpg" />
+    <Content Include="Template\img\resources\soundnik3.jpg" />
+    <Content Include="Template\img\resources\sponsor-1.png" />
+    <Content Include="Template\img\resources\sponsor-2.png" />
+    <Content Include="Template\img\resources\sponsor-3.png" />
+    <Content Include="Template\img\resources\sponsor-4.png" />
+    <Content Include="Template\img\resources\sponsor-5.png" />
+    <Content Include="Template\img\resources\story-1.jpg" />
+    <Content Include="Template\img\resources\story-2.jpg" />
+    <Content Include="Template\img\resources\story-3.jpg" />
+    <Content Include="Template\img\resources\story-4.jpg" />
+    <Content Include="Template\img\resources\sug-page-1.jpg" />
+    <Content Include="Template\img\resources\sug-page-2.jpg" />
+    <Content Include="Template\img\resources\sug-page-3.jpg" />
+    <Content Include="Template\img\resources\sug-page-4.jpg" />
+    <Content Include="Template\img\resources\sug-page-5.jpg" />
+    <Content Include="Template\img\resources\sug1.jpg" />
+    <Content Include="Template\img\resources\sug2.jpg" />
+    <Content Include="Template\img\resources\sug3.jpg" />
+    <Content Include="Template\img\resources\sug4.jpg" />
+    <Content Include="Template\img\resources\sug5.jpg" />
+    <Content Include="Template\img\resources\sug6.jpg" />
+    <Content Include="Template\img\resources\sug7.jpg" />
+    <Content Include="Template\img\resources\team1.jpg" />
+    <Content Include="Template\img\resources\team2.jpg" />
+    <Content Include="Template\img\resources\team3.jpg" />
+    <Content Include="Template\img\resources\team4.jpg" />
+    <Content Include="Template\img\resources\team5.jpg" />
+    <Content Include="Template\img\resources\testi-silver1.jpg" />
+    <Content Include="Template\img\resources\testi-silver2.jpg" />
+    <Content Include="Template\img\resources\testi-silver3.jpg" />
+    <Content Include="Template\img\resources\testi-silver4.jpg" />
+    <Content Include="Template\img\resources\text-bg.jpg" />
+    <Content Include="Template\img\resources\text-caro-1.jpg" />
+    <Content Include="Template\img\resources\text-caro-2.jpg" />
+    <Content Include="Template\img\resources\theme-bg.jpg" />
+    <Content Include="Template\img\resources\theme-bg2.jpg" />
+    <Content Include="Template\img\resources\thumb-1.jpg" />
+    <Content Include="Template\img\resources\thumb-2.jpg" />
+    <Content Include="Template\img\resources\thumb-3.jpg" />
+    <Content Include="Template\img\resources\thumb-4.jpg" />
+    <Content Include="Template\img\resources\thumb-5.jpg" />
+    <Content Include="Template\img\resources\top-comunity1.png" />
+    <Content Include="Template\img\resources\top-comunity2.png" />
+    <Content Include="Template\img\resources\top-comunity3.png" />
+    <Content Include="Template\img\resources\top-comunity4.png" />
+    <Content Include="Template\img\resources\top-comunity5.png" />
+    <Content Include="Template\img\resources\trending1.jpg" />
+    <Content Include="Template\img\resources\trending2.jpg" />
+    <Content Include="Template\img\resources\trending3.jpg" />
+    <Content Include="Template\img\resources\trending4.jpg" />
+    <Content Include="Template\img\resources\trending5.jpg" />
+    <Content Include="Template\img\resources\trending6.jpg" />
+    <Content Include="Template\img\resources\tube-baner1.jpg" />
+    <Content Include="Template\img\resources\tube-baner2.jpg" />
+    <Content Include="Template\img\resources\tube-category-thumb.jpg" />
+    <Content Include="Template\img\resources\tube-category.jpg" />
+    <Content Include="Template\img\resources\tube-feature-big.jpg" />
+    <Content Include="Template\img\resources\tube-feature-big2.jpg" />
+    <Content Include="Template\img\resources\tube-feature-small.jpg" />
+    <Content Include="Template\img\resources\tube-feature-small2.jpg" />
+    <Content Include="Template\img\resources\tube-post10.jpg" />
+    <Content Include="Template\img\resources\tube-post11.jpg" />
+    <Content Include="Template\img\resources\tube-post12.jpg" />
+    <Content Include="Template\img\resources\tube-post13.jpg" />
+    <Content Include="Template\img\resources\tube-post14.jpg" />
+    <Content Include="Template\img\resources\tube-post15.jpg" />
+    <Content Include="Template\img\resources\tube-post16.jpg" />
+    <Content Include="Template\img\resources\tube-post17.jpg" />
+    <Content Include="Template\img\resources\tube-post2.jpg" />
+    <Content Include="Template\img\resources\tube-post3.jpg" />
+    <Content Include="Template\img\resources\tube-post4.jpg" />
+    <Content Include="Template\img\resources\tube-post6.jpg" />
+    <Content Include="Template\img\resources\tube-post7.jpg" />
+    <Content Include="Template\img\resources\tube-post8.jpg" />
+    <Content Include="Template\img\resources\tube-post9.jpg" />
+    <Content Include="Template\img\resources\tube-user1.jpg" />
+    <Content Include="Template\img\resources\tube-user10.jpg" />
+    <Content Include="Template\img\resources\tube-user11.jpg" />
+    <Content Include="Template\img\resources\tube-user12.jpg" />
+    <Content Include="Template\img\resources\tube-user13.jpg" />
+    <Content Include="Template\img\resources\tube-user15.jpg" />
+    <Content Include="Template\img\resources\tube-user16.jpg" />
+    <Content Include="Template\img\resources\tube-user17.jpg" />
+    <Content Include="Template\img\resources\tube-user2.jpg" />
+    <Content Include="Template\img\resources\tube-user3.jpg" />
+    <Content Include="Template\img\resources\tube-user4.jpg" />
+    <Content Include="Template\img\resources\tube-user5.jpg" />
+    <Content Include="Template\img\resources\tube-user6.jpg" />
+    <Content Include="Template\img\resources\tube-user7.jpg" />
+    <Content Include="Template\img\resources\tube-user8.jpg" />
+    <Content Include="Template\img\resources\tube-user9.jpg" />
+    <Content Include="Template\img\resources\tvplay1.jpg" />
+    <Content Include="Template\img\resources\tvplay2.jpg" />
+    <Content Include="Template\img\resources\tvplay3.jpg" />
+    <Content Include="Template\img\resources\user-post.jpg" />
+    <Content Include="Template\img\resources\user1.jpg" />
+    <Content Include="Template\img\resources\user10.jpg" />
+    <Content Include="Template\img\resources\user11.jpg" />
+    <Content Include="Template\img\resources\user12.jpg" />
+    <Content Include="Template\img\resources\user13.jpg" />
+    <Content Include="Template\img\resources\user14.jpg" />
+    <Content Include="Template\img\resources\user15.jpg" />
+    <Content Include="Template\img\resources\user16.jpg" />
+    <Content Include="Template\img\resources\user17.jpg" />
+    <Content Include="Template\img\resources\user18.jpg" />
+    <Content Include="Template\img\resources\user19.jpg" />
+    <Content Include="Template\img\resources\user2.jpg" />
+    <Content Include="Template\img\resources\user20.jpg" />
+    <Content Include="Template\img\resources\user21.jpg" />
+    <Content Include="Template\img\resources\user22.jpg" />
+    <Content Include="Template\img\resources\user23.jpg" />
+    <Content Include="Template\img\resources\user24.jpg" />
+    <Content Include="Template\img\resources\user25.jpg" />
+    <Content Include="Template\img\resources\user3.jpg" />
+    <Content Include="Template\img\resources\user4.jpg" />
+    <Content Include="Template\img\resources\user5.jpg" />
+    <Content Include="Template\img\resources\user6.jpg" />
+    <Content Include="Template\img\resources\user7.jpg" />
+    <Content Include="Template\img\resources\user8.jpg" />
+    <Content Include="Template\img\resources\user9.jpg" />
+    <Content Include="Template\img\resources\userlist-1.jpg" />
+    <Content Include="Template\img\resources\userlist-2.jpg" />
+    <Content Include="Template\img\resources\userlist-3.jpg" />
+    <Content Include="Template\img\resources\userlist-4.jpg" />
+    <Content Include="Template\img\resources\userlist-5.jpg" />
+    <Content Include="Template\img\resources\userlist-6.jpg" />
+    <Content Include="Template\img\resources\userlist-7.jpg" />
+    <Content Include="Template\img\resources\vid-1.jpg" />
+    <Content Include="Template\img\resources\vid-10.jpg" />
+    <Content Include="Template\img\resources\vid-11.jpg" />
+    <Content Include="Template\img\resources\vid-12.jpg" />
+    <Content Include="Template\img\resources\vid-2.jpg" />
+    <Content Include="Template\img\resources\vid-3.jpg" />
+    <Content Include="Template\img\resources\vid-4.jpg" />
+    <Content Include="Template\img\resources\vid-5.jpg" />
+    <Content Include="Template\img\resources\vid-6.jpg" />
+    <Content Include="Template\img\resources\vid-7.jpg" />
+    <Content Include="Template\img\resources\vid-8.jpg" />
+    <Content Include="Template\img\resources\vid-9.jpg" />
+    <Content Include="Template\img\resources\weather.jpg" />
+    <Content Include="Template\img\resources\weatherbg.jpg" />
+    <Content Include="Template\img\resources\welcome-mockup.png" />
+    <Content Include="Template\img\resources\widget-baner.jpg" />
+    <Content Include="Template\img\sponsors.gif" />
+    <Content Include="Template\img\testimonials\testimonials-1.jpg" />
+    <Content Include="Template\img\testimonials\testimonials-2.jpg" />
+    <Content Include="Template\img\testimonials\testimonials-3.jpg" />
+    <Content Include="Template\img\testimonials\testimonials-4.jpg" />
+    <Content Include="Template\img\testimonials\testimonials-5.jpg" />
+    <Content Include="Template\img\themify.png" />
+    <Content Include="Template\img\trainers\trainer-1.jpg" />
+    <Content Include="Template\img\trainers\trainer-2.jpg" />
+    <Content Include="Template\img\trainers\trainer-3.jpg" />
+    <Content Include="Template\img\wiki.png" />
+    <Content Include="Template\img\windows.png" />
+    <Content Include="Template\js\main.js" />
+    <Content Include="Template\js\main.min.js" />
+    <Content Include="Template\js\script.js" />
+    <Content Include="Template\vendor\animate.css\animate.compat.css" />
+    <Content Include="Template\vendor\animate.css\animate.css" />
+    <Content Include="Template\vendor\animate.css\animate.min.css" />
+    <Content Include="Template\vendor\aos\aos.css" />
+    <Content Include="Template\vendor\aos\aos.js" />
+    <Content Include="Template\vendor\bootstrap-icons\bootstrap-icons.css" />
+    <Content Include="Template\vendor\bootstrap-icons\index.html" />
+    <Content Include="Template\vendor\bootstrap\css\bootstrap-grid.css" />
+    <Content Include="Template\vendor\bootstrap\css\bootstrap-grid.min.css" />
+    <Content Include="Template\vendor\bootstrap\css\bootstrap-grid.rtl.css" />
+    <Content Include="Template\vendor\bootstrap\css\bootstrap-grid.rtl.min.css" />
+    <Content Include="Template\vendor\bootstrap\css\bootstrap-reboot.css" />
+    <Content Include="Template\vendor\bootstrap\css\bootstrap-reboot.min.css" />
+    <Content Include="Template\vendor\bootstrap\css\bootstrap-reboot.rtl.css" />
+    <Content Include="Template\vendor\bootstrap\css\bootstrap-reboot.rtl.min.css" />
+    <Content Include="Template\vendor\bootstrap\css\bootstrap-utilities.css" />
+    <Content Include="Template\vendor\bootstrap\css\bootstrap-utilities.min.css" />
+    <Content Include="Template\vendor\bootstrap\css\bootstrap-utilities.rtl.css" />
+    <Content Include="Template\vendor\bootstrap\css\bootstrap-utilities.rtl.min.css" />
+    <Content Include="Template\vendor\bootstrap\css\bootstrap.css" />
+    <Content Include="Template\vendor\bootstrap\css\bootstrap.min.css" />
+    <Content Include="Template\vendor\bootstrap\css\bootstrap.rtl.css" />
+    <Content Include="Template\vendor\bootstrap\css\bootstrap.rtl.min.css" />
+    <Content Include="Template\vendor\bootstrap\js\bootstrap.bundle.js" />
+    <Content Include="Template\vendor\bootstrap\js\bootstrap.bundle.min.js" />
+    <Content Include="Template\vendor\bootstrap\js\bootstrap.esm.js" />
+    <Content Include="Template\vendor\bootstrap\js\bootstrap.esm.min.js" />
+    <Content Include="Template\vendor\bootstrap\js\bootstrap.js" />
+    <Content Include="Template\vendor\bootstrap\js\bootstrap.min.js" />
+    <Content Include="Template\vendor\boxicons\css\animations.css" />
+    <Content Include="Template\vendor\boxicons\css\boxicons.css" />
+    <Content Include="Template\vendor\boxicons\css\boxicons.min.css" />
+    <Content Include="Template\vendor\boxicons\css\transformations.css" />
+    <Content Include="Template\vendor\boxicons\fonts\boxicons.svg" />
+    <Content Include="Template\vendor\purecounter\purecounter.js" />
+    <Content Include="Template\vendor\remixicon\remixicon.css" />
+    <Content Include="Template\vendor\remixicon\remixicon.svg" />
+    <Content Include="Template\vendor\remixicon\remixicon.symbol.svg" />
+    <Content Include="Template\vendor\swiper\swiper-bundle.min.css" />
+    <Content Include="Template\vendor\swiper\swiper-bundle.min.js" />
+    <Content Include="Content\bootstrap-theme.css" />
+    <Content Include="Content\bootstrap-theme.min.css" />
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="favicon.ico" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Global.asax" />
+    <Content Include="Content\Site.css" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Template\vendor\bootstrap-icons\bootstrap-icons.json" />
+    <Content Include="Template\vendor\bootstrap-icons\fonts\bootstrap-icons.woff" />
+    <Content Include="Template\vendor\bootstrap-icons\fonts\bootstrap-icons.woff2" />
+    <Content Include="Template\vendor\bootstrap\css\bootstrap-grid.css.map" />
+    <Content Include="Template\vendor\bootstrap\css\bootstrap-grid.min.css.map" />
+    <Content Include="Template\vendor\bootstrap\css\bootstrap-grid.rtl.css.map" />
+    <Content Include="Template\vendor\bootstrap\css\bootstrap-grid.rtl.min.css.map" />
+    <Content Include="Template\vendor\bootstrap\css\bootstrap-reboot.css.map" />
+    <Content Include="Template\vendor\bootstrap\css\bootstrap-reboot.min.css.map" />
+    <Content Include="Template\vendor\bootstrap\css\bootstrap-reboot.rtl.css.map" />
+    <Content Include="Template\vendor\bootstrap\css\bootstrap-reboot.rtl.min.css.map" />
+    <Content Include="Template\vendor\bootstrap\css\bootstrap-utilities.css.map" />
+    <Content Include="Template\vendor\bootstrap\css\bootstrap-utilities.min.css.map" />
+    <Content Include="Template\vendor\bootstrap\css\bootstrap-utilities.rtl.css.map" />
+    <Content Include="Template\vendor\bootstrap\css\bootstrap-utilities.rtl.min.css.map" />
+    <Content Include="Template\vendor\bootstrap\css\bootstrap.css.map" />
+    <Content Include="Template\vendor\bootstrap\css\bootstrap.min.css.map" />
+    <Content Include="Template\vendor\bootstrap\css\bootstrap.rtl.css.map" />
+    <Content Include="Template\vendor\bootstrap\css\bootstrap.rtl.min.css.map" />
+    <Content Include="Template\vendor\bootstrap\js\bootstrap.bundle.js.map" />
+    <Content Include="Template\vendor\bootstrap\js\bootstrap.bundle.min.js.map" />
+    <Content Include="Template\vendor\bootstrap\js\bootstrap.esm.js.map" />
+    <Content Include="Template\vendor\bootstrap\js\bootstrap.esm.min.js.map" />
+    <Content Include="Template\vendor\bootstrap\js\bootstrap.js.map" />
+    <Content Include="Template\vendor\bootstrap\js\bootstrap.min.js.map" />
+    <Content Include="Template\vendor\boxicons\fonts\boxicons.eot" />
+    <Content Include="Template\vendor\boxicons\fonts\boxicons.ttf" />
+    <Content Include="Template\vendor\boxicons\fonts\boxicons.woff" />
+    <Content Include="Template\vendor\boxicons\fonts\boxicons.woff2" />
+    <Content Include="Template\vendor\remixicon\remixicon.eot" />
+    <Content Include="Template\vendor\remixicon\remixicon.less" />
+    <Content Include="Template\vendor\remixicon\remixicon.ttf" />
+    <Content Include="Template\vendor\remixicon\remixicon.woff" />
+    <Content Include="Template\vendor\remixicon\remixicon.woff2" />
+    <Content Include="Areas\Admin\Views\web.config" />
+    <Content Include="Areas\Admin\Views\Home\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Home\Info.cshtml" />
+    <Content Include="Areas\Courses\Views\web.config" />
+    <Content Include="Areas\Courses\Views\Room\List.cshtml" />
+    <Content Include="Areas\Courses\Views\Room\Detail.cshtml" />
+    <Content Include="Areas\Courses\Views\Post\ViewPDF.cshtml" />
+    <Content Include="Areas\Courses\Views\Room\editRoom.cshtml" />
+    <Content Include="Areas\User\Views\web.config" />
+    <Content Include="Areas\User\Views\GiaoVien\Index.cshtml" />
+    <Content Include="Areas\User\Views\HocSinh\Index.cshtml" />
+    <Content Include="Areas\Courses\Views\Exam\Manage.cshtml" />
+    <Content Include="Areas\Courses\Views\Exam\List.cshtml" />
+    <EntityDeploy Include="Model.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Model.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Model.edmx.diagram">
+      <DependentUpon>Model.edmx</DependentUpon>
+    </Content>
+    <Content Include="Areas\Courses\Views\Exam\preExam.cshtml" />
+    <Content Include="Areas\Courses\Views\Exam\workExam.cshtml" />
+    <Content Include="Areas\Courses\Views\Exam\viewExam.cshtml" />
+    <Content Include="Areas\User\Views\Notification\Detail.cshtml" />
+    <None Include="Scripts\jquery-3.4.1.intellisense.js" />
+    <Content Include="Scripts\jquery-3.4.1.js" />
+    <Content Include="Scripts\jquery-3.4.1.min.js" />
+    <Content Include="Scripts\jquery-3.4.1.slim.js" />
+    <Content Include="Scripts\jquery-3.4.1.slim.min.js" />
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Web.config" />
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Views\Web.config" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Default\Index.cshtml" />
+    <Content Include="Views\Shared\_LayoutArea.cshtml" />
+    <Content Include="Template\fonts\fontawesome-webfont3e6e.eot" />
+    <Content Include="Template\fonts\fontawesome-webfont3e6e.ttf" />
+    <Content Include="Template\fonts\fontawesome-webfont3e6e.woff" />
+    <Content Include="Template\fonts\fontawesome-webfont3e6e.woff2" />
+    <Content Include="Template\fonts\fontawesome-webfontd41d.eot" />
+    <Content Include="Template\fonts\themify9f24.eot" />
+    <Content Include="Template\fonts\themify9f24.ttf" />
+    <Content Include="Template\fonts\themify9f24.woff" />
+    <Content Include="Template\fonts\themifyd41d.eot" />
+    <Content Include="Template\fonts\VideoJS.eot" />
+    <Content Include="Template\fonts\VideoJS.ttf" />
+    <Content Include="Template\fonts\VideoJS.woff" />
+    <Content Include="Template\fonts\weathericons-regular-webfont.eot" />
+    <Content Include="Template\fonts\weathericons-regular-webfont.ttf" />
+    <Content Include="Template\fonts\weathericons-regular-webfont.woff" />
+    <Content Include="Template\fonts\weathericons-regular-webfont.woff2" />
+    <Content Include="Template\fonts\weathericons-regular-webfontd41d.eot" />
+    <Content Include="Views\Default\Login.cshtml" />
+    <Content Include="Views\Default\Register.cshtml" />
+    <Content Include="Views\Default\Education.cshtml" />
+    <Content Include="Views\Shared\_LayoutAccount.cshtml" />
+    <Content Include="Views\Profile\Info.cshtml" />
+    <Content Include="Views\Error\NotFound.cshtml" />
+    <Content Include="Views\Default\Courses.cshtml" />
+    <Content Include="Views\Default\Contact.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="Areas\Admin\Data\" />
+    <Folder Include="Areas\Admin\Views\Base\" />
+    <Folder Include="Areas\Admin\Views\Shared\" />
+    <Folder Include="Areas\Courses\Data\" />
+    <Folder Include="Areas\Courses\Views\Base\" />
+    <Folder Include="Areas\Courses\Views\Shared\" />
+    <Folder Include="Areas\Courses\Views\View\" />
+    <Folder Include="Areas\User\Data\" />
+    <Folder Include="Areas\User\Views\Base\" />
+    <Folder Include="Areas\User\Views\Mess\" />
+    <Folder Include="Areas\User\Views\Shared\" />
+    <Folder Include="Content\filePost\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\bootstrap.min.css.map" />
+    <Content Include="Content\bootstrap.css.map" />
+    <Content Include="Content\bootstrap-theme.min.css.map" />
+    <Content Include="Content\bootstrap-theme.css.map" />
+    <None Include="packages.config" />
+    <Content Include="Scripts\jquery-3.4.1.slim.min.map" />
+    <Content Include="Scripts\jquery-3.4.1.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>60127</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>https://localhost:44354/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+</Project>

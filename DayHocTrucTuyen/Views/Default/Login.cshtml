@@ -1,0 +1,41 @@
+﻿
+@{
+    Layout = "~/Views/Shared/_LayoutAccount.cshtml";
+    ViewBag.Title = "Dạy học trực tuyến";
+    ViewBag.NoiDung = "Dạy Học Trực Tuyến là trang web giúp các bạn có thể tham gia học tập và trao đổi với nhau mọi lúc mọi nơi !!!";
+}
+
+<div class="col-lg-5">
+    <div class="we-login-register">
+        <div class="form-title">
+            <i class="fa fa-key"></i>Đăng nhập
+            <span>đăng nhập để cùng nhau học tập ngay bây giờ</span>
+        </div>
+        <form class="we-form" method="post" id="formLogin">
+            <input type="email" id="emailLogin" maxlength="50" placeholder=" " autofocus required>
+            <label class="label-input" id="lblemailLogin">Email</label>
+            <input type="password" class="passInput" id="passLogin" maxlength="50" placeholder=" " required>
+            <label class="label-input" id="lblpassLogin">Mật khẩu</label>
+            <input type="checkbox" class="viewPass" id="viewpassLogin"><label style="padding-top: 0" for="viewpassLogin">Hiển thị mật khẩu</label>
+            <div class="col-12 alert alert-danger" style="display: none" id="erroLogin">
+                Lỗi đăng nhập !
+            </div>
+            <button type="submit" class="login-register" id="submitLogin" data-ripple="">Đăng nhập</button>
+            <a class="forgot underline" href="#" title="">Quên mật khẩu?</a>
+        </form>
+        <div class="division">
+            <div class="line l"></div>
+            <span>Đăng nhập với</span>
+            <div class="line r"></div>
+        </div>
+        <div class="social">
+            <button type="button" id="GoogleLogin" class="circle google" onclick="loginWithGoogle()">
+                <i class="fa fa-google-plus fa-fw"></i>
+            </button>
+            <button type="button" id="FacebookLogin" class="circle facebook" onclick="loginWithFacebook()">
+                <i class="fa fa-facebook fa-fw"></i>
+            </button>
+        </div>
+        <span><a class="we-account underline" href="/Default/Register" title="">Chưa có tài khoản? Đăng ký ngay!</a></span>
+    </div>
+</div>

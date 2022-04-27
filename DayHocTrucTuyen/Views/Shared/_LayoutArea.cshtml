@@ -1,0 +1,320 @@
+﻿
+@{
+    Layout = null;
+
+    var sess = (UserLogin)Session[DayHocTrucTuyen.Models.SessionLogin.SESSION_LOGIN];
+    NguoiDung userAccount = new NguoiDung();
+    ThongBao thongbao = new ThongBao();
+    TinNhan tinnhan = new TinNhan();
+}
+@using DayHocTrucTuyen.Models
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <title>@ViewBag.Title</title>
+    <link rel="icon" href="~/Content/Img/Resources/Logo.gif">
+
+    <link href="/Template/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="~/Template/css/main.min.css">
+    <link rel="stylesheet" href="~/Template/css/nprogress.css">
+    <link rel="stylesheet" href="~/Template/css/style_area.css">
+    <link rel="stylesheet" href="~/Template/css/color.css">
+    <link rel="stylesheet" href="~/Template/css/responsive.css">
+
+    <!--Thư viện select-->
+    <link rel="stylesheet" href="~/Template/css/virtual-select.min.css" />
+    <script src="~/Template/js/virtual-select.min.js"></script>
+
+    <!--Toastr thông báo-->
+    <link rel="stylesheet" href="~/Template/css/toastr.css" />
+    
+
+</head>
+<body>
+    <div class="wavy-wraper">
+        <div class="wavy">
+            <span style="--i:1;">L</span>
+            <span style="--i:2;">o</span>
+            <span style="--i:3;">a</span>
+            <span style="--i:4;">d</span>
+            <span style="--i:5;">i</span>
+            <span style="--i:6;">n</span>
+            <span style="--i:7;">g</span>
+            <span style="--i:8;">.</span>
+            <span style="--i:9;">.</span>
+            <span style="--i:10;">.</span>
+        </div>
+    </div>
+    <div class="theme-layout">
+
+        <div class="postoverlay"></div>
+
+        <div class="responsive-header">
+            <div class="mh-head first Sticky" style="background: #56bad1;">
+                <span class="mh-btns-left">
+                    <a class="" href="#menu"><i class="fa fa-align-justify"></i></a>
+                </span>
+                <span class="mh-text">
+                    <a title="" href="/Default/Index"><img src="~/Content/Img/Resources/Logo.gif" alt="" style="width: 40px"></a>
+                </span>
+            </div>
+            <nav id="menu" class="res-menu">
+                <ul>
+                    <li><a href="/Default/Index" title="">Trang chủ</a></li>
+                    <li>
+                        <span>Lớp học đã tham gia</span>
+                        <ul>
+                            @if (userAccount.getListJoin(sess.MaUser).Count == 0)
+                            {
+                                <li>Bạn chưa tham gia lớp học nào!</li>
+                            }
+                            else 
+                            {
+                                foreach(var l in userAccount.getListJoin(sess.MaUser))
+                                {
+                                    <li><a href="~/Courses/Room/Detail?Room=@l.Ma_Lop" title="">@l.Ten_Lop</a></li>
+                                }
+                            }
+                        </ul>
+                    </li>
+                    <li><a href="~/User/Notification/Detail" title="">Thông báo</a></li>
+                    <li><a href="" title="">Tin nhắn</a></li>
+                </ul>
+            </nav>
+        </div><!-- responsive header -->
+
+        <div class="topbar stick">
+            <div class="logo">
+                <a title="Trở về trang chủ" href="/Default/Index"><img src="~/Content/Img/Resources/Logo.gif" alt="" style="width: 40px"></a>
+            </div>
+            <div class="top-area">
+                <div class="page-name">
+                    <span>@ViewBag.Main</span>
+                </div>
+                <ul class="setting-area">
+                    <li>
+                        <a href="" title="Lớp học" data-ripple="">
+                            <i class="fa fa-group"></i><em class="bg-purple">@userAccount.getJoinRoom(sess.MaUser)</em>
+                        </a>
+                        @if (userAccount.getJoinRoom(sess.MaUser) == 0)
+                        {
+                            <div class="dropdowns">
+                                <span>Bạn chưa tham gia lớp học nào</span>
+                                <a href="~/Default/Courses" title="Danh sách lớp học" class="more-mesg">Tìm lớp học ngay</a>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="dropdowns">
+                                <span>Bạn tham gia @userAccount.getJoinRoom(sess.MaUser) lớp học</span>
+                                <ul class="drops-menu">
+                                    @foreach (var r in userAccount.getListJoin(sess.MaUser))
+                                    {
+                                        <li>
+                                            <div>
+                                                <figure>
+                                                    @if (r.Img_Bia == null)
+                                                    {<img width="40" height="40" src="~/Content/Img/roomCover/cover-default.jpg" alt="@r.Ten_Lop" />}
+                                                    else
+                                                    { <img width="40" height="40" src="~/Content/Img/roomCover/@r.Img_Bia" alt="@r.Ten_Lop" />}
+                                                </figure>
+                                                <div class="mesg-meta">
+                                                    <h6><a href="~/Courses/Room/Detail?Room=@r.Ma_Lop" title="Đi đến lớp @r.Ten_Lop">@r.Ten_Lop</a></h6>
+                                                    <span><b>@r.getOwner(r.Ma_Lop).Ten</b> là giáo viên</span>
+                                                    <i>@r.getMembers(r.Ma_Lop) thành viên</i>
+                                                </div>
+                                                <div class="add-del-friends">
+                                                    <i class="fa fa-group"></i>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    }
+                                </ul>
+                                <a href="~/Courses/Room/List" title="Danh sách lớp tham gia" class="more-mesg">Xem tất cả</a>
+                            </div>
+                        }
+                    </li>
+                    <li>
+                        @if(thongbao.getSLThongBaoChuaXem(sess.MaUser) == 0)
+                        {
+                            <a href="#" title="Thông báo" data-ripple="">
+                                <i class="fa fa-bell"></i>
+                            </a>
+                            <div class="dropdowns">
+                                <span>Hiện không có thông báo mới nào!</span>
+                                <a href="~/User/Notification/Detail" title="Danh sách thông báo" class="more-mesg">Xem tất cả</a>
+                            </div>
+                        }
+                        else 
+                        {
+                            <a href="#" title="Thông báo" data-ripple="">
+                                <i class="fa fa-bell"></i><em id="dot-thong-bao" class="bg-red">@thongbao.getSLThongBaoChuaXem(sess.MaUser)</em>
+                            </a>
+                            <div class="dropdowns">
+                                <span>@thongbao.getSLThongBaoChuaXem(sess.MaUser) thông báo mới <a href="" title="" onclick="setXemTatCaThongBao('@sess.MaUser')">Đã xem hết</a></span>
+                                <ul class="drops-menu">
+                                    @foreach (var tb in thongbao.getThongBaoChuaXem(sess.MaUser))
+                                    {
+                                        <li>
+                                            <a href="~/@tb.Lien_Ket" title="" onclick="setDaXemThongBao('@tb.Ma_TB', '@tb.Ma_ND')">
+                                                <figure>
+                                                    @switch (tb.Noi_Dung.Split('\\')[0])
+                                                    {
+                                                        case "exam":
+                                                            <img width="40" height="40" src="~/Content/Img/Resources/notification-default.png" alt="" />
+                                                            break;
+                                                        case "post":
+                                                            <img width="40" height="40" src="~/Content/Img/Resources/notification-default.png" alt="" />
+                                                            break;
+                                                        default:
+                                                            <img width="40" height="40" src="~/Content/Img/Resources/notification-default.png" alt="" />
+                                                            break;
+                                                    }
+                                                </figure>
+                                                <div class="mesg-meta">
+                                                    <h6>@tb.Tieu_De</h6>
+                                                    <span>@tb.Noi_Dung.Split('\\')[1]</span>
+                                                    <i class="timeago" title="@tb.Thoi_Gian.ToString("yyyy-MM-dd'T'HH:mm:ss")">@tb.Thoi_Gian.ToString()</i>
+                                                </div>
+                                            </a>
+                                        </li>
+                                    }
+                                </ul>
+                                <a href="~/User/Notification/Detail" title="Danh sách thông báo" class="more-mesg">Xem tất cả</a>
+                            </div>
+                        }
+                    </li>
+                    <li>
+                        @if (tinnhan.getSLTinNhanChuaXem(sess.MaUser) == 0)
+                        {
+                            <a href="#" title="Tin nhắn" data-ripple="">
+                                <i class="fa fa-commenting"></i>
+                            </a>
+                            <div class="dropdowns">
+                                <span>Hiện không có tin nhắn mới nào!</span>
+                                <a href="~/User/Messenger/Detail" title="Danh sách tin nhắn" class="more-mesg">Xem tất cả</a>
+                            </div>
+                        }
+                        else
+                        {
+                            <a href="#" title="Tin nhắn" data-ripple="">
+                                <i class="fa fa-commenting"></i><em id="dot-tin-nhan" class="bg-blue">@tinnhan.getSLTinNhanChuaXem(sess.MaUser)</em>
+                            </a>
+                            <div class="dropdowns">
+                                <span>@tinnhan.getSLTinNhanChuaXem(sess.MaUser) tin nhắn mới <a href="" title="" onclick="setXemTatCaTinNhan('@sess.MaUser')">Đã xem hết</a></span>
+                                <ul class="drops-menu">
+                                    @foreach (var tn in tinnhan.getTinNhanChuaXem(sess.MaUser))
+                                    {
+                                        <li>
+                                            <a class="show-mesg" title="">
+                                                <figure id="@tn.Nguoi_Gui">
+                                                    @if (tn.getUser(tn.Nguoi_Gui).Img_Avt == null)
+                                                    {<img width="40" height="40" src="~/Content/Img/userAvt/avt-default.png" alt="" />}
+                                                    else
+                                                    { <img width="40" height="40" src="~/Content/Img/userAvt/@tn.getUser(tn.Nguoi_Gui).Img_Avt" alt="" />}
+                                                </figure>
+                                                <div class="mesg-meta">
+                                                    <h6>@tn.getUser(tn.Nguoi_Gui).Ho_Lot @tn.getUser(tn.Nguoi_Gui).Ten</h6>
+                                                    <span><i class="ti-check"></i> @tn.Noi_Dung</span>
+                                                    <i class="timeago" title="@tn.Thoi_Gian.ToString("yyyy-MM-dd'T'HH:mm:ss")">@tn.Thoi_Gian.ToString()</i>
+                                                </div>
+                                            </a>
+                                        </li>
+                                    }
+                                </ul>
+                                <a href="~/User/Mess/Detail" title="Danh sách tin nhắn" class="more-mesg">Xem tất cả</a>
+                            </div>
+                        }
+                    </li>
+                    <li>
+                        <a href="#" title="Trợ giúp" data-ripple=""><i class="fa fa-question-circle"></i></a>
+                        <div class="dropdowns helps">
+                            <span>Bạn cần giúp gì?</span>
+                            <ul class="help-drop">
+                                <li><a href="forum.html" title=""><i class="fa fa-book"></i>Lớp học và phòng thi</a></li>
+                                <li><a href="#" title=""><i class="fa fa-exclamation-triangle"></i>Phản hồi và báo cáo</a></li>
+                                <li><a href="faq.html" title=""><i class="fa fa-question-circle-o"></i>Câu hỏi khác</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                </ul>
+                <div class="user-img">
+                    <h5>@sess.HoLot @sess.Ten</h5>
+                    @if (sess.Image == null)
+                    {<img src="~/Content/Img/userAvt/avt-default.png" alt="" width="45" />}
+                    else
+                    { <img src="~/Content/Img/userAvt/@sess.Image" alt="" width="45" />}
+                    <div class="user-setting">
+                        <ul class="log-out">
+                            <li><a href="/Profile/Info?User=@sess.MaUser" title=""><i class="ti-user"></i> Trang của tôi</a></li>
+                            <li><a href="/Profile/Change?User=@sess.MaUser" title=""><i class="ti-pencil-alt"></i>Chỉnh sửa thông tin</a></li>
+                            <li><a title="" onclick="dangxuat()"><i class="ti-power-off"></i>Đăng xuất</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div><!-- topbar -->
+
+        <div class="chat-box hide">
+            <div class="chat-head">
+                <h6 id="mess-user-name">@sess.HoLot @sess.Ten</h6>
+                <div class="more">
+                    <div class="more-optns">
+                        <i class="ti-more-alt"></i>
+                        <ul>
+                            <li id="mess-view-info">Xem trang</li>
+                            <li>Xóa hết tin</li>
+                        </ul>
+                    </div>
+                    <span class="close-mesage"><i class="ti-close"></i></span>
+                </div>
+            </div>
+            <div class="chat-list">
+                <ul id="mess-content" style="min-height: 300px">
+                </ul>
+                <form class="text-box">
+                    <textarea id="mess-new-text" placeholder="Nhập tin nhắn..."></textarea>
+                    <span id="mess-send" title="Gửi" class="fa fa-send-o color-red"></span>
+                </form>
+            </div>
+        </div><!-- popup user chat -->
+
+        @RenderBody()
+
+        <footer id="footer">
+            <div class="container d-md-flex py-4">
+                <div class="me-md-auto text-center text-md-start">
+                    <b>Triệu Nguyễn Khánh Băng</b>
+                    <br />
+                    B1809328
+                </div>
+                <div class="social-links text-center text-md-right pt-3 pt-md-0">
+                    <a href="https://instagram.com/tnk_bang" class="instagram"><i class="bx bxl-instagram"></i></a>
+                    <a href="https://fb.com/tnkbang" class="facebook"><i class="bx bxl-facebook"></i></a>
+                    <a href="https://m.me/tnkbang" class="messenger"><i class="bx bxl-messenger"></i></a>
+                    <a href="mailto:bangb1809328@student.ctu.edu.vn" class="google-plus"><i class="bx bx-mail-send"></i></a>
+                    <a href="tel:+0833229121" class="phone"><i class="bx bx-phone-call"></i></a>
+                </div>
+            </div>
+        </footer><!--Footer -->
+    </div>
+
+    <!--Xử lý file pdf-->
+    <script src="~/Template/js/pdf.js"></script>
+
+    <!--Script xử lý chính-->
+    <script src="~/Template/js/main.min.js"></script>
+    <script src="~/Template/js/script.js"></script>
+
+    <!--Xử lý hiển thị ngày tháng-->
+    <script src="~/Template/js/customDateTime.js"></script>
+
+    <!--Toastr thông báo-->
+    <script src="~/Template/js/toastr.js"></script>
+</body>
+</html>

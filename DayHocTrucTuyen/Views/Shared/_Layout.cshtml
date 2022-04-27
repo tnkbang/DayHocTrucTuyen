@@ -1,0 +1,148 @@
+﻿@{
+    Layout = null;
+
+    var sess = (UserLogin)Session[DayHocTrucTuyen.Models.SessionLogin.SESSION_LOGIN];
+}
+@using DayHocTrucTuyen.Models
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+    <title>@ViewBag.Title</title>
+    <meta content="" name="description">
+    <meta content="" name="keywords">
+
+    <!-- Favicons -->
+    <link href="~/Content/Img/Resources/Logo.gif" rel="icon">
+    <link href="~/Content/Img/Resources/Logo.gif" rel="apple-touch-icon">
+
+    <!-- Google Fonts -->
+    <link href="~/Template/css/fonts.css" rel="stylesheet">
+
+    <!-- Vendor CSS Files -->
+    <link href="~/Template/vendor/animate.css/animate.min.css" rel="stylesheet">
+    <link href="~/Template/vendor/aos/aos.css" rel="stylesheet">
+    <link href="~/Template/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="~/Template/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="~/Template/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+    <link href="~/Template/vendor/remixicon/remixicon.css" rel="stylesheet">
+    <link href="~/Template/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+    <!-- Template Main CSS File -->
+    <link href="~/Template/css/style.css" rel="stylesheet">
+
+    <!--Toastr thông báo-->
+    <link rel="stylesheet" href="~/Template/css/toastr.css" />
+</head>
+
+<body>
+    <div class="wavy-wraper">
+        <div class="wavy">
+            <span style="--i:1;">L</span>
+            <span style="--i:2;">o</span>
+            <span style="--i:3;">a</span>
+            <span style="--i:4;">d</span>
+            <span style="--i:5;">i</span>
+            <span style="--i:6;">n</span>
+            <span style="--i:7;">g</span>
+            <span style="--i:8;">.</span>
+            <span style="--i:9;">.</span>
+            <span style="--i:10;">.</span>
+        </div>
+    </div>
+    <!-- ======= Header ======= -->
+    <header id="header" class="fixed-top">
+        <div class="container d-flex align-items-center">
+            <a href="~/Default/Index" class="logo me-auto"><img src="~/Content/Img/Resources/Logo.gif" alt="" class="img-fluid"></a>
+            <nav id="navbar" class="navbar order-last order-lg-0">
+                <ul>
+                    <li><a class="@ViewBag.Index" href="~/Default/Index">Trang chủ</a></li>
+                    <li><a class="@ViewBag.ThongTin" href="">Thông tin</a></li>
+                    <li><a class="@ViewBag.KhoaHoc" href="~/Default/Courses">Khóa học</a></li>
+                    <li><a class="@ViewBag.SuKien" href="">Sự kiện</a></li>
+                    @*<li class="dropdown">
+                        <a href="#"><span>Drop Down</span> <i class="bi bi-chevron-down"></i></a>
+                        <ul>
+                            <li><a href="#">Drop Down 1</a></li>
+                            <li class="dropdown">
+                                <a href="#"><span>Deep Drop Down</span> <i class="bi bi-chevron-right"></i></a>
+                                <ul>
+                                    <li><a href="#">Deep Drop Down 1</a></li>
+                                    <li><a href="#">Deep Drop Down 2</a></li>
+                                    <li><a href="#">Deep Drop Down 3</a></li>
+                                    <li><a href="#">Deep Drop Down 4</a></li>
+                                    <li><a href="#">Deep Drop Down 5</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="#">Drop Down 2</a></li>
+                            <li><a href="#">Drop Down 3</a></li>
+                            <li><a href="#">Drop Down 4</a></li>
+                        </ul>
+                    </li>*@
+                    <li><a class="@ViewBag.LienHe" href="~/Default/Contact">Liên hệ</a></li>
+                </ul>
+                <i class="bi bi-list mobile-nav-toggle"></i>
+            </nav><!-- .navbar -->
+            <div id="userSystem">
+                @if (sess == null)
+                {
+                    <a href="~/Default/Register" class="get-started-a">Đăng ký</a>
+                    <a href="~/Default/Login" type="button" class="btn get-started-btn">Đăng nhập</a>
+                }
+                else
+                {
+                    <div class="dropdown">
+                        <a class="btn get-started-a dropdown-toggle" id="dropdownUser">
+                            Xin chào, @sess.Ten
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                @if(sess.Loai == "User") { <a href="~/Default/Education" class="dropdown-item"><i class="bi bi-grid"> Trang quản trị</i></a>}
+                                else { <a href="~/User/@sess.Loai/Index" class="dropdown-item"><i class="bi bi-grid"> Trang quản trị</i></a>}
+                                <button type="button" id="logoutAccount" class="dropdown-item text-danger" onclick="dangxuat()"><i class="bi bi-power"> Đăng xuất</i></button>
+                            </li>
+                        </ul>
+                    </div>
+                }
+            </div>
+        </div>
+    </header><!-- End Header -->
+    @RenderBody()
+    <!-- ======= Footer ======= -->
+    <footer id="footer">
+        <div class="container d-md-flex py-4">
+
+            <div class="me-md-auto text-center text-md-start">
+                <b>Triệu Nguyễn Khánh Băng</b>
+                <br />
+                B1809328
+            </div>
+            <div class="social-links text-center text-md-right pt-3 pt-md-0">
+                <a href="https://instagram.com/tnk_bang" class="instagram"><i class="bx bxl-instagram"></i></a>
+                <a href="https://fb.com/tnkbang" class="facebook"><i class="bx bxl-facebook"></i></a>
+                <a href="https://m.me/tnkbang" class="messenger"><i class="bx bxl-messenger"></i></a>
+                <a href="mailto:bangb1809328@student.ctu.edu.vn" class="google-plus"><i class="bx bx-mail-send"></i></a>
+                <a href="tel:+0833229121" class="phone"><i class="bx bx-phone-call"></i></a>
+            </div>
+        </div>
+    </footer><!-- End Footer -->
+    <div class="back-to-top d-flex align-items-center justify-content-center" title="Về đầu trang"><i class="bi bi-arrow-up-short"></i></div>
+
+    <!-- Vendor JS Files -->
+    <script src="~/Template/vendor/purecounter/purecounter.js"></script>
+    <script src="~/Template/vendor/aos/aos.js"></script>
+    <script src="~/Template/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="~/Template/vendor/swiper/swiper-bundle.min.js"></script>
+
+    <!-- Template Main JS File -->
+    <script src="~/Template/js/main.min.js"></script>
+    <script src="~/Template/js/main.js"></script>
+
+    <!--Toastr thông báo-->
+    <script src="~/Template/js/toastr.js"></script>
+</body>
+</html>

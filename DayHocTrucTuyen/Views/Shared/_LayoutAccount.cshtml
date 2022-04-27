@@ -1,0 +1,87 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <title>@ViewBag.Title</title>
+    <link rel="icon" href="~/Content/Img/Resources/Logo.gif" sizes="16x16">
+
+    <link rel="stylesheet" href="~/Template/css/main.min.css">
+    <link rel="stylesheet" href="~/Template/css/weather-icon.css">
+    <link rel="stylesheet" href="~/Template/css/weather-icons.min.css">
+    <link rel="stylesheet" href="~/Template/css/style_area.css">
+    <link rel="stylesheet" href="~/Template/css/color.css">
+    <link rel="stylesheet" href="~/Template/css/responsive.css">
+    <link rel="stylesheet" href="~/Template/css/toastr.css" />
+
+</head>
+<body>
+    <div class="wavy-wraper">
+        <div class="wavy">
+            <span style="--i:1;">L</span>
+            <span style="--i:2;">o</span>
+            <span style="--i:3;">a</span>
+            <span style="--i:4;">d</span>
+            <span style="--i:5;">i</span>
+            <span style="--i:6;">n</span>
+            <span style="--i:7;">g</span>
+            <span style="--i:8;">.</span>
+            <span style="--i:9;">.</span>
+            <span style="--i:10;">.</span>
+        </div>
+    </div>
+    <div class="www-layout">
+        <section>
+            <div class="gap no-gap signin whitish medium-opacity">
+                <div class="bg-image" style="background-image:url(../Content/Img/Resources/theme-bg.jpg)"></div>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-7">
+                            <div class="web-info">
+                                <figure><a href="/Default/Index"><img src="~/Content/Img/Resources/Logo.gif" width="60" title="Trở lại trang chủ"></a></figure>
+                                <h1>Chào mừng đến với Dạy Học Trực Tuyến</h1>
+                                <p>
+                                    Dạy Học Trực Tuyến là trang web giúp các bạn có thể tham gia học tập và trao đổi với nhau mọi lúc mọi nơi !!!
+                                </p>
+                                <div class="fun-fact">
+                                    <div class="row">
+                                        <div class="col-lg-6 col-md-6 col-sm-6">
+                                            <div class="fun-box">
+                                                <i class="ti-user"></i>
+                                                <h6>Thành viên đã đăng ký</h6>
+                                                <span>@ViewBag.members</span>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6 col-md-6 col-sm-6">
+                                            <div class="fun-box">
+                                                <i class="ti-view-list"></i>
+                                                <h6>Lớp học được mở</h6>
+                                                <span>@ViewBag.classroom</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        @RenderBody()
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    <script src="~/Template/js/getAPI.js"></script>
+    <script src="~/Template/js/main.min.js"></script>
+    <script src="~/Template/js/script.js"></script>
+    <script src="~/Template/js/customDateTime.js"></script>
+    <script src="~/Template/js/toastr.js"></script>
+</body>
+</html>

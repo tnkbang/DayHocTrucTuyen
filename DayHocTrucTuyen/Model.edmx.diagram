@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="3813f3c2ec454d2cbf743ccf6ba5fa9b" Name="Diagram1" ZoomLevel="56">
+        <EntityTypeShape EntityType="DayHocTrucTuyenModel.BaiDang" Width="1.5" PointX="7.5" PointY="30.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="DayHocTrucTuyenModel.BaoCao" Width="1.5" PointX="5.25" PointY="19" IsExpanded="true" />
+        <EntityTypeShape EntityType="DayHocTrucTuyenModel.BiCamThi" Width="1.5" PointX="9.75" PointY="30.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DayHocTrucTuyenModel.BinhLuan" Width="1.5" PointX="9.75" PointY="23.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="DayHocTrucTuyenModel.CamXuc" Width="1.5" PointX="12.75" PointY="23.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="DayHocTrucTuyenModel.CauHoiBaoMat" Width="1.5" PointX="9.75" PointY="34" IsExpanded="true" />
+        <EntityTypeShape EntityType="DayHocTrucTuyenModel.CauHoiThi" Width="1.5" PointX="9.75" PointY="36.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="DayHocTrucTuyenModel.CauTraLoi" Width="1.5" PointX="12" PointY="30.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DayHocTrucTuyenModel.DanhGiaLop" Width="1.5" PointX="7.5" PointY="26.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="DayHocTrucTuyenModel.Ghim" Width="1.5" PointX="9.75" PointY="41" IsExpanded="true" />
+        <EntityTypeShape EntityType="DayHocTrucTuyenModel.HocSinhThuocLop" Width="1.5" PointX="10.5" PointY="26.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="DayHocTrucTuyenModel.LoaiND" Width="1.5" PointX="0.75" PointY="27.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="DayHocTrucTuyenModel.LopHoc" Width="1.5" PointX="5.25" PointY="35.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="DayHocTrucTuyenModel.NguoiDung" Width="1.5" PointX="3" PointY="24.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="DayHocTrucTuyenModel.PhieuDanhGia" Width="1.5" PointX="5.25" PointY="42.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DayHocTrucTuyenModel.PhongThi" Width="1.5" PointX="7.5" PointY="34.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DayHocTrucTuyenModel.Tag" Width="1.5" PointX="7.5" PointY="40" IsExpanded="true" />
+        <EntityTypeShape EntityType="DayHocTrucTuyenModel.ThichTrang" Width="1.5" PointX="5.25" PointY="45.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="DayHocTrucTuyenModel.ThoiGianLamBai" Width="1.5" PointX="12.75" PointY="27.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="DayHocTrucTuyenModel.ThongBao" Width="1.5" PointX="5.25" PointY="48.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="DayHocTrucTuyenModel.TinNhan" Width="1.5" PointX="5.25" PointY="51.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DayHocTrucTuyenModel.XemTrang" Width="1.5" PointX="5.25" PointY="54.75" IsExpanded="true" />
+        <AssociationConnector Association="DayHocTrucTuyenModel.FK__BaiDang__Ma_Lop__3C69FB99" ManuallyRouted="false" />
+        <AssociationConnector Association="DayHocTrucTuyenModel.FK__BaiDang__Ma_ND__3D5E1FD2" ManuallyRouted="false" />
+        <AssociationConnector Association="DayHocTrucTuyenModel.FK__BinhLuan__Ma_Bai__4316F928" ManuallyRouted="false" />
+        <AssociationConnector Association="DayHocTrucTuyenModel.FK__CamXuc__Ma_Bai__47DBAE45" ManuallyRouted="false" />
+        <AssociationConnector Association="DayHocTrucTuyenModel.FK__Ghim__Ma_Bai__403A8C7D" ManuallyRouted="false" />
+        <AssociationConnector Association="DayHocTrucTuyenModel.FK__BaoCao__Ma_ND__22AA2996" ManuallyRouted="false" />
+        <AssociationConnector Association="DayHocTrucTuyenModel.FK__BiCamThi__Ma_ND__4D94879B" ManuallyRouted="false" />
+        <AssociationConnector Association="DayHocTrucTuyenModel.FK__BiCamThi__Ma_Pho__4E88ABD4" ManuallyRouted="false" />
+        <AssociationConnector Association="DayHocTrucTuyenModel.FK__BinhLuan__Ma_ND__440B1D61" ManuallyRouted="false" />
+        <AssociationConnector Association="DayHocTrucTuyenModel.FK__CamXuc__Ma_ND__46E78A0C" ManuallyRouted="false" />
+        <AssociationConnector Association="DayHocTrucTuyenModel.FK__CauHoiBao__Ma_Ph__76969D2E" ManuallyRouted="false" />
+        <AssociationConnector Association="DayHocTrucTuyenModel.FK__CauHoiThi__Ma_Ph__6FE99F9F" ManuallyRouted="false" />
+        <AssociationConnector Association="DayHocTrucTuyenModel.FK__CauTraLoi__73BA3083" ManuallyRouted="false" />
+        <AssociationConnector Association="DayHocTrucTuyenModel.FK__CauTraLoi__Ma_ND__72C60C4A" ManuallyRouted="false" />
+        <AssociationConnector Association="DayHocTrucTuyenModel.FK__DanhGiaLo__Ma_Lo__35BCFE0A" ManuallyRouted="false" />
+        <AssociationConnector Association="DayHocTrucTuyenModel.FK__DanhGiaLo__Ma_ND__34C8D9D1" ManuallyRouted="false" />
+        <AssociationConnector Association="DayHocTrucTuyenModel.FK__HocSinhTh__Ma_Lo__398D8EEE" ManuallyRouted="false" />
+        <AssociationConnector Association="DayHocTrucTuyenModel.FK__HocSinhTh__Ma_ND__38996AB5" ManuallyRouted="false" />
+        <AssociationConnector Association="DayHocTrucTuyenModel.FK__NguoiDung__Ma_Lo__145C0A3F" ManuallyRouted="false" />
+        <AssociationConnector Association="DayHocTrucTuyenModel.FK__LopHoc__Ma_ND__2C3393D0" ManuallyRouted="false" />
+        <AssociationConnector Association="DayHocTrucTuyenModel.FK__PhongThi__Ma_Lop__4AB81AF0" ManuallyRouted="false" />
+        <AssociationConnector Association="DayHocTrucTuyenModel.FK__PhieuDanh__Ma_ND__286302EC" ManuallyRouted="false" />
+        <AssociationConnector Association="DayHocTrucTuyenModel.FK__ThichTran__Nguoi__1B0907CE" ManuallyRouted="false" />
+        <AssociationConnector Association="DayHocTrucTuyenModel.FK__ThichTran__Nguoi__1BFD2C07" ManuallyRouted="false" />
+        <AssociationConnector Association="DayHocTrucTuyenModel.FK__ThoiGianL__Ma_ND__5AEE82B9" ManuallyRouted="false" />
+        <AssociationConnector Association="DayHocTrucTuyenModel.FK__ThongBao__Ma_ND__25869641" ManuallyRouted="false" />
+        <AssociationConnector Association="DayHocTrucTuyenModel.FK__TinNhan__Nguoi_G__173876EA" ManuallyRouted="false" />
+        <AssociationConnector Association="DayHocTrucTuyenModel.FK__TinNhan__Nguoi_N__182C9B23" ManuallyRouted="false" />
+        <AssociationConnector Association="DayHocTrucTuyenModel.FK__XemTrang__Nguoi___1ED998B2" ManuallyRouted="false" />
+        <AssociationConnector Association="DayHocTrucTuyenModel.FK__XemTrang__Nguoi___1FCDBCEB" ManuallyRouted="false" />
+        <AssociationConnector Association="DayHocTrucTuyenModel.FK__ThoiGianL__Ma_Ph__5BE2A6F2" ManuallyRouted="false" />
+        <AssociationConnector Association="DayHocTrucTuyenModel.LopThuocTag" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

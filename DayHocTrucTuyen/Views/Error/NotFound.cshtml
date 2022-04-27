@@ -1,0 +1,45 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Trang không tồn tại</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600" />
+    <link rel="stylesheet" href="~/Template/vendor/bootstrap/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/Template/css/tooplate-style.css" />
+    <link rel="stylesheet" href="~/Template/css/erro.css" />
+    <link href='https://fonts.googleapis.com/css?family=Anton|Passion+One|PT+Sans+Caption' rel='stylesheet' type='text/css'>
+</head>
+<body class="text-center">
+    <div id="loader-wrapper">
+        <div id="loader"></div>
+        <div class="loader-section section-left"></div>
+        <div class="loader-section section-right"></div>
+    </div>
+    <div class="error">
+        <div class="container-floud">
+            <div class="col-xs-12 ground-color text-center">
+                <div class="container-error-404">
+                    <h2 class="h1">Không tìm thấy trang bạn yêu cầu !</h2>
+                    <div class="clip"><div class="shadow"><span class="digit thirdDigit"></span></div></div>
+                    <div class="clip"><div class="shadow"><span class="digit secondDigit"></span></div></div>
+                    <div class="clip"><div class="shadow"><span class="digit firstDigit"></span></div></div>
+                </div>
+            </div>
+            <br />
+            <button class="btn btn-outline-info" onclick="backPage()">Quay lại</button>
+        </div>
+    </div>
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <script src="~/Template/js/background.cycle.js"></script>
+    <script src="~/Template/js/error.js"></script>
+    <script>
+        loopError(4, 0, 4);
+    </script>
+</body>
+</html>

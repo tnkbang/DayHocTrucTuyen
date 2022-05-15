@@ -1825,12 +1825,6 @@ function chooseDownload() {
     location = '/Courses/Post/getFile?fileName=' + encodeURIComponent(filePdfNameOfRoom);
 }
 
-//hàm hiển thị xem pdf nội tuyến
-function viewpdf(url) {
-    var viewpdf = $('#viewpdf')
-    PDFObject.embed("/Content/filePost/" + encodeURIComponent(url), viewpdf)
-}
-
 //Đóng model xem pdf
 $('#contain-viewpdf > button').on('click', function () {
     document.getElementById('contain-viewpdf').style.display = 'none';

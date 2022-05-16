@@ -80,9 +80,16 @@ namespace DayHocTrucTuyen
             } while (temp != null);
             return ma;
         }
-        public NguoiDung getOwner(string maLop)
+        public string getImage()
         {
-            LopHoc room = db.LopHocs.FirstOrDefault(x => x.Ma_Lop == maLop);
+            var lop = db.LopHocs.FirstOrDefault(x => x.Ma_Lop == this.Ma_Lop);
+            if (lop.Img_Bia == null) return "/Content/Img/roomCover/cover-default.jpg";
+            return "/Content/Img/roomCover/" + lop.Img_Bia;
+        }
+
+        public NguoiDung getOwner()
+        {
+            LopHoc room = db.LopHocs.FirstOrDefault(x => x.Ma_Lop == this.Ma_Lop);
             NguoiDung temp = db.NguoiDungs.FirstOrDefault(x => x.Ma_ND == room.Ma_ND);
             NguoiDung user = new NguoiDung();
 
@@ -133,9 +140,9 @@ namespace DayHocTrucTuyen
             var sl = db.HocSinhThuocLops.Where(x => x.Ma_Lop == maLop).Count();
             return sl;
         }
-        public List<Tag> getTag(string maLop)
+        public List<Tag> getTag()
         {
-            List<Tag> tag = db.Database.SqlQuery<Tag>("SELECT Tag.Ma_Tag, Tag.Ten_Tag FROM Tag INNER JOIN LopThuocTag ON Tag.Ma_Tag = LopThuocTag.Ma_Tag WHERE LopThuocTag.Ma_Lop = '" + maLop + "'").ToList();
+            List<Tag> tag = db.Database.SqlQuery<Tag>("SELECT Tag.Ma_Tag, Tag.Ten_Tag FROM Tag INNER JOIN LopThuocTag ON Tag.Ma_Tag = LopThuocTag.Ma_Tag WHERE LopThuocTag.Ma_Lop = '" + this.Ma_Lop + "'").ToList();
             return tag;
         }
         public bool isTag(string maLop, string maTag)

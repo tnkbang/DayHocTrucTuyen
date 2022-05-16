@@ -125,6 +125,15 @@ namespace DayHocTrucTuyen
             }
             return sb.ToString();
         }
+
+        public string getImage()
+        {
+            var nd = db.NguoiDungs.FirstOrDefault(x => x.Ma_ND == this.Ma_ND);
+            if (nd.Img_Avt == null) return "/Content/Img/userAvt/avt-default.png";
+            if (nd.Img_Avt.ToLower().StartsWith("http")) return nd.Img_Avt;
+            return "/Content/Img/userAvt/" + nd.Img_Avt;
+        }
+
         public int getTuoi(DateTime birthDate)
         {
             DateTime n = DateTime.Now;

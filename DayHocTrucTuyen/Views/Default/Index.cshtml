@@ -191,13 +191,10 @@
                 {
                     <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-md-0" style="padding-bottom: 20px" data-aos="zoom-in" data-aos-delay="100">
                         <div class="course-item">
-                            @if (room.Img_Bia == null)
-                            {<img src="~/Content/Img/roomCover/cover-default.jpg" class="img-fluid" alt="" />}
-                            else
-                            { <img src="~/Content/Img/roomCover/@room.Img_Bia" class="img-fluid" alt="" />}
+                            <img src="@room.getImage()" class="img-fluid" alt="" />
                             <div class="course-content">
                                 <div class="d-flex justify-content-between align-items-center mb-3">
-                                    @foreach (var t in room.getTag(room.Ma_Lop))
+                                    @foreach (var t in room.getTag())
                                     {
                                         <h4>@t.Ten_Tag</h4>
                                     }
@@ -209,11 +206,8 @@
                                 { <p>@room.Mo_Ta</p>}
                                 <div class="trainer d-flex justify-content-between align-items-center">
                                     <div class="trainer-profile d-flex align-items-center">
-                                        @if (room.getOwner(room.Ma_Lop).Img_Avt == null)
-                                        {<img width="40" height="40" src="~/Content/Img/userAvt/avt-default.png" class="img-fluid" alt="" />}
-                                        else
-                                        { <img width="40" height="40" src="~/Content/Img/userAvt/@room.getOwner(room.Ma_Lop).Img_Avt" class="img-fluid" alt="" />}
-                                        <a href="~/Profile/Info?User=@room.getOwner(room.Ma_Lop).Ma_ND" data-toggle="tooltip" title="@room.getOwner(room.Ma_Lop).Ho_Lot @room.getOwner(room.Ma_Lop).Ten">@room.getOwner(room.Ma_Lop).Ten</a>
+                                        <img width="40" height="40" src="@room.getOwner().getImage()" class="img-fluid" alt="" />
+                                        <a href="~/Profile/Info?User=@room.getOwner().Ma_ND" data-toggle="tooltip" title="@room.getOwner().Ho_Lot @room.getOwner().Ten">@room.getOwner().Ten</a>
                                     </div>
                                     <div class="trainer-rank d-flex align-items-center">
                                         <i class="bx bx-user"></i> &nbsp;@room.getMembers(room.Ma_Lop)

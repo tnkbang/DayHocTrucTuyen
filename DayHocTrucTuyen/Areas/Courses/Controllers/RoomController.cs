@@ -39,10 +39,10 @@ namespace DayHocTrucTuyen.Areas.Courses.Controllers
             }
             if (roomBD != null)
             {
-                ViewData["Post"] = roomBD.getAllPost(roomBD.Ma_Lop);
+                ViewData["Post"] = roomBD.getAllPost();
                 return View(roomBD);
             }
-            ViewData["Post"] = room.getAllPost(room.Ma_Lop);
+            ViewData["Post"] = room.getAllPost();
             return View(room);
         }
 

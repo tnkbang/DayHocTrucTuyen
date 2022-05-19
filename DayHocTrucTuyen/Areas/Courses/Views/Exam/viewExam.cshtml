@@ -55,9 +55,9 @@
                                 <div class="widget stick-widget">
                                     <h4 class="widget-title">Bảng điều khiển</h4>
                                     <div id="control-quest" style="margin: 10px">
-                                        @foreach (CauHoiThi quest in Model.getAllCauHoi(Model.Ma_Phong))
+                                        @foreach (CauHoiThi quest in Model.getAllCauHoi())
                                         {
-                                            if(quest.traLoiDung(quest.STT, quest.Ma_Phong, sess.MaUser, ViewBag.Lan_Thu))
+                                            if(quest.traLoiDung(sess.MaUser, ViewBag.Lan_Thu))
                                             {
                                                 <a href="#quest_@quest.STT" class="btn btn-success">@quest.STT</a>
                                             }
@@ -71,7 +71,7 @@
                             </aside>
                         </div><!-- sidebar -->
                         <div class="col-lg-9" id="main-quest">
-                            @if (Model.getSLCauHoi(Model.Ma_Phong) == 0)
+                            @if (Model.getSLCauHoi() == 0)
                             {
                                 <div class="row">
                                     <div class="col-lg-12">
@@ -81,7 +81,7 @@
                                     </div>
                                 </div>
                             }
-                            @foreach (CauHoiThi quest in Model.getAllCauHoi(Model.Ma_Phong))
+                            @foreach (CauHoiThi quest in Model.getAllCauHoi())
                             {
                                 <div id="quest_@quest.STT" class="central-meta">
                                     <div class="create-post tran-bottom">
@@ -91,10 +91,10 @@
                                         <div class="col-lg-12 col-md-12 col-sm-12 quest-content quest_@quest.STT">
                                             @quest.Cau_Hoi
                                         </div>
-                                        @if (Model.daChonDapAn(quest.STT, Model.Ma_Phong, sess.MaUser, ViewBag.Lan_Thu))
+                                        @if (Model.daChonDapAn(quest.STT, sess.MaUser, ViewBag.Lan_Thu))
                                         {
                                             string[] dapan = new[] { "" };
-                                            string traloi = quest.getDapAnDungAsInt(quest.Dap_An, Model.getDapAnDaChon(quest.STT, Model.Ma_Phong, sess.MaUser, ViewBag.Lan_Thu));
+                                            string traloi = quest.getDapAnDungAsInt(quest.Dap_An, Model.getDapAnDaChon(quest.STT, sess.MaUser, ViewBag.Lan_Thu));
                                             dapan = quest.Dap_An.Split('\\');
                                             for (var i = 0; i < dapan.Length; i++)
                                             {

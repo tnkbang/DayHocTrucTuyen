@@ -57,7 +57,7 @@ namespace DayHocTrucTuyen.Areas.User.Controllers
                 };
                 list.Add(temp);
             }
-            setXemTatCaTinNhan(sess.MaUser);
+            setXemTinNhan(sess.MaUser, maNG);
             return Json(new { tt = true, USend = usersend, UReceived = userreceived, TinNhan = list }, JsonRequestBehavior.AllowGet);
         }
 
@@ -99,6 +99,17 @@ namespace DayHocTrucTuyen.Areas.User.Controllers
             db.SaveChanges();
 
             return Json(new { tt = true }, JsonRequestBehavior.AllowGet);
+        }
+        public void setXemTinNhan(string maNN, string maNG)
+        {
+            var tn = db.TinNhans.Where(x => x.Nguoi_Nhan == maNN && x.Nguoi_Gui == maNG && x.Trang_Thai == false);
+            if (tn == null) Json(new { tt = false }, JsonRequestBehavior.AllowGet);
+
+            foreach (var t in tn)
+            {
+                t.Trang_Thai = true;
+            }
+            db.SaveChanges();
         }
     }
 }

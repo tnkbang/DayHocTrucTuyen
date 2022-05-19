@@ -4,7 +4,7 @@
     ViewBag.Main = "Danh sách lớp học";
     Layout = "~/Views/Shared/_LayoutArea.cshtml";
     var sess = (UserLogin)Session[SessionLogin.SESSION_LOGIN];
-    NguoiDung user = new NguoiDung();
+    NguoiDung user = new NguoiDung(sess.MaUser);
     LopHoc lopHoc = new LopHoc();
     List<LopHoc> roomQuest = lopHoc.searchLopHoc(sess.MaUser, ViewBag.Search);
 }
@@ -77,10 +77,7 @@
                                             <div class="central-meta item">
                                                 <div class="pit-post">
                                                     <figure>
-                                                        @if (room.Img_Bia == null)
-                                                        {<img width="120" height="90" src="~/Content/Img/roomCover/cover-default.jpg" alt="" />}
-                                                        else
-                                                        {<img width="120" height="90" src="~/Content/Img/roomCover/@room.Img_Bia" alt="" />}
+                                                        <img width="120" height="90" src="@room.getImage()" alt="" />
                                                     </figure>
                                                     <div class="pit-post-deta">
                                                         <h4><a href="~/Courses/Room/Detail?Room=@room.Ma_Lop" title="@room.Ma_Lop">@room.Ten_Lop</a></h4>
@@ -95,45 +92,39 @@
                                                             }
                                                             <li>
                                                                 <div class="usr-fig">
-                                                                    @if (room.getOwner(room.Ma_Lop).Img_Avt == null)
-                                                                    {<img src="~/Content/Img/userAvt/avt-default.png" alt="">}
-                                                                    else
-                                                                    {<img src="~/Content/Img/userAvt/@room.getOwner(room.Ma_Lop).Img_Avt" alt="">}
-                                                                    <a href="~/Profile/Info?User=@room.Ma_ND" title="">@room.getOwner(room.Ma_Lop).Ho_Lot @room.getOwner(room.Ma_Lop).Ten</a> là giáo viên
+                                                                    <img src="@room.getOwner().getImageAvt()" alt="" />
+                                                                    <a href="~/Profile/Info?User=@room.Ma_ND" title="">@room.getOwner().Ho_Lot @room.getOwner().Ten</a> là giáo viên
                                                                 </div>
                                                             </li>
                                                             <li><i class="fa fa-clock-o"></i> @room.Ngay_Tao.ToString("'Ngày' dd 'tháng' MM 'năm' yyyy")</li>
                                                         </ul>
                                                         <ul class="pit-opt">
-                                                            <li class="like" title="Yêu thích"><i class="fa fa-heart"></i><em>@room.getSLCamXuc(room.Ma_Lop)</em></li>
-                                                            <li class="class-post" title="Bài đăng"><i class="fa fa-comments"></i><em>@room.getSLPost(room.Ma_Lop)</em></li>
-                                                            <li class="members" title="Thành viên"><i class="fa fa-group"></i><em>@room.getMembers(room.Ma_Lop)</em></li>
+                                                            <li class="like" title="Yêu thích"><i class="fa fa-heart"></i><em>@room.getSLCamXuc()</em></li>
+                                                            <li class="class-post" title="Bài đăng"><i class="fa fa-comments"></i><em>@room.getSLPost()</em></li>
+                                                            <li class="members" title="Thành viên"><i class="fa fa-group"></i><em>@room.getMembers()</em></li>
                                                             <li class="bad-report" title="Báo cáo"><i class="fa fa-flag"></i></li>
                                                             <li class="get-link" title="Sao chép liên kết"><i class="fa fa-link"></i></li>
                                                         </ul>
                                                     </div>
                                                     <div class="right-pst-meta">
-                                                        @foreach (var t in room.getTag(room.Ma_Lop))
+                                                        @foreach (var t in room.getTag())
                                                         {
                                                             <a title="Chủ đề của lớp">@t.Ten_Tag</a>
                                                         }
                                                         <br />
                                                         <div class="users-thumb-list">
                                                             @{ int demMem = 0;}
-                                                            @if (room.getMembers(room.Ma_Lop) == 0)
+                                                            @if (room.getMembers() == 0)
                                                             {<span>Chưa có thành viên nào !</span>}
                                                             else
                                                             {
-                                                                foreach (var mem in room.listMembers(room.Ma_Lop))
+                                                                foreach (var mem in room.listMembers())
                                                                 {
                                                                     demMem++;
                                                                     if (demMem <= 5)
                                                                     {
                                                                         <a href="~/Profile/Info?User=@mem.Ma_ND" title="" data-toggle="tooltip" data-original-title="@mem.Ho_Lot @mem.Ten">
-                                                                            @if (mem.Img_Avt == null)
-                                                                            {<img width="40" height="40" src="~/Content/Img/userAvt/avt-default.png" alt="" />}
-                                                                            else
-                                                                            { <img width="40" height="40" src="~/Content/Img/userAvt/@mem.Img_Avt" alt="" />}
+                                                                            <img width="40" height="40" src="@mem.getImageAvt()" alt="" />
                                                                         </a>
                                                                     }
                                                                 }
@@ -182,10 +173,7 @@
                                             <div class="central-meta item">
                                                 <div class="pit-post">
                                                     <figure>
-                                                        @if (room.Img_Bia == null)
-                                                        {<img width="120" height="90" src="~/Content/Img/roomCover/cover-default.jpg" alt="" />}
-                                                        else
-                                                        {<img width="120" height="90" src="~/Content/Img/roomCover/@room.Img_Bia" alt="" />}
+                                                        <img width="120" height="90" src="@room.getImage()" alt="" />
                                                     </figure>
                                                     <div class="pit-post-deta">
                                                         <h4><a href="~/Courses/Room/Detail?Room=@room.Ma_Lop" title="@room.Ma_Lop">@room.Ten_Lop</a></h4>
@@ -200,45 +188,39 @@
                                                             }
                                                             <li>
                                                                 <div class="usr-fig">
-                                                                    @if (room.getOwner(room.Ma_Lop).Img_Avt == null)
-                                                                    {<img src="~/Content/Img/userAvt/avt-default.png" alt="">}
-                                                                    else
-                                                                    {<img src="~/Content/Img/userAvt/@room.getOwner(room.Ma_Lop).Img_Avt" alt="">}
-                                                                    <a href="~/Profile/Info?User=@room.Ma_ND" title="">@room.getOwner(room.Ma_Lop).Ho_Lot @room.getOwner(room.Ma_Lop).Ten</a> là giáo viên
+                                                                    <img src="@room.getOwner().getImageAvt()" alt="" />
+                                                                    <a href="~/Profile/Info?User=@room.Ma_ND" title="">@room.getOwner().Ho_Lot @room.getOwner().Ten</a> là giáo viên
                                                                 </div>
                                                             </li>
                                                             <li><i class="fa fa-clock-o"></i> @room.Ngay_Tao.ToString("'Ngày' dd 'tháng' MM 'năm' yyyy")</li>
                                                         </ul>
                                                         <ul class="pit-opt">
-                                                            <li class="like" title="Yêu thích"><i class="fa fa-heart"></i><em>@room.getSLCamXuc(room.Ma_Lop)</em></li>
-                                                            <li class="class-post" title="Bài đăng"><i class="fa fa-comments"></i><em>@room.getSLPost(room.Ma_Lop)</em></li>
-                                                            <li class="members" title="Thành viên"><i class="fa fa-group"></i><em>@room.getMembers(room.Ma_Lop)</em></li>
+                                                            <li class="like" title="Yêu thích"><i class="fa fa-heart"></i><em>@room.getSLCamXuc()</em></li>
+                                                            <li class="class-post" title="Bài đăng"><i class="fa fa-comments"></i><em>@room.getSLPost()</em></li>
+                                                            <li class="members" title="Thành viên"><i class="fa fa-group"></i><em>@room.getMembers()</em></li>
                                                             <li class="bad-report" title="Báo cáo"><i class="fa fa-flag"></i></li>
                                                             <li class="get-link" title="Sao chép liên kết"><i class="fa fa-link"></i></li>
                                                         </ul>
                                                     </div>
                                                     <div class="right-pst-meta">
-                                                        @foreach (var t in room.getTag(room.Ma_Lop))
+                                                        @foreach (var t in room.getTag())
                                                         {
                                                             <a title="Chủ đề của lớp">@t.Ten_Tag</a>
                                                         }
                                                         <br />
                                                         <div class="users-thumb-list">
                                                             @{ int demMem = 0;}
-                                                            @if (room.getMembers(room.Ma_Lop) == 0)
+                                                            @if (room.getMembers() == 0)
                                                             {<span>Chưa có thành viên nào !</span>}
                                                             else
                                                             {
-                                                                foreach (var mem in room.listMembers(room.Ma_Lop))
+                                                                foreach (var mem in room.listMembers())
                                                                 {
                                                                     demMem++;
                                                                     if (demMem <= 5)
                                                                     {
                                                                         <a href="~/Profile/Info?User=@mem.Ma_ND" title="" data-toggle="tooltip" data-original-title="@mem.Ho_Lot @mem.Ten">
-                                                                            @if (mem.Img_Avt == null)
-                                                                            {<img width="40" height="40" src="~/Content/Img/userAvt/avt-default.png" alt="" />}
-                                                                            else
-                                                                            { <img width="40" height="40" src="~/Content/Img/userAvt/@mem.Img_Avt" alt="" />}
+                                                                            <img width="40" height="40" src="@mem.getImageAvt()" alt="" />
                                                                         </a>
                                                                     }
                                                                 }
@@ -264,7 +246,7 @@
                                     <h5 class="create-post">Lớp bạn đã tham gia</h5>
                                 </div>
                             </div>
-                            @if (user.getListJoin(sess.MaUser).Count == 0)
+                            @if (user.getListJoin().Count == 0)
                             {
                                 <div class="row">
                                     <div class="col-lg-12">
@@ -277,15 +259,12 @@
                             else
                             {
                                 <div class="load-more-room-join">
-                                    @foreach (var room in user.getListJoin(sess.MaUser))
+                                    @foreach (var room in user.getListJoin())
                                     {
                                         <div class="central-meta item">
                                             <div class="pit-post">
                                                 <figure>
-                                                    @if (room.Img_Bia == null)
-                                                    {<img width="120" height="90" src="~/Content/Img/roomCover/cover-default.jpg" alt="" />}
-                                                    else
-                                                    {<img width="120" height="90" src="~/Content/Img/roomCover/@room.Img_Bia" alt="" />}
+                                                    <img width="120" height="90" src="@room.getImage()" alt="" />
                                                 </figure>
                                                 <div class="pit-post-deta">
                                                     <h4><a href="~/Courses/Room/Detail?Room=@room.Ma_Lop" title="@room.Ma_Lop">@room.Ten_Lop</a></h4>
@@ -300,44 +279,38 @@
                                                         }
                                                         <li>
                                                             <div class="usr-fig">
-                                                                @if (room.getOwner(room.Ma_Lop).Img_Avt == null)
-                                                                {<img src="~/Content/Img/userAvt/avt-default.png" alt="">}
-                                                                else
-                                                                {<img src="~/Content/Img/userAvt/@room.getOwner(room.Ma_Lop).Img_Avt" alt="">}
-                                                                <a href="~/Profile/Info?User=@room.Ma_ND" title="">@room.getOwner(room.Ma_Lop).Ho_Lot @room.getOwner(room.Ma_Lop).Ten</a> là giáo viên
+                                                                <img src="@room.getOwner().getImageAvt()" alt="" />
+                                                                <a href="~/Profile/Info?User=@room.Ma_ND" title="">@room.getOwner().Ho_Lot @room.getOwner().Ten</a> là giáo viên
                                                             </div>
                                                         </li>
                                                         <li><i class="fa fa-clock-o"></i> @room.Ngay_Tao.ToString("'Ngày' dd 'tháng' MM 'năm' yyyy")</li>
                                                     </ul>
                                                     <ul class="pit-opt">
-                                                        <li class="class-post" title="Bài đăng"><i class="fa fa-comments"></i><em>@room.getSLPost(room.Ma_Lop)</em></li>
-                                                        <li class="members" title="Thành viên"><i class="fa fa-group"></i><em>@room.getMembers(room.Ma_Lop)</em></li>
+                                                        <li class="class-post" title="Bài đăng"><i class="fa fa-comments"></i><em>@room.getSLPost()</em></li>
+                                                        <li class="members" title="Thành viên"><i class="fa fa-group"></i><em>@room.getMembers()</em></li>
                                                         <li class="bad-report" title="Báo cáo"><i class="fa fa-flag"></i></li>
                                                         <li class="get-link" title="Sao chép liên kết"><i class="fa fa-link"></i></li>
                                                     </ul>
                                                 </div>
                                                 <div class="right-pst-meta">
-                                                    @foreach (var t in room.getTag(room.Ma_Lop))
+                                                    @foreach (var t in room.getTag())
                                                     {
                                                         <a title="Chủ đề của lớp">@t.Ten_Tag</a>
                                                     }
                                                     <br />
                                                     <div class="users-thumb-list">
                                                         @{ int demMem = 0;}
-                                                        @if (room.getMembers(room.Ma_Lop) == 0)
+                                                        @if (room.getMembers() == 0)
                                                         {<span>Chưa có thành viên nào !</span>}
                                                         else
                                                         {
-                                                            foreach (var mem in room.listMembers(room.Ma_Lop))
+                                                            foreach (var mem in room.listMembers())
                                                             {
                                                                 demMem++;
                                                                 if (demMem <= 5)
                                                                 {
                                                                     <a href="~/Profile/Info?User=@mem.Ma_ND" title="" data-toggle="tooltip" data-original-title="@mem.Ho_Lot @mem.Ten">
-                                                                        @if (mem.Img_Avt == null)
-                                                                        {<img width="40" height="40" src="~/Content/Img/userAvt/avt-default.png" alt="" />}
-                                                                        else
-                                                                        { <img width="40" height="40" src="~/Content/Img/userAvt/@mem.Img_Avt" alt="" />}
+                                                                        <img width="40" height="40" src="@mem.getImageAvt()" alt="" />
                                                                     </a>
                                                                 }
                                                             }
@@ -365,24 +338,24 @@
                                 {
                                     <li>
                                         <a title="">Quản lý lớp</a>
-                                        <span class="align-right">@user.getOwnRoom(sess.MaUser)</span>
+                                        <span class="align-right">@user.getOwnRoom()</span>
                                     </li>
                                 }
                                 <li>
                                     <a title="">Tham gia lớp</a>
-                                    <span class="align-right">@user.getJoinRoom(sess.MaUser)</span>
+                                    <span class="align-right">@user.getJoinRoom()</span>
                                 </li>
                                 <li>
                                     <a title="">Bài đăng</a>
-                                    <span class="align-right">@user.getPost(sess.MaUser)</span>
+                                    <span class="align-right">@user.getPost()</span>
                                 </li>
                                 <li>
                                     <a title="">Bình luận</a>
-                                    <span class="align-right">@user.getComment(sess.MaUser)</span>
+                                    <span class="align-right">@user.getComment()</span>
                                 </li>
                                 <li>
                                     <a title="">Cảm xúc</a>
-                                    <span class="align-right">@user.getReact(sess.MaUser)</span>
+                                    <span class="align-right">@user.getReact()</span>
                                 </li>
                             </ul>
                         </div>

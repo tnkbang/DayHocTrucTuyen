@@ -18,18 +18,19 @@
                 <div class="col-lg-6 col-md-8">
                     <div class="employer-info">
                         <h2 id="viewroom-Name" title="@Model.Ma_Lop"><b>@Model.Ten_Lop</b></h2>
-                        <i>@Model.getMembers(Model.Ma_Lop) thành viên</i>
-                        <h4><a href="~/Profile/Info?User=@Model.getOwner(Model.Ma_Lop).Ma_ND">@Model.getOwner(Model.Ma_Lop).Ho_Lot @Model.getOwner(Model.Ma_Lop).Ten</a> là giáo viên</h4>
+                        <i>@Model.getMembers() thành viên</i>
+                        @{ var userOwner = Model.getOwner(); }
+                        <h4><a href="~/Profile/Info?User=@userOwner.Ma_ND">@userOwner.Ho_Lot @userOwner.Ten</a> là giáo viên</h4>
                     </div>
                 </div>
                 <div class="col-lg-6 col-md-4">
                     <div class="salary-area">
-                        @foreach (var t in Model.getTag(Model.Ma_Lop))
+                        @foreach (var t in Model.getTag())
                         {
                             <span>@t.Ten_Tag</span>
                         }
                         <br />
-                        @if (!Model.isOwner(sess.MaUser, Model.Ma_Lop) && !Model.isMember(sess.MaUser, Model.Ma_Lop))
+                        @if (!Model.isOwner(sess.MaUser) && !Model.isMember(sess.MaUser))
                         {
                             <button onclick="setJoinRoom('@Model.Ma_Lop')">Tham gia ngay</button>
                         }
@@ -40,7 +41,7 @@
     </div>
 </section>
 
-@if (!Model.isOwner(sess.MaUser, Model.Ma_Lop) && !Model.isMember(sess.MaUser, Model.Ma_Lop))
+@if (!Model.isOwner(sess.MaUser) && !Model.isMember(sess.MaUser))
 {
     <section>
         <div class="gap2 gray-bg" style="min-height: 85vh">
@@ -69,11 +70,11 @@ else
                                     <div class="widget">
                                         <h4 class="widget-title">Quan trọng</h4>
                                         <ul class="twiter-feed fav-community">
-                                            @if (Model.getAllPhongThi(Model.Ma_Lop).Count() == 0)
+                                            @if (Model.getAllPhongThi().Count() == 0)
                                             {
                                                 <li class="text-center">Không có gì cả !</li>
                                             }
-                                            @foreach (PhongThi pt in Model.getAllPhongThi(Model.Ma_Lop))
+                                            @foreach (PhongThi pt in Model.getAllPhongThi())
                                             {
                                                 <li>
                                                     <i class="fa fa-link"></i> @pt.Ten_Phong
@@ -145,7 +146,7 @@ else
                                         </div>
                                     </div>
                                 </div><!-- add post new box -->
-                                @if (Model.getSLPost(Model.Ma_Lop) == 0)
+                                @if (Model.getSLPost() == 0)
                                 {
                                     <div class="row">
                                         <div class="col-lg-12">
@@ -164,23 +165,23 @@ else
                                                 <div class="user-post">
                                                     <div class="friend-info">
                                                         <figure>
-                                                            @if (post.getOwner(post.Ma_Bai).Img_Avt == null)
+                                                            @if (post.getOwner().Img_Avt == null)
                                                             {<img width="40" height="40" src="~/Content/Img/userAvt/avt-default.png" alt="" />}
                                                             else
-                                                            { <img width="40" height="40" src="~/Content/Img/userAvt/@post.getOwner(post.Ma_Bai).Img_Avt" alt="" />}
+                                                            { <img width="40" height="40" src="~/Content/Img/userAvt/@post.getOwner().Img_Avt" alt="" />}
                                                         </figure>
                                                         <div class="friend-name">
                                                             <div class="more">
-                                                                @if (post.isGhim(post.Ma_Bai))
+                                                                @if (post.isGhim())
                                                                 {<i class="bx bx-pin post-pin active" data-toggle="tooltip" title="Bài viết được ghim đầu trang"></i>}
                                                                 else
                                                                 { <i class="bx bx-pin post-pin" data-toggle="tooltip" title="Bài viết được ghim đầu trang"></i>}
                                                                 <div class="more-post-optns">
                                                                     <i class="ti-more-alt"></i>
                                                                     <ul>
-                                                                        @if (Model.isOwner(sess.MaUser, Model.Ma_Lop))
+                                                                        @if (Model.isOwner(sess.MaUser))
                                                                         {
-                                                                            if (post.isGhim(post.Ma_Bai))
+                                                                            if (post.isGhim())
                                                                             {
                                                                                 <li onclick="setGhim(this,'@post.Ma_Bai')"><i class="bx bx-pin"></i>Bỏ ghim</li>
                                                                             }
@@ -189,7 +190,7 @@ else
                                                                                 <li onclick="setGhim(this,'@post.Ma_Bai')"><i class="bx bx-pin"></i>Ghim</li>
                                                                             }
                                                                         }
-                                                                        @if (post.isOwner(sess.MaUser, post.Ma_Bai) || Model.isOwner(sess.MaUser, Model.Ma_Lop))
+                                                                        @if (post.isOwner(sess.MaUser) || Model.isOwner(sess.MaUser))
                                                                         {
                                                                             if (post.Trang_Thai)
                                                                             {
@@ -206,7 +207,7 @@ else
                                                                     </ul>
                                                                 </div>
                                                             </div>
-                                                            <ins><a href="~/Profile/Info?User=@post.getOwner(post.Ma_Bai).Ma_ND" title="">@post.getOwner(post.Ma_Bai).Ho_Lot @post.getOwner(post.Ma_Bai).Ten</a></ins>
+                                                            <ins><a href="~/Profile/Info?User=@post.getOwner().Ma_ND" title="">@post.getOwner().Ho_Lot @post.getOwner().Ten</a></ins>
                                                             <span style="text-transform: none"><i class="fa fa-clock-o"></i> <span class="timeago" title="@post.Thoi_Gian.ToString("yyyy-MM-dd'T'HH:mm:ss")">@post.Thoi_Gian.ToString()</span></span>
                                                         </div>
                                                         <div class="post-meta">
@@ -434,45 +435,45 @@ else
                                                             <div class="we-video-info">
                                                                 <ul>
                                                                     <li>
-                                                                        @if (post.liked(sess.MaUser, post.Ma_Bai))
-                                                                        {<div id="@post.Ma_Bai" class="likes heart liked" title="Yêu thích" onclick="likePost('@post.Ma_Bai', '@sess.MaUser')">❤ <span>@post.getSLCamXuc(post.Ma_Bai)</span></div>}
+                                                                        @if (post.liked(sess.MaUser))
+                                                                        {<div id="@post.Ma_Bai" class="likes heart liked" title="Yêu thích" onclick="likePost('@post.Ma_Bai', '@sess.MaUser')">❤ <span>@post.getSLCamXuc()</span></div>}
                                                                     else
-                                                                    { <div id="@post.Ma_Bai" class="likes heart" title="Yêu thích" onclick="likePost('@post.Ma_Bai', '@sess.MaUser')">❤ <span>@post.getSLCamXuc(post.Ma_Bai)</span></div>}
+                                                                    { <div id="@post.Ma_Bai" class="likes heart" title="Yêu thích" onclick="likePost('@post.Ma_Bai', '@sess.MaUser')">❤ <span>@post.getSLCamXuc()</span></div>}
                                                                     </li>
                                                                     <li>
                                                                         <span class="comment" title="Bình luận">
                                                                             <i class="fa fa-commenting"></i>
-                                                                            <ins>@post.getSLBinhLuan(post.Ma_Bai)</ins>
+                                                                            <ins>@post.getSLBinhLuan()</ins>
                                                                         </span>
                                                                     </li>
                                                                 </ul>
                                                                 <div class="users-thumb-list">
-                                                                    @if (post.getSLCamXuc(post.Ma_Bai) > 0)
+                                                                    @if (post.getSLCamXuc() > 0)
                                                                     {
                                                                         var slcx = 0;
-                                                                        for (var i = 0; i < post.getSLCamXuc(post.Ma_Bai); i++)
+                                                                        for (var i = 0; i < post.getSLCamXuc(); i++)
                                                                         {
                                                                             if (i < 5)
                                                                             {
-                                                                                <a data-toggle="tooltip" title="@post.getMemsCamXuc(post.Ma_Bai)[i].Ho_Lot @post.getMemsCamXuc(post.Ma_Bai)[i].Ten" href="~/Profile/Info?User=@post.getMemsCamXuc(post.Ma_Bai)[i].Ma_ND">
-                                                                                    @if (post.getMemsCamXuc(post.Ma_Bai)[i].Img_Avt == null)
+                                                                                <a data-toggle="tooltip" title="@post.getMemsCamXuc()[i].Ho_Lot @post.getMemsCamXuc()[i].Ten" href="~/Profile/Info?User=@post.getMemsCamXuc()[i].Ma_ND">
+                                                                                    @if (post.getMemsCamXuc()[i].Img_Avt == null)
                                                                                     {<img width="36" height="36" alt="" src="~/Content/Img/userAvt/avt-default.png" />}
                                                                                     else
-                                                                                    { <img width="36" height="36" alt="" src="~/Content/Img/userAvt/@post.getMemsCamXuc(post.Ma_Bai)[i].Img_Avt" />}
+                                                                                    { <img width="36" height="36" alt="" src="~/Content/Img/userAvt/@post.getMemsCamXuc()[i].Img_Avt" />}
                                                                                 </a>
                                                                             }
                                                                             if (i > 1) { slcx++; }
                                                                         }
-                                                                        switch (post.getSLCamXuc(post.Ma_Bai))
+                                                                        switch (post.getSLCamXuc())
                                                                         {
                                                                             case 1:
-                                                                                <span style="text-transform: none"><strong>@post.getMemsCamXuc(post.Ma_Bai)[0].Ten</strong> đã thích.</span>
+                                                                                <span style="text-transform: none"><strong>@post.getMemsCamXuc()[0].Ten</strong> đã thích.</span>
                                                                                 break;
                                                                             case 2:
-                                                                                <span style="text-transform: none"><strong>@post.getMemsCamXuc(post.Ma_Bai)[0].Ten</strong> và <strong>@post.getMemsCamXuc(post.Ma_Bai)[1].Ten</strong> đã thích.</span>
+                                                                                <span style="text-transform: none"><strong>@post.getMemsCamXuc()[0].Ten</strong> và <strong>@post.getMemsCamXuc()[1].Ten</strong> đã thích.</span>
                                                                                 break;
                                                                             default:
-                                                                                <span style="text-transform: none"><strong>@post.getMemsCamXuc(post.Ma_Bai)[0].Ten</strong>, <strong>@post.getMemsCamXuc(post.Ma_Bai)[1].Ten</strong> và @slcx người khác đã thích.</span>
+                                                                                <span style="text-transform: none"><strong>@post.getMemsCamXuc()[0].Ten</strong>, <strong>@post.getMemsCamXuc()[1].Ten</strong> và @slcx người khác đã thích.</span>
                                                                                 break;
                                                                         }
                                                                     }
@@ -485,13 +486,13 @@ else
                                                             @if (post.Trang_Thai)
                                                             {
                                                                 <ul class="we-comet">
-                                                                    @if (post.getSLBinhLuan(post.Ma_Bai) == 0)
+                                                                    @if (post.getSLBinhLuan() == 0)
                                                                     {
                                                                         <li class="text-center"><span>Chưa có bình luận nào</span></li>
                                                                     }
                                                                     else
                                                                     {
-                                                                        foreach (var bl in post.getNDBinhLuan(post.Ma_Bai))
+                                                                        foreach (var bl in post.getNDBinhLuan())
                                                                         {
                                                                             <li>
                                                                                 <div class="comet-avatar">
@@ -517,10 +518,7 @@ else
                                                                     }
                                                                     <li class="post-comment">
                                                                         <div class="comet-avatar">
-                                                                            @if (post.getOwner(post.Ma_Bai).Img_Avt == null)
-                                                                            {<img width="42" height="40" src="~/Content/Img/userAvt/avt-default.png" alt="" />}
-                                                                            else
-                                                                            { <img width="42" height="40" src="~/Content/Img/userAvt/@post.getOwner(post.Ma_Bai).Img_Avt" alt="" />}
+                                                                            <img width="42" height="40" src="@post.getOwner().getImageAvt()" alt="" />
                                                                         </div>
                                                                         <div class="post-comt-box">
                                                                             <form method="post">
@@ -560,23 +558,17 @@ else
                                         <ul class="twiter-feed invitepage">
                                             <li>
                                                 <figure>
-                                                    @if (Model.getOwner(Model.Ma_Lop).Img_Avt == null)
-                                                    {<img width="40" height="40" src="~/Content/Img/userAvt/avt-default.png" data-toggle="tooltip" title="@Model.getOwner(Model.Ma_Lop).Ho_Lot @Model.getOwner(Model.Ma_Lop).Ten" />}
-                                                    else
-                                                    { <img width="40" height="40" src="~/Content/Img/userAvt/@Model.getOwner(Model.Ma_Lop).Img_Avt" data-toggle="tooltip" title="@Model.getOwner(Model.Ma_Lop).Ho_Lot @Model.getOwner(Model.Ma_Lop).Ten" />}
-                                                    <a href="~/Profile/Info?User=@Model.getOwner(Model.Ma_Lop).Ma_ND" title="Xem trang của @Model.getOwner(Model.Ma_Lop).Ten">@Model.getOwner(Model.Ma_Lop).Ten</a>
+                                                    <img width="40" height="40" src="@Model.getOwner().getImageAvt()" data-toggle="tooltip" title="@Model.getOwner().Ho_Lot @Model.getOwner().Ten" />
+                                                    <a href="~/Profile/Info?User=@Model.getOwner().Ma_ND" title="Xem trang của @Model.getOwner().Ten">@Model.getOwner().Ten</a>
                                                     <a data-toggle="tooltip" title="Giáo viên"><i class="fa fa-mortar-board"></i></a>
                                                 </figure>
                                                 <a data-toggle="tooltip" title="Quản trị viên"><i class="fa fa-key"></i></a>
                                             </li>
-                                            @foreach (var mem in Model.listMembers(Model.Ma_Lop))
+                                            @foreach (var mem in Model.listMembers())
                                             {
                                                 <li>
                                                     <figure>
-                                                        @if (mem.Img_Avt == null)
-                                                        {<img width="40" height="40" src="~/Content/Img/userAvt/avt-default.png" data-toggle="tooltip" title="@mem.Ho_Lot @mem.Ten" />}
-                                                        else
-                                                        { <img width="40" height="40" src="~/Content/Img/userAvt/@mem.Img_Avt" data-toggle="tooltip" title="@mem.Ho_Lot @mem.Ten" />}
+                                                        <img width="40" height="40" src="@mem.getImageAvt()" data-toggle="tooltip" title="@mem.Ho_Lot @mem.Ten" />
                                                         <a href="~/Profile/Info?User=@mem.Ma_ND" title="Xem trang của @mem.Ten">@mem.Ten</a>
                                                         @if (mem.Ma_Loai.Equals("03")) { <a data-toggle="tooltip" title="Giáo viên"><i class="fa fa-mortar-board"></i></a>}
                                                     </figure>
@@ -588,7 +580,7 @@ else
                                     <div class="widget stick-widget">
                                         <h4 class="widget-title">Thao tác</h4>
                                         <ul class="naves">
-                                            @if (Model.isOwner(sess.MaUser, Model.Ma_Lop))
+                                            @if (Model.isOwner(sess.MaUser))
                                             {
                                                 <li>
                                                     <i class="fa fa-cog"></i>

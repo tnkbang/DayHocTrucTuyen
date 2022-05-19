@@ -6,8 +6,6 @@
     ViewBag.Main = "Thông báo";
     Layout = "~/Views/Shared/_LayoutArea.cshtml";
     var sess = (UserLogin)Session[SessionLogin.SESSION_LOGIN];
-
-
 }
 
 <section>
@@ -21,14 +19,14 @@
                     </div>
                     <div class="row merged20" id="page-contents">
                         <div class="col-lg-9">
-                            @if (Model.getSLThongBaoChuaXem(sess.MaUser) != 0)
+                            @if (Model.getSLThongBaoChuaXem() != 0)
                             {
                                 <div class="central-meta">
                                     <div class="editing-interest">
                                         <span class="create-post tran-bottom"><i class="ti-bell"></i> Thông báo mới</span>
                                         <div class="notification-box">
                                             <ul>
-                                                @foreach (var tb in Model.getThongBaoChuaXem(sess.MaUser))
+                                                @foreach (var tb in Model.getThongBaoChuaXem())
                                                 {
                                                     <li>
                                                         <a href="~/@tb.Lien_Ket" title="" onclick="setDaXemThongBao('@tb.Ma_TB', '@tb.Ma_ND')">
@@ -58,7 +56,7 @@
                                     </div>
                                 </div>
                             }
-                            @if(Model.getSLThongBao(sess.MaUser) == 0)
+                            @if(Model.getSLThongBao() == 0)
                             {
                                 <div class="central-meta">
                                     <div class="editing-interest">
@@ -69,14 +67,14 @@
                                     </div>
                                 </div>
                             }
-                            else if(Model.getSLThongBaoDaXem(sess.MaUser) != 0)
+                            else if(Model.getSLThongBaoDaXem() != 0)
                             {
                                 <div class="central-meta">
                                     <div class="editing-interest">
                                         <span class="create-post tran-bottom"><i class="ti-bell"></i> Tất cả thông báo</span>
                                         <div class="notification-box">
                                             <ul>
-                                                @foreach (var tb in Model.getThongBaoDaXem(sess.MaUser))
+                                                @foreach (var tb in Model.getThongBaoDaXem())
                                                 {
                                                     <li>
                                                         <a href="~/@tb.Lien_Ket" title="">

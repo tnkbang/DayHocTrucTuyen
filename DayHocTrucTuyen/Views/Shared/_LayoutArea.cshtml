@@ -3,8 +3,8 @@
     Layout = null;
 
     var sess = (UserLogin)Session[DayHocTrucTuyen.Models.SessionLogin.SESSION_LOGIN];
-    NguoiDung userAccount = new NguoiDung();
-    ThongBao thongbao = new ThongBao();
+    NguoiDung userAccount = new NguoiDung(sess.MaUser);
+    ThongBao thongbao = new ThongBao(sess.MaUser);
     TinNhan tinnhan = new TinNhan();
 }
 @using DayHocTrucTuyen.Models
@@ -69,13 +69,13 @@
                     <li>
                         <span>Lớp học đã tham gia</span>
                         <ul>
-                            @if (userAccount.getListJoin(sess.MaUser).Count == 0)
+                            @if (userAccount.getListJoin().Count == 0)
                             {
                                 <li>Bạn chưa tham gia lớp học nào!</li>
                             }
                             else 
                             {
-                                foreach(var l in userAccount.getListJoin(sess.MaUser))
+                                foreach(var l in userAccount.getListJoin())
                                 {
                                     <li><a href="~/Courses/Room/Detail?Room=@l.Ma_Lop" title="">@l.Ten_Lop</a></li>
                                 }
@@ -99,9 +99,9 @@
                 <ul class="setting-area">
                     <li>
                         <a href="" title="Lớp học" data-ripple="">
-                            <i class="fa fa-group"></i><em class="bg-purple">@userAccount.getJoinRoom(sess.MaUser)</em>
+                            <i class="fa fa-group"></i><em class="bg-purple">@userAccount.getJoinRoom()</em>
                         </a>
-                        @if (userAccount.getJoinRoom(sess.MaUser) == 0)
+                        @if (userAccount.getJoinRoom() == 0)
                         {
                             <div class="dropdowns">
                                 <span>Bạn chưa tham gia lớp học nào</span>
@@ -111,22 +111,19 @@
                         else
                         {
                             <div class="dropdowns">
-                                <span>Bạn tham gia @userAccount.getJoinRoom(sess.MaUser) lớp học</span>
+                                <span>Bạn tham gia @userAccount.getJoinRoom() lớp học</span>
                                 <ul class="drops-menu">
-                                    @foreach (var r in userAccount.getListJoin(sess.MaUser))
+                                    @foreach (var r in userAccount.getListJoin())
                                     {
                                         <li>
                                             <div>
                                                 <figure>
-                                                    @if (r.Img_Bia == null)
-                                                    {<img width="40" height="40" src="~/Content/Img/roomCover/cover-default.jpg" alt="@r.Ten_Lop" />}
-                                                    else
-                                                    { <img width="40" height="40" src="~/Content/Img/roomCover/@r.Img_Bia" alt="@r.Ten_Lop" />}
+                                                    <img width="40" height="40" src="@r.getImage()" alt="@r.Ten_Lop" />
                                                 </figure>
                                                 <div class="mesg-meta">
                                                     <h6><a href="~/Courses/Room/Detail?Room=@r.Ma_Lop" title="Đi đến lớp @r.Ten_Lop">@r.Ten_Lop</a></h6>
-                                                    <span><b>@r.getOwner(r.Ma_Lop).Ten</b> là giáo viên</span>
-                                                    <i>@r.getMembers(r.Ma_Lop) thành viên</i>
+                                                    <span><b>@r.getOwner().Ten</b> là giáo viên</span>
+                                                    <i>@r.getMembers() thành viên</i>
                                                 </div>
                                                 <div class="add-del-friends">
                                                     <i class="fa fa-group"></i>
@@ -140,7 +137,7 @@
                         }
                     </li>
                     <li>
-                        @if(thongbao.getSLThongBaoChuaXem(sess.MaUser) == 0)
+                        @if(thongbao.getSLThongBaoChuaXem() == 0)
                         {
                             <a href="#" title="Thông báo" data-ripple="">
                                 <i class="fa fa-bell"></i>
@@ -153,12 +150,12 @@
                         else 
                         {
                             <a href="#" title="Thông báo" data-ripple="">
-                                <i class="fa fa-bell"></i><em id="dot-thong-bao" class="bg-red">@thongbao.getSLThongBaoChuaXem(sess.MaUser)</em>
+                                <i class="fa fa-bell"></i><em id="dot-thong-bao" class="bg-red">@thongbao.getSLThongBaoChuaXem()</em>
                             </a>
                             <div class="dropdowns">
-                                <span>@thongbao.getSLThongBaoChuaXem(sess.MaUser) thông báo mới <a href="" title="" onclick="setXemTatCaThongBao('@sess.MaUser')">Đã xem hết</a></span>
+                                <span>@thongbao.getSLThongBaoChuaXem() thông báo mới <a href="" title="" onclick="setXemTatCaThongBao('@sess.MaUser')">Đã xem hết</a></span>
                                 <ul class="drops-menu">
-                                    @foreach (var tb in thongbao.getThongBaoChuaXem(sess.MaUser))
+                                    @foreach (var tb in thongbao.getThongBaoChuaXem())
                                     {
                                         <li>
                                             <a href="~/@tb.Lien_Ket" title="" onclick="setDaXemThongBao('@tb.Ma_TB', '@tb.Ma_ND')">
@@ -213,10 +210,7 @@
                                         <li>
                                             <a class="show-mesg" title="">
                                                 <figure id="@tn.Nguoi_Gui">
-                                                    @if (tn.getUser(tn.Nguoi_Gui).Img_Avt == null)
-                                                    {<img width="40" height="40" src="~/Content/Img/userAvt/avt-default.png" alt="" />}
-                                                    else
-                                                    { <img width="40" height="40" src="~/Content/Img/userAvt/@tn.getUser(tn.Nguoi_Gui).Img_Avt" alt="" />}
+                                                    <img width="40" height="40" src="@tn.getUser(tn.Nguoi_Gui).getImageAvt()" alt="" />
                                                 </figure>
                                                 <div class="mesg-meta">
                                                     <h6>@tn.getUser(tn.Nguoi_Gui).Ho_Lot @tn.getUser(tn.Nguoi_Gui).Ten</h6>

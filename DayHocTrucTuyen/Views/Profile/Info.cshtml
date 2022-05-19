@@ -25,16 +25,9 @@
                                         </label>
                                     </div>
                                 }
-                                @if (Model.Img_BG == null)
-                                {
-                                    <img src="~/Content/Img/userBG/bg-default.jpg" alt="">
-                                }
-                                else
-                                {
-                                    <img src="~/Content/Img/userBG/@Model.Img_BG" alt="">
-                                }
+                                <img src="@Model.getImageBG()" alt="" />
                             <ul class="profile-controls">
-                                @if (Model.liked(Model.Ma_ND, sess.MaUser))
+                                @if (Model.liked(sess.MaUser))
                                 {
                                     <li><a id="btnLike" title="Đã thích" data-toggle="tooltip"><i class="fa fa-heart"></i></a></li>
                                 }
@@ -59,14 +52,7 @@
                                                         </label>
                                                     </div>
                                                 }
-                                                @if (Model.Img_Avt == null)
-                                                {
-                                                    <img alt="author" src="~/Content/Img/userAvt/avt-default.png">
-                                                }
-                                                else
-                                                {
-                                                    <img alt="author" src="~/Content/Img/userAvt/@Model.Img_Avt">
-                                                }
+                                                <img alt="@Model.Ho_Lot @Model.Ten" src="@Model.getImageAvt()" />
                                             </div>
                                             <div class="author-content">
                                                 <div class="h4 author-name">@Model.Ho_Lot @Model.Ten</div>
@@ -213,27 +199,25 @@
                                             <!-- chi tiết like and view -->
                                             <div class="tab-content">
                                                 <div class="tab-pane active fade show " id="link1">
-                                                    <span><i class="ti-heart"></i>@Model.getYeuThich(Model.Ma_ND)</span>
-                                                    <a style="text-decoration:none" title="Lượt thích mới">@Model.getYeuThichTheoTuan(Model.Ma_ND) lượt yêu thích gần đây</a>
+                                                    <span><i class="ti-heart"></i>@Model.getYeuThich()</span>
+                                                    <a style="text-decoration:none" title="Lượt thích mới">@Model.getYeuThichTheoTuan() lượt yêu thích gần đây</a>
                                                     <div class="users-thumb-list">
                                                         @foreach (var u in ViewData["userLike"] as List<NguoiDung>)
                                                         {
                                                             <a data-toggle="tooltip" title="@u.Ho_Lot @u.Ten" href="/Profile/Info?User=@u.Ma_ND">
-                                                                @if (u.Img_Avt == null) { u.Img_Avt = "avt-default.png"; }
-                                                                <img alt="" src="~/Content/Img/userAvt/@u.Img_Avt" width="35" height="35">
+                                                                <img alt="" src="@u.getImageAvt()" width="35" height="35" />
                                                             </a>
                                                         }
                                                     </div>
                                                 </div>
                                                 <div class="tab-pane fade" id="link2">
-                                                    <span><i class="fa fa-eye"></i>@Model.getXemTrang(Model.Ma_ND)</span>
-                                                    <a style="text-decoration:none" title="Lượt xem mới">@Model.getXemTrangTheoTuan(Model.Ma_ND) lượt ghé thăm gần đây</a>
+                                                    <span><i class="fa fa-eye"></i>@Model.getXemTrang()</span>
+                                                    <a style="text-decoration:none" title="Lượt xem mới">@Model.getXemTrangTheoTuan() lượt ghé thăm gần đây</a>
                                                     <div class="users-thumb-list">
                                                         @foreach (var u in ViewData["userView"] as List<NguoiDung>)
                                                         {
                                                             <a data-toggle="tooltip" title="@u.Ho_Lot @u.Ten" href="/Profile/Info?User=@u.Ma_ND">
-                                                                @if (u.Img_Avt == null) { u.Img_Avt = "avt-default.png"; }
-                                                                <img alt="" src="~/Content/Img/userAvt/@u.Img_Avt" width="35" height="35">
+                                                                <img alt="" src="@u.getImageAvt()" width="35" height="35">
                                                             </a>
                                                         }
                                                     </div>

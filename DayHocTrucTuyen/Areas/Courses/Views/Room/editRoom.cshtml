@@ -18,13 +18,13 @@
                 <div class="col-lg-6 col-md-8">
                     <div class="employer-info">
                         <h2 id="viewroom-Name" title="@Model.Ma_Lop"><b>@Model.Ten_Lop</b></h2>
-                        <i>@Model.getMembers(Model.Ma_Lop) thành viên</i>
-                        <h4><a href="~/Profile/Info?User=@Model.getOwner(Model.Ma_Lop).Ma_ND">@Model.getOwner(Model.Ma_Lop).Ho_Lot @Model.getOwner(Model.Ma_Lop).Ten</a> là giáo viên</h4>
+                        <i>@Model.getMembers() thành viên</i>
+                        <h4><a href="~/Profile/Info?User=@Model.getOwner().Ma_ND">@Model.getOwner().Ho_Lot @Model.getOwner().Ten</a> là giáo viên</h4>
                     </div>
                 </div>
                 <div class="col-lg-6 col-md-4">
                     <div class="salary-area">
-                        @foreach (var t in Model.getTag(Model.Ma_Lop))
+                        @foreach (var t in Model.getTag())
                         {
                             <span>@t.Ten_Tag</span>
                         }
@@ -47,11 +47,11 @@
                                 <div class="widget">
                                     <h4 class="widget-title">Quan trọng</h4>
                                     <ul class="twiter-feed fav-community">
-                                        @if (Model.getAllPhongThi(Model.Ma_Lop).Count() == 0)
+                                        @if (Model.getAllPhongThi().Count() == 0)
                                         {
                                             <li class="text-center">Không có gì cả !</li>
                                         }
-                                        @foreach (PhongThi pt in Model.getAllPhongThi(Model.Ma_Lop))
+                                        @foreach (PhongThi pt in Model.getAllPhongThi())
                                         {
                                             <li>
                                                 <i class="fa fa-link"></i> @pt.Ten_Phong
@@ -92,10 +92,7 @@
                                 <div id="edit-profile">
                                     <div class="setting-meta">
                                         <figure>
-                                            @if (Model.Img_Bia == null)
-                                            {<img id="img-bg-room" src="~/Content/Img/roomCover/cover-default.jpg" alt="" />}
-                                            else
-                                            { <img id="img-bg-room" src="~/Content/Img/roomCover/@Model.Img_Bia" alt="" />}
+                                            <img id="img-bg-room" src="@Model.getImage()" alt="" />
                                         </figure>
                                         <div class="edit-img">
                                             <div class="edit-phto">
@@ -134,7 +131,7 @@
                                                 <select id="room-edit-tag" multiple name="native-select" placeholder="Chọn chủ đề cho lớp" data-search="true" data-silent-initial-value-set="true" data-max-values="3">
                                                     @foreach (var tag in ViewData["Tag"] as List<Tag>)
                                                     {
-                                                        if(Model.isTag(Model.Ma_Lop, tag.Ma_Tag)) { <option selected value="@tag.Ma_Tag">@tag.Ten_Tag</option>}
+                                                        if(Model.isTag(tag.Ma_Tag)) { <option selected value="@tag.Ma_Tag">@tag.Ten_Tag</option>}
                                                         else { <option value="@tag.Ma_Tag">@tag.Ten_Tag</option>}
                                                     }
                                                 </select>
@@ -155,22 +152,16 @@
                                     <ul class="twiter-feed invitepage">
                                         <li>
                                             <figure>
-                                                @if (Model.getOwner(Model.Ma_Lop).Img_Avt == null)
-                                                {<img width="40" height="40" src="~/Content/Img/userAvt/avt-default.png" data-toggle="tooltip" title="@Model.getOwner(Model.Ma_Lop).Ho_Lot @Model.getOwner(Model.Ma_Lop).Ten" />}
-                                                else
-                                                { <img width="40" height="40" src="~/Content/Img/userAvt/@Model.getOwner(Model.Ma_Lop).Img_Avt" data-toggle="tooltip" title="@Model.getOwner(Model.Ma_Lop).Ho_Lot @Model.getOwner(Model.Ma_Lop).Ten" />}
-                                                <a href="~/Profile/Info?User=@Model.getOwner(Model.Ma_Lop).Ma_ND" title="Xem trang của @Model.getOwner(Model.Ma_Lop).Ten">@Model.getOwner(Model.Ma_Lop).Ten</a>
+                                                <img width="40" height="40" src="@Model.getOwner().getImageAvt()" data-toggle="tooltip" title="@Model.getOwner().Ho_Lot @Model.getOwner().Ten" />
+                                                <a href="~/Profile/Info?User=@Model.getOwner().Ma_ND" title="Xem trang của @Model.getOwner().Ten">@Model.getOwner().Ten</a>
                                             </figure>
                                             <a class="invited" title="Giáo viên"><i class="fa fa-key"></i></a>
                                         </li>
-                                        @foreach (var mem in Model.listMembers(Model.Ma_Lop))
+                                        @foreach (var mem in Model.listMembers())
                                         {
                                             <li>
                                                 <figure>
-                                                    @if (mem.Img_Avt == null)
-                                                    {<img width="40" height="40" src="~/Content/Img/userAvt/avt-default.png" data-toggle="tooltip" title="@mem.Ho_Lot @mem.Ten" />}
-                                                    else
-                                                    { <img width="40" height="40" src="~/Content/Img/userAvt/@mem.Img_Avt" data-toggle="tooltip" title="@mem.Ho_Lot @mem.Ten" />}
+                                                    <img width="40" height="40" src="@mem.getImageAvt()" data-toggle="tooltip" title="@mem.Ho_Lot @mem.Ten" />
                                                     <a href="~/Profile/Info?User=@mem.Ma_ND" title="Xem trang của @mem.Ten">@mem.Ten</a>
                                                 </figure>
                                                 <a class="invited" title="Thành viên"><i class="fa fa-user"></i></a>
@@ -181,7 +172,7 @@
                                 <div class="widget stick-widget">
                                     <h4 class="widget-title">Thao tác</h4>
                                     <ul class="naves">
-                                        @if (Model.isOwner(sess.MaUser, Model.Ma_Lop))
+                                        @if (Model.isOwner(sess.MaUser))
                                         {
                                             <li>
                                                 <i class="fa fa-cog"></i>

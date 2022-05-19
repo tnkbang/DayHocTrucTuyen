@@ -55,7 +55,7 @@
                                 <div class="widget stick-widget">
                                     <h4 class="widget-title">Bảng điều khiển</h4>
                                     <div id="control-quest" style="margin: 10px">
-                                        @foreach (CauHoiThi quest in Model.getAllCauHoi(Model.Ma_Phong))
+                                        @foreach (CauHoiThi quest in Model.getAllCauHoi())
                                         {
                                             <a href="#quest_@quest.STT" class="btn btn-outline-info">@quest.STT</a>
                                         }
@@ -78,7 +78,7 @@
                                     </div>
                                 </div>
                             </div>
-                            @if (Model.getSLCauHoi(Model.Ma_Phong) == 0)
+                            @if (Model.getSLCauHoi() == 0)
                             {
                                 <div class="row">
                                     <div class="col-lg-12">
@@ -88,7 +88,7 @@
                                     </div>
                                 </div>
                             }
-                            @foreach (CauHoiThi quest in Model.getAllCauHoi(Model.Ma_Phong))
+                            @foreach (CauHoiThi quest in Model.getAllCauHoi())
                             {
                                 <div id="quest_@quest.STT" class="central-meta">
                                     <div class="create-post tran-bottom">

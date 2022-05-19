@@ -96,6 +96,12 @@ namespace DayHocTrucTuyen
         public virtual ICollection<XemTrang> XemTrangs1 { get; set; }
 
         DayHocTrucTuyenEntities db = new DayHocTrucTuyenEntities();
+
+        public NguoiDung(string ma_ND)
+        {
+            this.Ma_ND = ma_ND;
+        }
+
         public string setMaUser()
         {
             NguoiDung nd = db.NguoiDungs.OrderByDescending(x => x.Ma_ND).FirstOrDefault();
@@ -126,12 +132,19 @@ namespace DayHocTrucTuyen
             return sb.ToString();
         }
 
-        public string getImage()
+        public string getImageAvt()
         {
             var nd = db.NguoiDungs.FirstOrDefault(x => x.Ma_ND == this.Ma_ND);
             if (nd.Img_Avt == null) return "/Content/Img/userAvt/avt-default.png";
             if (nd.Img_Avt.ToLower().StartsWith("http")) return nd.Img_Avt;
             return "/Content/Img/userAvt/" + nd.Img_Avt;
+        }
+        public string getImageBG()
+        {
+            var nd = db.NguoiDungs.FirstOrDefault(x => x.Ma_ND == this.Ma_ND);
+            if (nd.Img_BG == null) return "/Content/Img/userBG/bg-default.jpg";
+            if (nd.Img_Avt.ToLower().StartsWith("http")) return nd.Img_BG;
+            return "/Content/Img/userBG/" + nd.Img_BG;
         }
 
         public int getTuoi(DateTime birthDate)
@@ -142,53 +155,53 @@ namespace DayHocTrucTuyen
                 age--;
             return age;
         }
-        public int getYeuThich(string uid)
+        public int getYeuThich()
         {
-            return db.ThichTrangs.Where(x => x.Nguoi_Dung == uid).Count();
+            return db.ThichTrangs.Where(x => x.Nguoi_Dung == this.Ma_ND).Count();
         }
-        public int getYeuThichTheoTuan(string uid)
+        public int getYeuThichTheoTuan()
         {
-            return db.ThichTrangs.Where(x => x.Nguoi_Dung == uid && System.Data.Entity.DbFunctions.AddDays(x.Thoi_Gian, 7) >= DateTime.Now).Count();
+            return db.ThichTrangs.Where(x => x.Nguoi_Dung == this.Ma_ND && System.Data.Entity.DbFunctions.AddDays(x.Thoi_Gian, 7) >= DateTime.Now).Count();
         }
-        public int getXemTrang(string uid)
+        public int getXemTrang()
         {
-            return db.XemTrangs.Where(x => x.Nguoi_Dung == uid).Count();
+            return db.XemTrangs.Where(x => x.Nguoi_Dung == this.Ma_ND).Count();
         }
-        public int getXemTrangTheoTuan(string uid)
+        public int getXemTrangTheoTuan()
         {
-            return db.XemTrangs.Where(x => x.Nguoi_Dung == uid && System.Data.Entity.DbFunctions.AddDays(x.Thoi_Gian, 7) >= DateTime.Now).Count();
+            return db.XemTrangs.Where(x => x.Nguoi_Dung == this.Ma_ND && System.Data.Entity.DbFunctions.AddDays(x.Thoi_Gian, 7) >= DateTime.Now).Count();
         }
-        public bool liked(string user, string liker)
+        public bool liked(string liker)
         {
-            var liked = db.ThichTrangs.FirstOrDefault(x => x.Nguoi_Dung == user && x.Nguoi_Thich == liker);
+            var liked = db.ThichTrangs.FirstOrDefault(x => x.Nguoi_Dung == this.Ma_ND && x.Nguoi_Thich == liker);
             if (liked == null) return false;
             return true;
         }
-        public int getJoinRoom(string user)
+        public int getJoinRoom()
         {
-            return db.HocSinhThuocLops.Where(x => x.Ma_ND == user).Count();
+            return db.HocSinhThuocLops.Where(x => x.Ma_ND == this.Ma_ND).Count();
         }
-        public int getOwnRoom(string user)
+        public int getOwnRoom()
         {
-            return db.LopHocs.Where(x => x.Ma_ND == user).Count();
+            return db.LopHocs.Where(x => x.Ma_ND == this.Ma_ND).Count();
         }
-        public int getPost(string user)
+        public int getPost()
         {
-            return db.BaiDangs.Where(x => x.Ma_ND == user).Count();
+            return db.BaiDangs.Where(x => x.Ma_ND == this.Ma_ND).Count();
         }
-        public int getComment(string user)
+        public int getComment()
         {
-            return db.BinhLuans.Where(x => x.Ma_ND == user).Count();
+            return db.BinhLuans.Where(x => x.Ma_ND == this.Ma_ND).Count();
         }
-        public int getReact(string user)
+        public int getReact()
         {
-            return db.CamXucs.Where(x => x.Ma_ND == user).Count();
+            return db.CamXucs.Where(x => x.Ma_ND == this.Ma_ND).Count();
         }
-        public List<LopHoc> getListJoin(string user)
+        public List<LopHoc> getListJoin()
         {
             var room = from c in db.LopHocs
                        join hs in db.HocSinhThuocLops on c.Ma_Lop equals hs.Ma_Lop
-                       where hs.Ma_ND == user
+                       where hs.Ma_ND == this.Ma_ND
                        orderby hs.Ngay_Tham_Gia descending
                        select c;
             foreach (var r in room)

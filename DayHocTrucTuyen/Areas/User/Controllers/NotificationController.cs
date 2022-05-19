@@ -37,6 +37,7 @@ namespace DayHocTrucTuyen.Areas.User.Controllers
                 return RedirectToAction("Login", "Default");
             }
             ThongBao tb = new ThongBao();
+            tb.Ma_ND = sess.MaUser;
             return View(tb);
         }
 

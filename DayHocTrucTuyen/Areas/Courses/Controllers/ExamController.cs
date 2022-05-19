@@ -185,7 +185,7 @@ namespace DayHocTrucTuyen.Areas.Courses.Controllers
             if (phongthi == null) return Json(new { tt = false }, JsonRequestBehavior.AllowGet);
 
             CauHoiThi newQuest = new CauHoiThi();
-            newQuest.STT = phongthi.getSLCauHoi(phongthi.Ma_Phong) + 1;
+            newQuest.STT = phongthi.getSLCauHoi() + 1;
             newQuest.Ma_Phong = phongthi.Ma_Phong;
             newQuest.Cau_Hoi = cauhoi;
             newQuest.Loi_Giai = loigiai;
@@ -284,7 +284,7 @@ namespace DayHocTrucTuyen.Areas.Courses.Controllers
             ThoiGianLamBai working = new ThoiGianLamBai();
             working.Ma_ND = sess.MaUser;
             working.Ma_Phong = pt.Ma_Phong;
-            working.Lan_Thu = pt.getSLThi(sess.MaUser, pt.Ma_Phong) + 1;
+            working.Lan_Thu = pt.getSLThi(sess.MaUser) + 1;
             working.Bat_Dau = DateTime.Now;
 
             db.ThoiGianLamBais.Add(working);

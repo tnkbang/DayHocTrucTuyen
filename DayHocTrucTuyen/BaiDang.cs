@@ -53,9 +53,9 @@ namespace DayHocTrucTuyen
             string ma = maLop + "-" + Convert.ToString(1000 + temp + 1).Substring(1);
             return ma;
         }
-        public NguoiDung getOwner(string maPost)
+        public NguoiDung getOwner()
         {
-            BaiDang post = db.BaiDangs.FirstOrDefault(x => x.Ma_Bai == maPost);
+            BaiDang post = db.BaiDangs.FirstOrDefault(x => x.Ma_Bai == this.Ma_Bai);
             NguoiDung temp = db.NguoiDungs.FirstOrDefault(x => x.Ma_ND == post.Ma_ND);
             NguoiDung user = new NguoiDung();
 
@@ -67,23 +67,23 @@ namespace DayHocTrucTuyen
 
             return user;
         }
-        public bool isOwner(string maUser, string maPost)
+        public bool isOwner(string maUser)
         {
-            var own = db.BaiDangs.FirstOrDefault(x => x.Ma_ND == maUser && x.Ma_Bai == maPost);
+            var own = db.BaiDangs.FirstOrDefault(x => x.Ma_ND == maUser && x.Ma_Bai == this.Ma_Bai);
             if (own != null) { return true; }
 
             return false;
         }
-        public int getSLCamXuc(string maPost)
+        public int getSLCamXuc()
         {
-            var sl = db.CamXucs.Where(x => x.Ma_Bai == maPost).Count();
+            var sl = db.CamXucs.Where(x => x.Ma_Bai == this.Ma_Bai).Count();
             return sl;
         }
-        public List<NguoiDung> getMemsCamXuc(string maPost)
+        public List<NguoiDung> getMemsCamXuc()
         {
             var mem = from n in db.NguoiDungs
                       join u in db.CamXucs on n.Ma_ND equals u.Ma_ND
-                      where u.Ma_Bai == maPost
+                      where u.Ma_Bai == this.Ma_Bai
                       orderby u.Thoi_Gian descending
                       select n;
             foreach (var m in mem)
@@ -95,9 +95,9 @@ namespace DayHocTrucTuyen
             }
             return mem.ToList();
         }
-        public int getSLBinhLuan(string maPost)
+        public int getSLBinhLuan()
         {
-            var sl = db.BinhLuans.Where(x => x.Ma_Bai == maPost).Count();
+            var sl = db.BinhLuans.Where(x => x.Ma_Bai == this.Ma_Bai).Count();
             return sl;
         }
         public NguoiDung getTTMember(string maND)
@@ -113,21 +113,21 @@ namespace DayHocTrucTuyen
 
             return user;
         }
-        public List<BinhLuan> getNDBinhLuan(string maPost)
+        public List<BinhLuan> getNDBinhLuan()
         {
-            var nd = db.BinhLuans.Where(x => x.Ma_Bai == maPost);
+            var bl = db.BinhLuans.Where(x => x.Ma_Bai == this.Ma_Bai);
 
-            return nd.ToList();
+            return bl.ToList();
         }
-        public bool liked(string maND, string maPost)
+        public bool liked(string maND)
         {
-            var liked = db.CamXucs.FirstOrDefault(x => x.Ma_ND == maND && x.Ma_Bai == maPost);
+            var liked = db.CamXucs.FirstOrDefault(x => x.Ma_ND == maND && x.Ma_Bai == this.Ma_Bai);
             if (liked == null) { return false; }
             return true;
         }
-        public bool isGhim(string maPost)
+        public bool isGhim()
         {
-            var ghim = db.Ghims.FirstOrDefault(x => x.Ma_Bai == maPost);
+            var ghim = db.Ghims.FirstOrDefault(x => x.Ma_Bai == this.Ma_Bai);
             if (ghim == null) { return false; }
             return true;
         }

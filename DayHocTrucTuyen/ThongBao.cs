@@ -27,6 +27,12 @@ namespace DayHocTrucTuyen
 
         DayHocTrucTuyenEntities db = new DayHocTrucTuyenEntities();
 
+        public ThongBao() { }
+        public ThongBao(string ma_ND)
+        {
+            this.Ma_ND = ma_ND;
+        }
+
         public string setMa(string maND)
         {
             var tb = db.ThongBaos.Where(x => x.Ma_ND == maND);
@@ -35,32 +41,32 @@ namespace DayHocTrucTuyen
             string ma = Convert.ToString(100000 + tb.Count() + 1).Substring(1);
             return ma;
         }
-        public List<ThongBao> getAllThongBao(string maND)
+        public List<ThongBao> getAllThongBao()
         {
-            var tb = db.ThongBaos.Where(x => x.Ma_ND == maND).OrderByDescending(x => x.Thoi_Gian).ToList();
+            var tb = db.ThongBaos.Where(x => x.Ma_ND == this.Ma_ND).OrderByDescending(x => x.Thoi_Gian).ToList();
             return tb;
         }
-        public List<ThongBao> getThongBaoChuaXem(string maND)
+        public List<ThongBao> getThongBaoChuaXem()
         {
-            var tb = db.ThongBaos.Where(x => x.Ma_ND == maND && x.Trang_Thai == false).OrderByDescending(x => x.Thoi_Gian).ToList();
+            var tb = db.ThongBaos.Where(x => x.Ma_ND == this.Ma_ND && x.Trang_Thai == false).OrderByDescending(x => x.Thoi_Gian).ToList();
             return tb;
         }
-        public List<ThongBao> getThongBaoDaXem(string maND)
+        public List<ThongBao> getThongBaoDaXem()
         {
-            var tb = db.ThongBaos.Where(x => x.Ma_ND == maND && x.Trang_Thai == true).OrderByDescending(x => x.Thoi_Gian).ToList();
+            var tb = db.ThongBaos.Where(x => x.Ma_ND == this.Ma_ND && x.Trang_Thai == true).OrderByDescending(x => x.Thoi_Gian).ToList();
             return tb;
         }
-        public int getSLThongBao(string maND)
+        public int getSLThongBao()
         {
-            return db.ThongBaos.Where(x => x.Ma_ND == maND).Count();
+            return db.ThongBaos.Where(x => x.Ma_ND == this.Ma_ND).Count();
         }
-        public int getSLThongBaoChuaXem(string maND)
+        public int getSLThongBaoChuaXem()
         {
-            return db.ThongBaos.Where(x => x.Ma_ND == maND && x.Trang_Thai == false).Count();
+            return db.ThongBaos.Where(x => x.Ma_ND == this.Ma_ND && x.Trang_Thai == false).Count();
         }
-        public int getSLThongBaoDaXem(string maND)
+        public int getSLThongBaoDaXem()
         {
-            return db.ThongBaos.Where(x => x.Ma_ND == maND && x.Trang_Thai == true).Count();
+            return db.ThongBaos.Where(x => x.Ma_ND == this.Ma_ND && x.Trang_Thai == true).Count();
         }
     }
 }

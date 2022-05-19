@@ -101,32 +101,32 @@ namespace DayHocTrucTuyen
 
             return user;
         }
-        public int getSLPost(string maLop)
+        public int getSLPost()
         {
-            var sl = db.BaiDangs.Where(x => x.Ma_Lop == maLop).Count();
+            var sl = db.BaiDangs.Where(x => x.Ma_Lop == this.Ma_Lop).Count();
             return sl;
         }
-        public List<BaiDang> getAllPost(string maLop)
+        public List<BaiDang> getAllPost()
         {
             List<BaiDang> lst = new List<BaiDang>();
             var ghim = from p in db.BaiDangs
                        join g in db.Ghims on p.Ma_Bai equals g.Ma_Bai
-                       where p.Ma_Lop == maLop
+                       where p.Ma_Lop == this.Ma_Lop
                        orderby g.Thoi_Gian descending
                        select p;
             lst.AddRange(ghim);
-            var notghim = db.BaiDangs.Where(x => x.Ma_Lop == maLop).Except(ghim).OrderByDescending(x => x.Thoi_Gian);
+            var notghim = db.BaiDangs.Where(x => x.Ma_Lop == this.Ma_Lop).Except(ghim).OrderByDescending(x => x.Thoi_Gian);
             lst.AddRange(notghim);
 
             return lst;
         }
-        public List<PhongThi> getAllPhongThi(string malop)
+        public List<PhongThi> getAllPhongThi()
         {
-            return db.PhongThis.Where(x => x.Ma_Lop == malop).OrderByDescending(x => x.Ngay_Tao).ToList();
+            return db.PhongThis.Where(x => x.Ma_Lop == this.Ma_Lop).OrderByDescending(x => x.Ngay_Tao).ToList();
         }
-        public int getSLCamXuc(string maLop)
+        public int getSLCamXuc()
         {
-            var post = db.BaiDangs.Where(x => x.Ma_Lop == maLop);
+            var post = db.BaiDangs.Where(x => x.Ma_Lop == this.Ma_Lop);
             var count = 0;
             foreach (var p in post)
             {
@@ -135,9 +135,9 @@ namespace DayHocTrucTuyen
             }
             return count;
         }
-        public int getMembers(string maLop)
+        public int getMembers()
         {
-            var sl = db.HocSinhThuocLops.Where(x => x.Ma_Lop == maLop).Count();
+            var sl = db.HocSinhThuocLops.Where(x => x.Ma_Lop == this.Ma_Lop).Count();
             return sl;
         }
         public List<Tag> getTag()
@@ -145,9 +145,9 @@ namespace DayHocTrucTuyen
             List<Tag> tag = db.Database.SqlQuery<Tag>("SELECT Tag.Ma_Tag, Tag.Ten_Tag FROM Tag INNER JOIN LopThuocTag ON Tag.Ma_Tag = LopThuocTag.Ma_Tag WHERE LopThuocTag.Ma_Lop = '" + this.Ma_Lop + "'").ToList();
             return tag;
         }
-        public bool isTag(string maLop, string maTag)
+        public bool isTag(string maTag)
         {
-            var tag = db.Database.SqlQuery<Tag>("SELECT Tag.Ma_Tag, Tag.Ten_Tag FROM Tag INNER JOIN LopThuocTag ON Tag.Ma_Tag = LopThuocTag.Ma_Tag WHERE LopThuocTag.Ma_Lop = '" + maLop + "' AND LopThuocTag.Ma_Tag ='" + maTag + "'").Count();
+            var tag = db.Database.SqlQuery<Tag>("SELECT Tag.Ma_Tag, Tag.Ten_Tag FROM Tag INNER JOIN LopThuocTag ON Tag.Ma_Tag = LopThuocTag.Ma_Tag WHERE LopThuocTag.Ma_Lop = '" + this.Ma_Lop + "' AND LopThuocTag.Ma_Tag ='" + maTag + "'").Count();
             if (tag != 0) return true;
             return false;
         }
@@ -157,11 +157,11 @@ namespace DayHocTrucTuyen
         //    Random rand = new Random();
         //    return color[rand.Next(color.Length)];
         //}
-        public List<NguoiDung> listMembers(string maLop)
+        public List<NguoiDung> listMembers()
         {
             var mem = from n in db.NguoiDungs
                       join hs in db.HocSinhThuocLops on n.Ma_ND equals hs.Ma_ND
-                      where hs.Ma_Lop == maLop
+                      where hs.Ma_Lop == this.Ma_Lop
                       orderby n.Ten
                       select n;
             foreach (var m in mem)
@@ -173,16 +173,16 @@ namespace DayHocTrucTuyen
             }
             return mem.ToList();
         }
-        public bool isOwner(string maUser, string maLop)
+        public bool isOwner(string maUser)
         {
-            var own = db.LopHocs.FirstOrDefault(x => x.Ma_ND == maUser && x.Ma_Lop == maLop);
+            var own = db.LopHocs.FirstOrDefault(x => x.Ma_ND == maUser && x.Ma_Lop == this.Ma_Lop);
             if (own != null) { return true; }
 
             return false;
         }
-        public bool isMember(string maUser, string maLop)
+        public bool isMember(string maUser)
         {
-            var mem = db.HocSinhThuocLops.FirstOrDefault(x => x.Ma_ND == maUser && x.Ma_Lop == maLop);
+            var mem = db.HocSinhThuocLops.FirstOrDefault(x => x.Ma_ND == maUser && x.Ma_Lop == this.Ma_Lop);
             if (mem != null) { return true; }
 
             return false;

@@ -131,10 +131,10 @@ namespace DayHocTrucTuyen
             return result;
         }
 
-        public bool traLoiDung(int stt, string maPhong, string maND, int lanthu)
+        public bool traLoiDung(string maND, int lanthu)
         {
-            var cauhoi = db.CauHoiThis.FirstOrDefault(x => x.STT == stt && x.Ma_Phong == maPhong);
-            var traloi = db.CauTraLois.FirstOrDefault(x => x.STT == stt && x.Ma_Phong == maPhong && x.Ma_ND == maND && x.Lan_Thu == lanthu);
+            var cauhoi = db.CauHoiThis.FirstOrDefault(x => x.STT == this.STT && x.Ma_Phong == this.Ma_Phong);
+            var traloi = db.CauTraLois.FirstOrDefault(x => x.STT == this.STT && x.Ma_Phong == this.Ma_Phong && x.Ma_ND == maND && x.Lan_Thu == lanthu);
             if (traloi != null && traloi.Dap_An.Equals(cauhoi.Loi_Giai)) return true;
 
             return false;

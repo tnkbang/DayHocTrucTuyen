@@ -206,13 +206,13 @@
                                 { <p>@room.Mo_Ta</p>}
                                 <div class="trainer d-flex justify-content-between align-items-center">
                                     <div class="trainer-profile d-flex align-items-center">
-                                        <img width="40" height="40" src="@room.getOwner().getImage()" class="img-fluid" alt="" />
+                                        <img width="40" height="40" src="@room.getOwner().getImageAvt()" class="img-fluid" alt="" />
                                         <a href="~/Profile/Info?User=@room.getOwner().Ma_ND" data-toggle="tooltip" title="@room.getOwner().Ho_Lot @room.getOwner().Ten">@room.getOwner().Ten</a>
                                     </div>
                                     <div class="trainer-rank d-flex align-items-center">
-                                        <i class="bx bx-user"></i> &nbsp;@room.getMembers(room.Ma_Lop)
+                                        <i class="bx bx-user"></i> &nbsp;@room.getMembers()
                                         &nbsp;&nbsp;
-                                        <i class="bx bx-heart"></i>&nbsp;@room.getSLCamXuc(room.Ma_Lop)
+                                        <i class="bx bx-heart"></i>&nbsp;@room.getSLCamXuc()
                                     </div>
                                 </div>
                             </div>

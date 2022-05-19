@@ -3,7 +3,6 @@
     ViewBag.Main = "Quản lý bài thi";
     Layout = "~/Views/Shared/_LayoutArea.cshtml";
     var sess = (UserLogin)Session[SessionLogin.SESSION_LOGIN];
-    NguoiDung user = new NguoiDung();
     PhongThi phongThi = new PhongThi();
     List<PhongThi> examQuest = phongThi.searchPhongThi(sess.MaUser, ViewBag.Search);
 }
@@ -84,8 +83,8 @@
                                                             <li>Đóng: @bt.Ngay_Dong.ToString("dd/MM/yyyy 'lúc' HH 'giờ' mm 'phút'")</li>
                                                         </ul>
                                                         <ul class="pit-opt">
-                                                            <li title="Số câu hỏi"><i class="fa fa-question-circle"></i><em>@bt.getSLCauHoi(bt.Ma_Phong)</em></li>
-                                                            <li title="Số lượng làm bài"><i class="fa fa-group"></i><em>@bt.getSLLamBai(bt.Ma_Phong)</em></li>
+                                                            <li title="Số câu hỏi"><i class="fa fa-question-circle"></i><em>@bt.getSLCauHoi()</em></li>
+                                                            <li title="Số lượng làm bài"><i class="fa fa-group"></i><em>@bt.getSLLamBai()</em></li>
                                                             <li class="get-link" title="Sao chép liên kết"><i class="fa fa-link"></i></li>
                                                         </ul>
                                                     </div>
@@ -132,8 +131,8 @@
                                                         <li>Đóng: @bt.Ngay_Dong.ToString("dd/MM/yyyy 'lúc' HH 'giờ' mm 'phút'")</li>
                                                     </ul>
                                                     <ul class="pit-opt">
-                                                        <li title="Số câu hỏi"><i class="fa fa-question-circle"></i><em>@bt.getSLCauHoi(bt.Ma_Phong)</em></li>
-                                                        <li title="Số lượng làm bài"><i class="fa fa-group"></i><em>@bt.getSLLamBai(bt.Ma_Phong)</em></li>
+                                                        <li title="Số câu hỏi"><i class="fa fa-question-circle"></i><em>@bt.getSLCauHoi()</em></li>
+                                                        <li title="Số lượng làm bài"><i class="fa fa-group"></i><em>@bt.getSLLamBai()</em></li>
                                                         <li class="get-link" title="Sao chép liên kết"><i class="fa fa-link"></i></li>
                                                     </ul>
                                                 </div>

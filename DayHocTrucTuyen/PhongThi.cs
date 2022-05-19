@@ -75,44 +75,44 @@ namespace DayHocTrucTuyen
             }
             return sb.ToString();
         }
-        public int getSLCauHoi(string maPhong)
+        public int getSLCauHoi()
         {
-            return db.CauHoiThis.Where(x => x.Ma_Phong == maPhong).Count();
+            return db.CauHoiThis.Where(x => x.Ma_Phong == this.Ma_Phong).Count();
         }
-        public int getSLThi(string maND, string maPhong)
+        public int getSLThi(string maND)
         {
-            return db.ThoiGianLamBais.Where(x => x.Ma_ND == maND && x.Ma_Phong == maPhong).Count();
+            return db.ThoiGianLamBais.Where(x => x.Ma_ND == maND && x.Ma_Phong == this.Ma_Phong).Count();
         }
-        public List<ThoiGianLamBai> getListThi(string maND, string maPhong)
+        public List<ThoiGianLamBai> getListThi(string maND)
         {
-            return db.ThoiGianLamBais.Where(x => x.Ma_ND == maND && x.Ma_Phong == maPhong).ToList();
+            return db.ThoiGianLamBais.Where(x => x.Ma_ND == maND && x.Ma_Phong == this.Ma_Phong).ToList();
         }
-        public int getSLLamBai(string maPhong)
+        public int getSLLamBai()
         {
-            return db.ThoiGianLamBais.Where(x => x.Ma_Phong == maPhong).Count();
+            return db.ThoiGianLamBais.Where(x => x.Ma_Phong == this.Ma_Phong).Count();
         }
-        public List<CauHoiThi> getAllCauHoi(string maPhong)
+        public List<CauHoiThi> getAllCauHoi()
         {
-            return db.CauHoiThis.Where(x => x.Ma_Phong == maPhong).ToList();
+            return db.CauHoiThis.Where(x => x.Ma_Phong == this.Ma_Phong).ToList();
         }
-        public bool daChonDapAn(int stt, string maphong, string maND, int lanthu)
+        public bool daChonDapAn(int stt, string maND, int lanthu)
         {
-            var tl = db.CauTraLois.FirstOrDefault(x => x.STT == stt && x.Ma_Phong == maphong && x.Ma_ND == maND && x.Lan_Thu == lanthu);
+            var tl = db.CauTraLois.FirstOrDefault(x => x.STT == stt && x.Ma_Phong == this.Ma_Phong && x.Ma_ND == maND && x.Lan_Thu == lanthu);
             if (tl == null) return false;
 
             return true;
         }
-        public string getDapAnDaChon(int stt, string maphong, string maND, int lanthu)
+        public string getDapAnDaChon(int stt, string maND, int lanthu)
         {
-            var tl = db.CauTraLois.FirstOrDefault(x => x.STT == stt && x.Ma_Phong == maphong && x.Ma_ND == maND && x.Lan_Thu == lanthu);
+            var tl = db.CauTraLois.FirstOrDefault(x => x.STT == stt && x.Ma_Phong == this.Ma_Phong && x.Ma_ND == maND && x.Lan_Thu == lanthu);
 
             return tl.Dap_An;
         }
-        public int getDiemThi(string maND, string maPhong, int lanthu)
+        public int getDiemThi(string maND, int lanthu)
         {
-            var pt = db.PhongThis.FirstOrDefault(x => x.Ma_Phong == maPhong);
+            var pt = db.PhongThis.FirstOrDefault(x => x.Ma_Phong == this.Ma_Phong);
             int diem = 0;
-            for(int i = 1; i <= pt.getSLCauHoi(pt.Ma_Phong); i++)
+            for(int i = 1; i <= pt.getSLCauHoi(); i++)
             {
                 var cauhoi = db.CauHoiThis.FirstOrDefault(x => x.STT == i && x.Ma_Phong == pt.Ma_Phong);
                 var traloi = db.CauTraLois.FirstOrDefault(x => x.STT == i && x.Ma_Phong == pt.Ma_Phong && x.Ma_ND == maND && x.Lan_Thu == lanthu);

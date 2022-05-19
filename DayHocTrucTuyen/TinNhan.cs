@@ -64,7 +64,7 @@ namespace DayHocTrucTuyen
         }
         public NguoiDung getUser(string maND)
         {
-            var nd = db.NguoiDungs.FirstOrDefault(x=>x.Ma_ND == maND);
+            var nd = db.NguoiDungs.FirstOrDefault(x => x.Ma_ND == maND);
             nd.SDT = null;
             nd.Email = null;
             nd.Mat_Khau = null;

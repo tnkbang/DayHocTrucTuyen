@@ -106,7 +106,7 @@ namespace DayHocTrucTuyen.Areas.Courses.Controllers
                 }
             }
             //Xóa bình luận
-            if (post.getSLBinhLuan(post.Ma_Bai) != 0)
+            if (post.getSLBinhLuan() != 0)
             {
                 var listComment = db.BinhLuans.Where(x => x.Ma_Bai == post.Ma_Bai);
                 foreach (var comment in listComment)
@@ -115,7 +115,7 @@ namespace DayHocTrucTuyen.Areas.Courses.Controllers
                 }
             }
             //Xóa cảm xúc
-            if (post.getSLCamXuc(post.Ma_Bai) != 0)
+            if (post.getSLCamXuc() != 0)
             {
                 var listYT = db.CamXucs.Where(x => x.Ma_Bai == post.Ma_Bai);
                 foreach (var yT in listYT)
@@ -124,7 +124,7 @@ namespace DayHocTrucTuyen.Areas.Courses.Controllers
                 }
             }
             //Xóa trạng thái ghim
-            if (post.isGhim(post.Ma_Bai))
+            if (post.isGhim())
             {
                 var ghim = db.Ghims.FirstOrDefault(x => x.Ma_Bai == post.Ma_Bai);
                 db.Ghims.Remove(ghim);
@@ -141,7 +141,7 @@ namespace DayHocTrucTuyen.Areas.Courses.Controllers
         public ActionResult setLikePost(string maPost, string maND)
         {
             CamXuc yt = db.CamXucs.FirstOrDefault(x => x.Ma_Bai == maPost && x.Ma_ND == maND);
-            BaiDang bd = new BaiDang();
+            BaiDang bd = db.BaiDangs.FirstOrDefault(x => x.Ma_Bai == maPost);
 
             if (yt == null)
             {
@@ -152,13 +152,13 @@ namespace DayHocTrucTuyen.Areas.Courses.Controllers
 
                 db.CamXucs.Add(newYT);
                 db.SaveChanges();
-                return Json(new { tt = true, sl = bd.getSLCamXuc(maPost) }, JsonRequestBehavior.AllowGet);
+                return Json(new { tt = true, sl = bd.getSLCamXuc() }, JsonRequestBehavior.AllowGet);
             }
             else
             {
                 db.CamXucs.Remove(yt);
                 db.SaveChanges();
-                return Json(new { tt = false, sl = bd.getSLCamXuc(maPost) }, JsonRequestBehavior.AllowGet);
+                return Json(new { tt = false, sl = bd.getSLCamXuc() }, JsonRequestBehavior.AllowGet);
             }
         }
 

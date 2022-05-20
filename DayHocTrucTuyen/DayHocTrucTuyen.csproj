@@ -250,6 +250,8 @@
       <DependentUpon>Model.edmx</DependentUpon>
       <LastGenOutput>Model.cs</LastGenOutput>
     </Content>
+    <Content Include="Template\css\chat-dark.css" />
+    <Content Include="Template\css\chat-light.css" />
     <Content Include="Template\css\erro.css" />
     <Content Include="Content\Img\Resources\baner-forum.png" />
     <Content Include="Content\Img\Resources\Logo.gif" />
@@ -1176,11 +1178,25 @@
     <Content Include="Template\css\weather-icon.css" />
     <Content Include="Template\css\weather-icons.min.css" />
     <Content Include="Template\css\virtual-select.min.css" />
+    <Content Include="Template\fonts\feather\feather.svg" />
+    <Content Include="Template\fonts\feather\feather.txt" />
+    <Content Include="Template\fonts\roboto\roboto.bold-webfont-1.txt" />
+    <Content Include="Template\fonts\roboto\roboto.bold-webfont.txt" />
+    <Content Include="Template\fonts\roboto\roboto.italic-webfont-1.txt" />
+    <Content Include="Template\fonts\roboto\roboto.italic-webfont.txt" />
+    <Content Include="Template\fonts\roboto\roboto.medium-webfont-1.txt" />
+    <Content Include="Template\fonts\roboto\roboto.medium-webfont.txt" />
+    <Content Include="Template\fonts\roboto\roboto.regular-webfont-1.txt" />
+    <Content Include="Template\fonts\roboto\roboto.regular-webfont.txt" />
+    <Content Include="Template\js\bootstrap.bundle.min.js" />
     <Content Include="Template\js\customDateTime.js" />
     <Content Include="Template\js\error.js" />
     <Content Include="Template\js\background.cycle.js" />
     <Content Include="Template\js\getAPI.js" />
+    <Content Include="Template\js\jquery.min.js" />
     <Content Include="Template\js\pdf.js" />
+    <Content Include="Template\js\plugins.bundle.js" />
+    <Content Include="Template\js\mess.js" />
     <Content Include="Template\js\toastr.js" />
     <Content Include="Template\js\virtual-select.min.js" />
     <Content Include="Template\fonts\fa-brands-400.html" />
@@ -1969,7 +1985,6 @@
     <Folder Include="Areas\Courses\Views\View\" />
     <Folder Include="Areas\User\Data\" />
     <Folder Include="Areas\User\Views\Base\" />
-    <Folder Include="Areas\User\Views\Mess\" />
     <Folder Include="Areas\User\Views\Shared\" />
     <Folder Include="Content\filePost\" />
     <Folder Include="Scripts\" />
@@ -1979,7 +1994,9 @@
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Areas\User\Views\Mess\Index.cshtml" />
     <None Include="packages.config" />
+    <Content Include="Template\fonts\feather\feather.bin" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

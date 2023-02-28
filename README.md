@@ -6,7 +6,7 @@ Là phiên bản ban đầu của <a href="https://github.com/tnkbang/DayHocTruc
 
 ## Kỹ Thuật
 
-- ASP.Net Framework 4.7.2
+- ASP.Net Framework 4.7.2 MVC
 - Bootstrap 5
 - SignalR
 

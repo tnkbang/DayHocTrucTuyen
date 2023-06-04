@@ -20,6 +20,10 @@ Tham khảo thêm cách cài đặt tại <a href="https://github.com/tnkbang/Da
 
 ## Demo
 
-[![Watch the video](https://img.youtube.com/vi/x03ahjnrzgQ/hqdefault.jpg)](https://youtu.be/x03ahjnrzgQ)
+[![Watch the video](https://seobyweb.com/wp-content/uploads/2017/10/y-nghia-cua-demo.jpg)](https://dl.dropbox.com/s/fg6j010s4f89vhl/demo_dayhoctructuyen.mp4?dl=0)
 </br>
-https://youtu.be/x03ahjnrzgQ
+[Link DropBox](https://dl.dropbox.com/s/fg6j010s4f89vhl/demo_dayhoctructuyen.mp4?dl=0)
+</br>
+hoặc
+</br>
+[Link One Drive](https://winofiwin292-my.sharepoint.com/:v:/g/personal/tnkb_winofiwin292_onmicrosoft_com/Eb3HPJaGnbNNqvfOT-K4KVkBMRQQOALSfJpKHOQU35FnOQ?e=urjtJo)
